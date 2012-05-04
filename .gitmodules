@@ -58,3 +58,6 @@
 [submodule "repos/less.vim"]
 	path = repos/less.vim
 	url = git://github.com/huyz/less.vim.git
+[submodule "repos/pysmell"]
+	path = repos/pysmell
+	url = git://github.com/orestis/pysmell.git

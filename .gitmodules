@@ -73,3 +73,51 @@
 [submodule "repos/vimpy"]
 	path = repos/vimpy
 	url = git://github.com/amitdev/vimpy.git
+[submodule "bundle/html5"]
+	path = bundle/html5
+	url = https://github.com/othree/html5.vim.git
+[submodule "bundle/argtextobj"]
+	path = bundle/argtextobj
+	url = https://github.com/vim-scripts/argtextobj.vim.git
+[submodule "bundle/virtualenv"]
+	path = bundle/virtualenv
+	url = https://github.com/jmcantrell/vim-virtualenv.git
+[submodule "bundle/json"]
+	path = bundle/json
+	url = https://github.com/leshill/vim-json.git
+[submodule "bundle/CamelCaseMotion"]
+	path = bundle/CamelCaseMotion
+	url = https://github.com/bkad/CamelCaseMotion.git
+[submodule "bundle/indent-obj"]
+	path = bundle/indent-obj
+	url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule "bundle/neocompcache"]
+	path = bundle/neocompcache
+	url = https://github.com/Shougo/neocomplcache.git
+[submodule "bundle/neocompcache-snippets-complete"]
+	path = bundle/neocompcache-snippets-complete
+	url = https://github.com/Shougo/neocomplcache-snippets-complete
+[submodule "bundle/vimshell"]
+	path = bundle/vimshell
+	url = http://github.com/Shougo/vimshell
+[submodule "bundle/vimproc"]
+	path = bundle/vimproc
+	url = http://github.com/Shougo/vimproc
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/UltiSnips"]
+	path = bundle/UltiSnips
+	url = https://github.com/vim-scripts/UltiSnips.git
+[submodule "bundle/MatchTag"]
+	path = bundle/MatchTag
+	url = git://github.com/gregsexton/MatchTag.git
+[submodule "bundle/unimpaired"]
+	path = bundle/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/repeat"]
+	path = bundle/repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "bundle/trailing-whitspace"]
+	path = bundle/trailing-whitspace
+	url = git://github.com/vim-scripts/trailing-whitespace.git

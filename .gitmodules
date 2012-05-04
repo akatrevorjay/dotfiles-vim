@@ -67,3 +67,9 @@
 [submodule "repos/pathogen"]
 	path = repos/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
+[submodule "bundle/vimpy"]
+	path = bundle/vimpy
+	url = git://github.com/LimpidTech/Vimpy.git
+[submodule "repos/vimpy"]
+	path = repos/vimpy
+	url = git://github.com/amitdev/vimpy.git

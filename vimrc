@@ -252,6 +252,8 @@ inoremap <Nul> <C-x><C-o>
 "  endif
 "endfunction
 
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 " }}}
 

@@ -107,7 +107,11 @@ set complete=.,t
 
 " Filetype specifics
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType python setlocal omnifunc=pysmell#Complete
+"autocmd FileType python setlocal omnifunc=pysmell#Complete
+
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
 
 " }}}1
 
@@ -136,15 +140,52 @@ map <Leader>b :TMiniBufExplorer<cr>
 "map <Leader>b :let g:miniBufExplSplitBelow=0<cr>:let g:miniBufExplVSplit=0<cr>:TMiniBufExplorer<cr>
 "map <Leader>] :let g:miniBufExplSplitBelow=1<cr>:let g:miniBufExplVSplit=1<cr>:TMiniBufExplorer<cr>
 
-" Ack
-map <Leader>a :Ack<cr>
+" Ack (! means do not open the first file automagically)
+nmap <leader>a <Esc>:Ack!
 
 " Gundo
 map <Leader>u :GundoToggle<cr>
 
-" whoa
+" Rope
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
+
+" Quit
+map q :q<cr>
+map W :wq<cr>
+
+" django-nose test runner
+map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
+
+" Py.test
+" Execute the tests
+nmap <silent><Leader>tf <Esc>:Pytest file<CR>
+nmap <silent><Leader>tc <Esc>:Pytest class<CR>
+nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+" cycle through test errors
+nmap <silent><Leader>tn <Esc>:Pytest next<CR>
+nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
+nmap <silent><Leader>te <Esc>:Pytest error<CR>
+
+" Toggle line numbers and foldcol
+nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+
 
 " }}}
+
+" Fix vim being run through a virtualenv {{{1
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+" }}}1
 
 " Folding {{{
 set foldenable

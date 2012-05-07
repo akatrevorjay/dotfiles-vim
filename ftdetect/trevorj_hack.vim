@@ -8,6 +8,12 @@ au BufRead,BufNewFile *.py set filetype=python
 " Bash
 au BufRead,BufNewFile *.sh set filetype=sh
 
+" Readmes
+au BufRead,BufNewFile readme* set filetype=mkd
+au BufRead,BufNewFile install* set filetype=mkd
+au BufRead,BufNewFile *.txt set filetype=mkd
+au BufRead,BufNewFile *.sh set filetype=mkd
+
 if did_filetype()   " filetype already set
     finish
 elseif getline(1) =~ '^#/usr/bin/env python'

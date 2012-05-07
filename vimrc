@@ -41,6 +41,9 @@ set autowrite		" Automatically save before commands like :next and :make
 set hidden          " Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes) in terminals
 
+" Dont copy indent from current line when starting a new line
+set cindent
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -111,23 +114,23 @@ set complete=.,t
 
 " Python tab completion
 "autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
-autocmd FileType python setlocal omnifunc=pysmell#Complete
+"autocmd FileType python setlocal omnifunc=pysmell#Complete
 
-au FileType python set omnifunc=pythoncomplete#Complete
+"au Filetype python set omnifunc=pysmell#Complete
+"au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 
 " Run pylint on save
 autocmd FileType python compiler pylint
-let g:pyflakes_use_quickfix = 0 
+let g:pyflakes_use_quickfix = 1
 
 "ropevim
-"let ropevim_vim_completion=1
-"let ropevim_extended_complete=1
+let ropevim_vim_completion=1
+let ropevim_extended_complete=1
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
-
 
 " }}}1
 
@@ -220,45 +223,59 @@ set foldlevel=1
 "augroup END
 
 " Use space to toggle folding
-"nnoremap <space> za                                                                                                                     
+"nnoremap <space> za
 "vnoremap <space> zf
 " OR
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " Toggle quickfix
-noremap <silent> <F4> :QFix<CR> 
+noremap <silent> <F4> :QFix<CR>
 " Code complete
-inoremap <Nul> <C-x><C-o>
+"inoremap <Nul> <C-x><C-o>
+
+" remove trailing whitespace
+"autocmd FileType python autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 "the quickfix window is not always 10 lines height
-"au FileType qf call AdjustWindowHeight(3, 10) 
-"function! AdjustWindowHeight(minheight, maxheight)
-"    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-"endfunction
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
 
 "quickfix toogle
-"command! -bang -nargs=? QFix call QFixToggle(<bang>0)
-"function! QFixToggle(forced)
-"  if exists("g:qfix_win") && a:forced == 0
-"    cclose
-"    let g:pylint_cwindow = 0 
-"    unlet g:qfix_win
-"  else
-"    copen 10
-"    call AdjustWindowHeight(3, 10) 
-"    let g:pylint_cwindow = 1 
-"    let g:qfix_win = bufnr("$")
-"  endif
-"endfunction
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    let g:pylint_cwindow = 0
+    unlet g:qfix_win
+  else
+    copen 10
+    call AdjustWindowHeight(3, 10)
+    let g:pylint_cwindow = 1
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+" Highlight columns over 80
+"au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 
+" Pidgin
+nmap <F12> :Chat<CR>
+
+
 " }}}
 
+" Pidgin settings
+let g:python_pidgin_plugin_path='~/.vim/repos/vimpidgin-svn/src/pidgin_server.py'
+
 " Tagbar settings
-let g:tagbar_left = 1
+"let g:tagbar_left = 1
 
 " displays tabs
 set lcs=tab:▒░
@@ -269,10 +286,10 @@ set lcs=tab:▒░
 " Specific ignore for DVCS/VCS
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 "let g:ctrlp_by_filename = 1
-let g:ctrlp_match_window_bottom = 0 
-let g:ctrlp_dotfiles = 1 
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_dotfiles = 1
 let g:ctrlp_max_height = 50
-let g:ctrlp_max_files = 0 
+let g:ctrlp_max_files = 0
 let g:ctrlp_lazy_update = 1
 
 " TaskList
@@ -355,6 +372,7 @@ inoremap <expr><C-l>     neocomplcache#complete_common_string()
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
@@ -362,6 +380,7 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
+"inoremap <expr><Esc>  pumvisible() ? neocomplcache#cancel_popup() : "\<Esc>"
 
 " AutoComplPop like behavior.
 let g:neocomplcache_enable_auto_select = 1

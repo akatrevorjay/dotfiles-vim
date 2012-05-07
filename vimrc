@@ -61,7 +61,7 @@ set cul
 
 " Numbers
 set number
-set numberwidth=5
+set numberwidth=3
 
 " Invisibles
 "set list
@@ -69,7 +69,7 @@ set numberwidth=5
 "set listchars=tab:..
 
 " gvim
-set guioptions=aegimrLt
+set guioptions=acMh
 
 " }}}
 
@@ -96,10 +96,31 @@ set autoindent
 
 " Colors {{{
 "colorscheme elflord
-let g:zenburn_high_Contrast=1
 set t_Co=256
+let g:zenburn_high_Contrast=1
+"let g:zenburn_unified_CursorColumn=1
 "colorscheme slate
 colorscheme zenburn
+"colorscheme railscasts-trevorj
+"colorscheme navajo-night
+"colorscheme BusyBee
+"colorscheme bensday
+"colorscheme camo
+"colorscheme carvedwood
+"colorscheme darkeclipse
+"colorscheme darkspectrum
+"colorscheme evening
+"colorscheme fruity
+"colorscheme guardian
+"colorscheme industrial
+"colorscheme ir_black
+"colorscheme inkpot
+"colorscheme jellybeans
+"colorscheme leo
+"colorscheme lucius
+"colorscheme wombat256
+"colorscheme xoria256
+
 " }}}
 
 " Tab completion options {{{1
@@ -212,7 +233,7 @@ EOF
 set foldenable
 "set foldmethod=marker
 set foldmarker={{{,}}}
-set foldcolumn=1
+set foldcolumn=2
 "set foldnestmax=2
 set foldmethod=indent
 set foldlevel=1
@@ -264,9 +285,20 @@ endfunction
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width=30
 
 " Pidgin
 nmap <F12> :Chat<CR>
+
+" vim-haskell
+" use ghc functionality for haskell files
+au Bufenter *.hs compiler ghc
+
+" configure browser for haskell_doc.vim
+let g:haddock_browser = "xdg-open"
+"let g:haddock_browser = "C:/Program Files/Opera/Opera.exe"
+"let g:haddock_browser = "C:/Program Files/Mozilla Firefox/firefox.exe"
+"let g:haddock_browser = "C:/Program Files/Internet Explorer/IEXPLORE.exe"
 
 
 " }}}
@@ -330,6 +362,25 @@ set laststatus=2
 set encoding=utf-8
 "let Powerline_symbols="unicode"
 let Powerline_symbols="fancy"
+"let g:Powerline_colorscheme="skwp"
+
+" ConqueTerm
+let g:ConqueTerm_Color = 1
+"let g:ConqueTerm_SessionSupport = 0
+"let g:ConqueTerm_InsertOnEnter = 0
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_ToggleKey = '<F10>'
+let g:ConqueTerm_CWInsert = 1
+let g:ConqueTerm_FastMode = 1
+
+"let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=100
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=40
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+
 " }}}
 
 " NeoComplCache

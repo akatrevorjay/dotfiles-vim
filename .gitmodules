@@ -127,3 +127,42 @@
 [submodule "bundle/conque-term"]
 	path = bundle/conque-term
 	url = git://github.com/rosenfeld/conque-term.git
+[submodule "repos/vim-haskell"]
+	path = repos/vim-haskell
+	url = git://github.com/wlangstroth/vim-haskell.git
+[submodule "repos/prettyprint"]
+	path = repos/prettyprint
+	url = git://github.com/thinca/vim-prettyprint.git
+[submodule "repos/easymotion"]
+	path = repos/easymotion
+	url = git://github.com/Lokaltog/vim-easymotion.git
+[submodule "repos/git"]
+	path = repos/git
+	url = git://github.com/motemen/git-vim.git
+[submodule "repos/vinarise"]
+	path = repos/vinarise
+	url = git://github.com/Shougo/vinarise.git
+[submodule "repos/indent-guides"]
+	path = repos/indent-guides
+	url = git://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "repos/vim-railscasts-jgdavey"]
+	path = repos/vim-railscasts-jgdavey
+	url = git://github.com/jgdavey/vim-railscasts.git
+[submodule "repos/zencoding"]
+	path = repos/zencoding
+	url = git://github.com/mattn/zencoding-vim.git
+[submodule "repos/pasta"]
+	path = repos/pasta
+	url = git://github.com/sickill/vim-pasta.git
+[submodule "repos/speeddating"]
+	path = repos/speeddating
+	url = git://github.com/tpope/vim-speeddating.git
+[submodule "repos/repeat"]
+	path = repos/repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule "repos/ipython"]
+	path = repos/ipython
+	url = git://github.com/vim-scripts/vim-ipython.git
+[submodule "repos/badwolf-colors"]
+	path = repos/badwolf-colors
+	url = git://github.com/vim-scripts/badwolf.git

@@ -7,8 +7,8 @@
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
+[submodule "repos/snipmate"]
+	path = repos/snipmate
 	url = https://github.com/msanders/snipmate.vim.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
@@ -166,3 +166,6 @@
 [submodule "repos/badwolf-colors"]
 	path = repos/badwolf-colors
 	url = git://github.com/vim-scripts/badwolf.git
+[submodule "repos/syntastic"]
+	path = repos/syntastic
+	url = https://github.com/scrooloose/syntastic.git

@@ -152,6 +152,7 @@ colorscheme wombat256
 
 " gvim
 set guioptions=acMh
+set mousefocus " focus follows mouse in gvim
 if has("gui_running")
     "colorscheme railscasts-trevorj
 endif
@@ -175,12 +176,31 @@ set complete=.,t
 
 "au Filetype python set omnifunc=pysmell#Complete
 "au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
+"let g:SuperTabDefaultCompletionType = "context"
+"set completeopt=menuone,longest,preview
+"let g:SuperTabLongestEnhanced=1
+"let g:SuperTabLongestHighlight=1
+"let g:SuperTabCrMapping=1
 
 " Run pylint on save
-autocmd FileType python compiler pylint
+"autocmd FileType python compiler pylint
 let g:pyflakes_use_quickfix = 1
+
+" mouse
+set mouse=nvch " all modes but insert
+set mousemodel="extend" " popup popup_setpos
+
+let g:syntastic_enable_balloons = 1
+let g:syntastic_check_on_open = 1
+"let g:syntastic_python_checker_args = ""
+let g:syntastic_auto_jump = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_echo_current_error = 1
+let g:syntastic_loc_list_height = 20
+"let g:syntastic_mode_map = {}
+"let g:syntastic_quiet_warnings = 1
 
 "ropevim
 let ropevim_vim_completion=1
@@ -196,6 +216,10 @@ let g:neocomplcache_enable_at_startup = 1
 " Paste
 "set pastetoggle=<Leader>pt
 set pastetoggle=<F3>
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Move around windows easier
 map <c-j> <c-w>j
@@ -475,7 +499,6 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
-"inoremap <expr><Esc>  pumvisible() ? neocomplcache#cancel_popup() : "\<Esc>"
 
 " AutoComplPop like behavior.
 let g:neocomplcache_enable_auto_select = 1
@@ -505,7 +528,8 @@ let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 " UltiSnips
-let g:UltiSnipsSnippetDirectories=['UltiSnips', '/home/trevorj/.vim/snippets']
+"does not work with these snippets...
+"let g:UltiSnipsSnippetDirectories=['UltiSnips', '/home/trevorj/.vim/snippets']
 " }}}
 
 " }}}1

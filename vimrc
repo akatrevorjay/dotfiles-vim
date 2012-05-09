@@ -52,8 +52,24 @@ set ic
 " .. Except when we use any upper case in the pattern
 set scs
 
+" Highlight all results of search
+set hlsearch
+
 " Highlight the line the cursor is on (local to window)
 set cul
+
+" Other highlight options
+"set highlight=8r,db,es,hs,mb,Mr,nu,rs,sr,tb,vr,ws
+
+" set 7 lines to curors - when moving vertical
+"set so=7
+
+" show a report when N lines were changed. 0 means
+" 'all' - always report
+"set report=0
+
+" make taglist hilight update faster
+"set updatetime=200
 
 " tab/buffer options
 " useopen usetab split newtab
@@ -67,9 +83,6 @@ set numberwidth=3
 "set list
 "set listchars=tab:>.,trail:.,extends:#,nbsp:.
 "set listchars=tab:..
-
-" gvim
-set guioptions=acMh
 
 " }}}
 
@@ -91,6 +104,22 @@ set expandtab
 
 " Always  set auto indenting on
 set autoindent
+
+" Let OS know when to flush disk
+set nofsync
+
+" write buffer when leaving
+"set autowrite
+
+" no backup/swap
+"set nowb
+"set nobackup
+"set noswapfile
+
+" autoread when a file is changed from the outside
+"set autoread
+
+
 " }}}
 
 
@@ -100,7 +129,7 @@ set t_Co=256
 let g:zenburn_high_Contrast=1
 "let g:zenburn_unified_CursorColumn=1
 "colorscheme slate
-colorscheme zenburn
+"colorscheme zenburn
 "colorscheme railscasts-trevorj
 "colorscheme navajo-night
 "colorscheme BusyBee
@@ -118,8 +147,15 @@ colorscheme zenburn
 "colorscheme jellybeans
 "colorscheme leo
 "colorscheme lucius
-"colorscheme wombat256
+colorscheme wombat256
 "colorscheme xoria256
+
+" gvim
+set guioptions=acMh
+if has("gui_running")
+    "colorscheme railscasts-trevorj
+endif
+
 
 " }}}
 
@@ -236,7 +272,7 @@ set foldmarker={{{,}}}
 set foldcolumn=2
 "set foldnestmax=2
 set foldmethod=indent
-set foldlevel=1
+set foldlevel=2
 
 "augroup vimrc
 "  au BufReadPre * setlocal foldmethod=indent
@@ -309,8 +345,16 @@ let g:python_pidgin_plugin_path='~/.vim/repos/vimpidgin-svn/src/pidgin_server.py
 " Tagbar settings
 "let g:tagbar_left = 1
 
-" displays tabs
+" When using set list:
 set lcs=tab:▒░
+"set lcs=tab:>-,eol:$,nbsp:%,trail:X,extends:>,precedes:<
+" testing tabs 	 	 	 	 	 	 	 test
+
+"if $LANG =~ ".*\.UTF-8$" || $LANG =~ ".*utf8$" || $LANG =~ ".*utf-8$"
+    set listchars+=tab:»·,trail:·,precedes:…,extends:…
+"else
+"    set listchars=tab:>-,trail:-
+"endif
 
 " Plugin Options {{{1
 
@@ -383,7 +427,7 @@ let g:indent_guides_start_level = 2
 
 " }}}
 
-" NeoComplCache
+" NeoComplCache {{{
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -460,6 +504,9 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
+" UltiSnips
+let g:UltiSnipsSnippetDirectories=['UltiSnips', '/home/trevorj/.vim/snippets']
+" }}}
 
 " }}}1
 

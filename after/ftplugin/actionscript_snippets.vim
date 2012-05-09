@@ -1,1 +1,0 @@
-/usr/share/vim-scripts/after/ftplugin/actionscript_snippets.vim

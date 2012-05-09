@@ -1,1 +1,0 @@
-/usr/share/vim-scripts/after/ftplugin/django_model_snippets.vim

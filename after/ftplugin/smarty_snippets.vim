@@ -1,1 +1,0 @@
-/usr/share/vim-scripts/after/ftplugin/smarty_snippets.vim

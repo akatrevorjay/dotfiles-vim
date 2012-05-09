@@ -1,1 +1,0 @@
-/usr/share/vim-scripts/after/ftplugin/f-script_snippets.vim

@@ -153,6 +153,7 @@ colorscheme wombat256
 " gvim
 set guioptions=acMh
 set mousefocus " focus follows mouse in gvim
+set guifont="Monaco for Powerline 10"
 if has("gui_running")
     "colorscheme railscasts-trevorj
 endif
@@ -164,7 +165,8 @@ endif
 set wildmode=longest,list
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak
-set complete=.,t
+"set complete=.,t
+
 
 " Filetype specifics
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
@@ -174,16 +176,16 @@ set complete=.,t
 "autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
 "autocmd FileType python setlocal omnifunc=pysmell#Complete
 
-"au Filetype python set omnifunc=pysmell#Complete
-"au FileType python set omnifunc=pythoncomplete#Complete
-"let g:SuperTabDefaultCompletionType = "context"
-"set completeopt=menuone,longest,preview
-"let g:SuperTabLongestEnhanced=1
+au Filetype python set omnifunc=pysmell#Complete
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
 "let g:SuperTabCrMapping=1
 
 " Run pylint on save
-"autocmd FileType python compiler pylint
+autocmd FileType python compiler pylint
 let g:pyflakes_use_quickfix = 1
 
 " mouse
@@ -195,12 +197,12 @@ let g:syntastic_check_on_open = 1
 "let g:syntastic_python_checker_args = ""
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_enable_highlighting = 1
+"let g:syntastic_enable_highlighting = 0
 let g:syntastic_enable_signs = 1
 let g:syntastic_echo_current_error = 1
-let g:syntastic_loc_list_height = 20
 "let g:syntastic_mode_map = {}
 "let g:syntastic_quiet_warnings = 1
+"let g:syntastic_loc_list_height = 10
 
 "ropevim
 let ropevim_vim_completion=1
@@ -250,6 +252,10 @@ map <Leader>u :GundoToggle<cr>
 " Rope
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
+
+" CommandT
+nmap <leader>` :CommandT<CR>
+nmap <leader><leader>` :CommandTBuffer<CR>
 
 " Quit
 map q :q<cr>
@@ -356,9 +362,6 @@ au Bufenter *.hs compiler ghc
 
 " configure browser for haskell_doc.vim
 let g:haddock_browser = "xdg-open"
-"let g:haddock_browser = "C:/Program Files/Opera/Opera.exe"
-"let g:haddock_browser = "C:/Program Files/Mozilla Firefox/firefox.exe"
-"let g:haddock_browser = "C:/Program Files/Internet Explorer/IEXPLORE.exe"
 
 
 " }}}
@@ -386,7 +389,7 @@ set lcs=tab:▒░
 " Specific ignore for DVCS/VCS
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 "let g:ctrlp_by_filename = 1
-let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_dotfiles = 1
 let g:ctrlp_max_height = 50
 let g:ctrlp_max_files = 0

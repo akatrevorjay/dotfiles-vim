@@ -169,3 +169,18 @@
 [submodule "repos/syntastic"]
 	path = repos/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "repos/hemisu-colors"]
+	path = repos/hemisu-colors
+	url = git://github.com/noahfrederick/Hemisu.git
+[submodule "repos/neverland-colors-256"]
+	path = repos/neverland-colors-256
+	url = git://github.com/trapd00r/neverland-vim-theme.git
+[submodule "repos/vim-rst-tables"]
+	path = repos/vim-rst-tables
+	url = git://github.com/nvie/vim-rst-tables.git
+[submodule "repos/vim-rst-headings"]
+	path = repos/vim-rst-headings
+	url = git://github.com/jtriley/vim-rst-headings.git
+[submodule "repos/vim-rst"]
+	path = repos/vim-rst
+	url = git://github.com/veselosky/vim-rst.git

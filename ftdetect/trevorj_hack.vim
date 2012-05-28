@@ -12,12 +12,16 @@ au BufRead,BufNewFile *.sh set filetype=sh
 au BufRead,BufNewFile readme* set filetype=mkd
 au BufRead,BufNewFile install* set filetype=mkd
 au BufRead,BufNewFile *.txt set filetype=mkd
-au BufRead,BufNewFile *.sh set filetype=mkd
+
+" Bash
+au BufRead,BufNewFile *.sh set filetype=sh
 
 if did_filetype()   " filetype already set
     finish
-elseif getline(1) =~ '^#/usr/bin/env python'
+elseif getline(1) =~ '^#!/usr/bin/env python'
     setfiletype python
+elseif getline(1) =~ '^#!/bin/bash'
+    setfiletype sh
 elseif getline(1) =~ '^<html'
     setfiletype jinja
 elseif getline(1) =~ '^<doctype'

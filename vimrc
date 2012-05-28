@@ -58,6 +58,17 @@ set hlsearch
 " Highlight the line the cursor is on (local to window)
 set cul
 
+" Suedit
+function Suedit()
+  let fname=tempname()
+  exe 'w '.fname
+  let owner=system('stat -c%U:%G '.expand("%"))
+  let modes=system('stat -c%a '.expand("%"))
+  exec '!sudo cp '.fname.' '.expand("%")
+  exec '!sudo chmod '.modes." ".expand("%")
+  exec '!sudo chown '.owner'" ".expand("%")
+endfunction
+
 " Other highlight options
 "set highlight=8r,db,es,hs,mb,Mr,nu,rs,sr,tb,vr,ws
 
@@ -128,27 +139,29 @@ set nofsync
 set t_Co=256
 let g:zenburn_high_Contrast=1
 "let g:zenburn_unified_CursorColumn=1
-"colorscheme slate
-"colorscheme zenburn
-"colorscheme railscasts-trevorj
 "colorscheme navajo-night
-"colorscheme BusyBee
-"colorscheme bensday
 "colorscheme camo
 "colorscheme carvedwood
-"colorscheme darkeclipse
-"colorscheme darkspectrum
 "colorscheme evening
 "colorscheme fruity
 "colorscheme guardian
 "colorscheme industrial
 "colorscheme ir_black
-"colorscheme inkpot
+"colorscheme bensday
+"colorscheme lucius
+"colorscheme xoria256
+colorscheme hemisu
 "colorscheme jellybeans
 "colorscheme leo
-"colorscheme lucius
-colorscheme wombat256
-"colorscheme xoria256
+"colorscheme earendel
+"colorscheme inkpot
+"colorscheme wombat256
+"colorscheme BusyBee
+"colorscheme darkspectrum
+"colorscheme darkeclipse
+"colorscheme slate
+"colorscheme zenburn
+"colorscheme railscasts-trevorj
 
 " gvim
 set guioptions=acMh
@@ -185,8 +198,8 @@ let g:SuperTabLongestEnhanced=1
 "let g:SuperTabCrMapping=1
 
 " Run pylint on save
-autocmd FileType python compiler pylint
-let g:pyflakes_use_quickfix = 1
+"autocmd FileType python compiler pylint
+"let g:pyflakes_use_quickfix = 1
 
 " mouse
 set mouse=nvch " all modes but insert
@@ -195,7 +208,7 @@ set mousemodel="extend" " popup popup_setpos
 let g:syntastic_enable_balloons = 1
 let g:syntastic_check_on_open = 1
 "let g:syntastic_python_checker_args = ""
-let g:syntastic_auto_jump = 1
+"let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 1
 "let g:syntastic_enable_highlighting = 0
 let g:syntastic_enable_signs = 1
@@ -214,6 +227,19 @@ let g:neocomplcache_enable_at_startup = 1
 " }}}1
 
 " Keys {{{
+
+" Quick vim commands
+nnoremap ; :
+
+" Quick paste
+nnoremap <c-v><c-v> i<F3><c-r>+<F3><Esc>
+inoremap <c-v><c-v> <F3><c-r>+<F3>
+"nnoremap <c-v><c-c> i<c-r>+<Esc>
+"inoremap <c-v><c-c> <c-r>+
+
+" Use Q for formatting the current paragraph (or selection)
+vmap Q gq
+nmap Q gqap
 
 " Paste
 "set pastetoggle=<Leader>pt
@@ -497,9 +523,9 @@ inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 

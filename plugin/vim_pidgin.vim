@@ -1,0 +1,1 @@
+../repos/vimpidgin-svn/src/vim_pidgin.vim

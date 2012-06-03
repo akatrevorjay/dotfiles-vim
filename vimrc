@@ -150,7 +150,6 @@ let g:zenburn_high_Contrast=1
 "colorscheme bensday
 "colorscheme lucius
 "colorscheme xoria256
-colorscheme hemisu
 "colorscheme jellybeans
 "colorscheme leo
 "colorscheme earendel
@@ -160,7 +159,8 @@ colorscheme hemisu
 "colorscheme darkspectrum
 "colorscheme darkeclipse
 "colorscheme slate
-"colorscheme zenburn
+"colorscheme hemisu
+colorscheme zenburn
 "colorscheme railscasts-trevorj
 
 " gvim
@@ -399,7 +399,7 @@ let g:python_pidgin_plugin_path='~/.vim/repos/vimpidgin-svn/src/pidgin_server.py
 "let g:tagbar_left = 1
 
 " When using set list:
-set lcs=tab:▒░
+"set lcs=tab:▒░
 "set lcs=tab:>-,eol:$,nbsp:%,trail:X,extends:>,precedes:<
 " testing tabs 	 	 	 	 	 	 	 test
 

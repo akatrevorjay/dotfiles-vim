@@ -254,6 +254,11 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+" Allow move around using ctrl+arrows
+noremap <silent> <C-Down> <C-W>j
+noremap <silent> <C-Up> <C-W>k
+noremap <silent> <C-Left> <C-W>h
+noremap <silent> <C-Right> <C-W>l
 
 " NERDTree Toggle
 map <Leader>d :NERDTreeToggle<CR>

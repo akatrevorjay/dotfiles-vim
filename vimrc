@@ -54,6 +54,9 @@ set scs
 
 " Highlight all results of search
 set hlsearch
+" Ctrl-L clears the highlight from the last search
+noremap <C-l> :nohlsearch<CR><C-l>
+noremap! <C-l> <ESC>:nohlsearch<CR><C-l>
 
 " Highlight the line the cursor is on (local to window)
 set cul
@@ -68,6 +71,31 @@ function Suedit()
   exec '!sudo chmod '.modes." ".expand("%")
   exec '!sudo chown '.owner'" ".expand("%")
 endfunction
+
+"
+" Smart in-line manpages with 'K' in command mode
+" ~trevorj 061112 no longer needed using symlinked ftplugin/man.vim from
+" vim installdir into plugin/ then using :Man func
+"
+fun! ReadMan()
+  " Assign current word under cursor to a script variable:
+  let s:man_word = expand('<cword>')
+  " Open a new window:
+  :wincmd n
+  " Read in the manpage for man_word (col -b is for formatting):
+  :exe ":r!man " . s:man_word . " | col -b"
+  " Goto first line...
+  :goto
+  " and delete it:
+  :delete
+  " finally set file type to 'man':
+  :set filetype=man
+  " lines set to 20
+  :resize 20
+endfun
+" Map the K key to the ReadMan function:
+noremap K :call ReadMan()<CR>
+
 
 " Other highlight options
 "set highlight=8r,db,es,hs,mb,Mr,nu,rs,sr,tb,vr,ws
@@ -202,7 +230,8 @@ let g:SuperTabLongestEnhanced=1
 "let g:pyflakes_use_quickfix = 1
 
 " mouse
-set mouse=nvch " all modes but insert
+"set mouse=nvch " all modes but insert
+set mouse= " mouse urges hatred in me
 set mousemodel="extend" " popup popup_setpos
 
 let g:syntastic_enable_balloons = 1
@@ -259,6 +288,8 @@ noremap <silent> <C-Down> <C-W>j
 noremap <silent> <C-Up> <C-W>k
 noremap <silent> <C-Left> <C-W>h
 noremap <silent> <C-Right> <C-W>l
+noremap <silent> <C-F12> :bd!<CR>
+
 
 " NERDTree Toggle
 map <Leader>d :NERDTreeToggle<CR>

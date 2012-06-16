@@ -218,7 +218,7 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak
 "autocmd FileType python setlocal omnifunc=pysmell#Complete
 
 au Filetype python set omnifunc=pysmell#Complete
-au FileType python set omnifunc=pythoncomplete#Complete
+"au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 let g:SuperTabLongestEnhanced=1
@@ -247,11 +247,11 @@ let g:syntastic_echo_current_error = 1
 "let g:syntastic_loc_list_height = 10
 
 "ropevim
-let ropevim_vim_completion=1
-let ropevim_extended_complete=1
+let ropevim_vim_completion=0
+let ropevim_extended_complete=0
 
 " neocomplcache
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 0
 
 " }}}1
 

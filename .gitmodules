@@ -58,9 +58,6 @@
 [submodule "repos/pysmell"]
 	path = repos/pysmell
 	url = git://github.com/orestis/pysmell.git
-[submodule "bundle/pyflakes-pathogen"]
-	path = bundle/pyflakes-pathogen
-	url = https://github.com/mitechie/pyflakes-pathogen.git
 [submodule "repos/efficient-python-folding"]
 	path = repos/efficient-python-folding
 	url = git://github.com/vim-scripts/Efficient-python-folding.git
@@ -184,3 +181,6 @@
 [submodule "repos/vim-rst"]
 	path = repos/vim-rst
 	url = git://github.com/veselosky/vim-rst.git
+[submodule "repos/vim-markdown"]
+	path = repos/vim-markdown
+	url = git://github.com/tpope/vim-markdown.git

@@ -184,3 +184,18 @@
 [submodule "repos/vim-markdown"]
 	path = repos/vim-markdown
 	url = git://github.com/tpope/vim-markdown.git
+[submodule "repos/neocomplcache"]
+	path = repos/neocomplcache
+	url = https://github.com/Shougo/neocomplcache.git
+[submodule "repos/neocomplcache-snippets-complete"]
+	path = repos/neocomplcache-snippets-complete
+	url = https://github.com/Shougo/neocomplcache-snippets-complete
+[submodule "repos/snipmate_for_django"]
+	path = repos/snipmate_for_django
+	url = git://github.com/robhudson/snipmate_for_django.git
+[submodule "repos/vim-zeitgeist"]
+	path = repos/vim-zeitgeist
+	url = git://github.com/fmoralesc/vim-zeitgeist.git
+[submodule "repos/python-mode"]
+	path = repos/python-mode
+	url = git://github.com/klen/python-mode.git

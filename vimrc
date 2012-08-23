@@ -19,6 +19,8 @@ call pathogen#helptags()
 syntax on                   " syntax highlighing
 filetype on                 " try to detect filetypes
 filetype plugin indent on   " enable loading indent file for filetype
+"set ofu=syntaxcomplete#Complete
+
 " }}}
 
 " Syntax highlighting
@@ -212,13 +214,57 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak
 " Filetype specifics
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
-
 " Python tab completion
 "autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
 "autocmd FileType python setlocal omnifunc=pysmell#Complete
-
-au Filetype python set omnifunc=pysmell#Complete
+"au Filetype python set omnifunc=pysmell#Complete
 "au FileType python set omnifunc=pythoncomplete#Complete
+
+" Eclim
+let g:EclimPythonInterpreter = "python"
+let g:EclimDjangoAdmin= "django-admin.py"
+let g:EclimMenus = 1
+"let g:EclimProjectProblemsUpdateOnSave = 1
+let g:EclimProjectTreeAutoOpen = 1
+let g:EclimPythonValidate = 1
+"let g:EclimShowCurrentError = 1
+"let g:EclimShowCurrentErrorBalloon = 1
+"let g:EclimProjectTreeExpandPathOnOpen = 1
+"let g:EclimProjectTreeSharedInstance = 1
+"let g:EclimShowErrors = 1
+"let g:EclimShowLoclistSigns = 1
+"let g:EclimShowQuickfixSigns = 1
+"let g:EclimMakeLCD = 1
+"let g:EclimMakeQfFilter = 1
+"let g:EclimTodoSearchExtensions = ['py', 'xml', 'html', 'css', 'js']
+let g:EclimTodoSearchExtensions = ['py', 'html']
+let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<fuck\>\|\<wtf\>\)\c'
+nnoremap <silent> <buffer> <cr> :PythonSearchContext<cr>
+let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+function! s:MyFind ()
+  let found = eclim#python#django#find#ContextFind()
+  if !found
+    PythonFindDefinition
+  endif
+endfunction
+nnoremap <silent> <buffer> <cr> :call <SID>MyFind()<cr>
+
+"function! SuperCleverTab()
+"    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+"        return "\"
+"    else
+"        if &omnifunc != ''
+"            return "\\"
+"        elseif &dictionary != ''
+"            return "\"
+"        else
+"            return "\"
+"        endif
+"    endif
+"endfunction
+
+"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 let g:SuperTabLongestEnhanced=1
@@ -247,11 +293,10 @@ let g:syntastic_echo_current_error = 1
 "let g:syntastic_loc_list_height = 10
 
 "ropevim
-let ropevim_vim_completion=0
-let ropevim_extended_complete=0
-
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 0
+let g:ropevim_vim_completion = 1
+let g:ropevim_extended_complete = 1
+"let ropevim_vim_completion=1
+"let ropevim_extended_complete=1
 
 " }}}1
 
@@ -516,86 +561,86 @@ let g:indent_guides_start_level = 2
 
 " }}}
 
-" NeoComplCache {{{
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+"" NeoComplCache {{{
+"" Disable AutoComplPop.
+"let g:acp_enableAtStartup = 0
+"" Use neocomplcache.
+"let g:neocomplcache_enable_at_startup = 0
+"" Use smartcase.
+"let g:neocomplcache_enable_smart_case = 1
+"" Use camel case completion.
+"let g:neocomplcache_enable_camel_case_completion = 1
+"" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+"" Set minimum syntax keyword length.
+"let g:neocomplcache_min_syntax_length = 3
+"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
+"" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {
+"    \ 'default' : '',
+"    \ 'vimshell' : $HOME.'/.vimshell_hist',
+"    \ 'scheme' : $HOME.'/.gosh_completions'
+"    \ }
 
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+"" Define keyword.
+"if !exists('g:neocomplcache_keyword_patterns')
+"  let g:neocomplcache_keyword_patterns = {}
+"endif
+"let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
+"" Plugin key-mappings.
+"imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"inoremap <expr><C-g>     neocomplcache#undo_completion()
+"inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+"" SuperTab like snippets behavior.
+""imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-" AutoComplPop like behavior.
-let g:neocomplcache_enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+"" Recommended key-mappings.
+"" <CR>: close popup and save indent.
 "inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+""inoremap <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+""inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  neocomplcache#close_popup()
+"inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+"" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
 
-" UltiSnips
-"does not work with these snippets...
-"let g:UltiSnipsSnippetDirectories=['UltiSnips', '/home/trevorj/.vim/snippets']
-" }}}
+"" Shell like behavior(not recommended).
+""set completeopt+=longest
+""let g:neocomplcache_enable_auto_select = 1
+""let g:neocomplcache_disable_auto_complete = 1
+""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+""inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+
+"" Enable omni completion.
+""autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+""autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+""autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+""autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+""autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+"" Enable heavy omni completion.
+"if !exists('g:neocomplcache_omni_patterns')
+"  let g:neocomplcache_omni_patterns = {}
+"endif
+"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+""autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+"let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+"" UltiSnips
+""does not work with these snippets...
+""let g:UltiSnipsSnippetDirectories=['UltiSnips', '/home/trevorj/.vim/snippets']
+"" }}}
 
 " }}}1
 

@@ -196,9 +196,11 @@ colorscheme zenburn
 " gvim
 set guioptions=acMh
 set mousefocus " focus follows mouse in gvim
-set guifont="Monaco for Powerline 10"
+"set guifont="Menlo for Powerline 12"
+"set guifont="Monaco for Powerline 12"
+set guifont="ProFontWindows 12"
 if has("gui_running")
-    "colorscheme railscasts-trevorj
+    colorscheme railscasts-trevorj
 endif
 
 
@@ -221,33 +223,33 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak
 "au FileType python set omnifunc=pythoncomplete#Complete
 
 " Eclim
-let g:EclimPythonInterpreter = "python"
-let g:EclimDjangoAdmin= "django-admin.py"
-let g:EclimMenus = 1
-"let g:EclimProjectProblemsUpdateOnSave = 1
-let g:EclimProjectTreeAutoOpen = 1
-let g:EclimPythonValidate = 1
-"let g:EclimShowCurrentError = 1
-"let g:EclimShowCurrentErrorBalloon = 1
-"let g:EclimProjectTreeExpandPathOnOpen = 1
-"let g:EclimProjectTreeSharedInstance = 1
-"let g:EclimShowErrors = 1
-"let g:EclimShowLoclistSigns = 1
-"let g:EclimShowQuickfixSigns = 1
-"let g:EclimMakeLCD = 1
-"let g:EclimMakeQfFilter = 1
-"let g:EclimTodoSearchExtensions = ['py', 'xml', 'html', 'css', 'js']
-let g:EclimTodoSearchExtensions = ['py', 'html']
-let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<fuck\>\|\<wtf\>\)\c'
-nnoremap <silent> <buffer> <cr> :PythonSearchContext<cr>
-let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
-function! s:MyFind ()
-  let found = eclim#python#django#find#ContextFind()
-  if !found
-    PythonFindDefinition
-  endif
-endfunction
-nnoremap <silent> <buffer> <cr> :call <SID>MyFind()<cr>
+"let g:EclimPythonInterpreter = "python"
+"let g:EclimDjangoAdmin= "django-admin.py"
+"let g:EclimMenus = 1
+""let g:EclimProjectProblemsUpdateOnSave = 1
+"let g:EclimProjectTreeAutoOpen = 1
+"let g:EclimPythonValidate = 1
+""let g:EclimShowCurrentError = 1
+""let g:EclimShowCurrentErrorBalloon = 1
+""let g:EclimProjectTreeExpandPathOnOpen = 1
+""let g:EclimProjectTreeSharedInstance = 1
+""let g:EclimShowErrors = 1
+""let g:EclimShowLoclistSigns = 1
+""let g:EclimShowQuickfixSigns = 1
+""let g:EclimMakeLCD = 1
+""let g:EclimMakeQfFilter = 1
+""let g:EclimTodoSearchExtensions = ['py', 'xml', 'html', 'css', 'js']
+"let g:EclimTodoSearchExtensions = ['py', 'html']
+"let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<fuck\>\|\<wtf\>\)\c'
+"nnoremap <silent> <buffer> <cr> :PythonSearchContext<cr>
+"let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+"function! s:MyFind ()
+"  let found = eclim#python#django#find#ContextFind()
+"  if !found
+"    PythonFindDefinition
+"  endif
+"endfunction
+"nnoremap <silent> <buffer> <cr> :call <SID>MyFind()<cr>
 
 "function! SuperCleverTab()
 "    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'

@@ -196,11 +196,12 @@ colorscheme zenburn
 " gvim
 set guioptions=acMh
 set mousefocus " focus follows mouse in gvim
-"set guifont="Menlo for Powerline 12"
+set guifont="Menlo for Powerline 12"
 "set guifont="Monaco for Powerline 12"
-set guifont="ProFontWindows 12"
+"set guifont="ProFontWindows 12"
 if has("gui_running")
-    colorscheme railscasts-trevorj
+    "colorscheme railscasts-trevorj
+    colorscheme neverland-darker
 endif
 
 

@@ -238,3 +238,12 @@
 [submodule "repos/rainbow-parantheses-improved"]
 	path = repos/rainbow-parantheses-improved
 	url = git://github.com/vim-scripts/Rainbow-Parentheses-Improved.git
+[submodule "repos/sparkup"]
+	path = repos/sparkup
+	url = git://github.com/rstacruz/sparkup.git
+[submodule "repos/indentpython"]
+	path = repos/indentpython
+	url = git://github.com/vim-scripts/indentpython.vim.git
+[submodule "repos/mru"]
+	path = repos/mru
+	url = git://github.com/vim-scripts/mru.vim.git

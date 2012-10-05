@@ -190,8 +190,9 @@ let g:zenburn_high_Contrast=1
 "colorscheme darkeclipse
 "colorscheme slate
 "colorscheme hemisu
-colorscheme zenburn
+"colorscheme zenburn
 "colorscheme railscasts-trevorj
+colorscheme mustang
 
 " gvim
 set guioptions=acMh
@@ -251,6 +252,22 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak
 "  endif
 "endfunction
 "nnoremap <silent> <buffer> <cr> :call <SID>MyFind()<cr>
+
+function! SuperCleverTab()
+    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+        return "\<Tab>"
+    else
+        if &omnifunc != ''
+            return "\<C-X>\<C-O>"
+        elseif &dictionary != ''
+            return "\<C-K>"
+        else
+            return "\<C-N>"
+        endif
+    endif
+endfunction
+
+inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
 "function! SuperCleverTab()
 "    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'

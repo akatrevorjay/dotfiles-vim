@@ -205,6 +205,36 @@
 [submodule "repos/mustache"]
 	path = repos/mustache
 	url = git://github.com/juvenn/mustache.vim.git
+[submodule "repos/vim-fuzzyfinder"]
+	path = repos/vim-fuzzyfinder
+	url = git://github.com/vim-scripts/FuzzyFinder.git
 [submodule "repos/vimpidgin-svn"]
 	path = repos/vimpidgin-svn
 	url = git://github.com/akatrevorjay/vimpidgin.git
+[submodule "repos/L9"]
+	path = repos/L9
+	url = git://github.com/vim-scripts/L9.git
+[submodule "repos/tropikos"]
+	path = repos/tropikos
+	url = git://github.com/vim-scripts/tropikos.git
+[submodule "repos/flake8"]
+	path = repos/flake8
+	url = git://github.com/vim-scripts/vim-flake8.git
+[submodule "repos/hyperlist"]
+	path = repos/hyperlist
+	url = git://github.com/vim-scripts/HyperList.git
+[submodule "repos/css3-mod"]
+	path = repos/css3-mod
+	url = git://github.com/vim-scripts/css3-mod.git
+[submodule "repos/votl"]
+	path = repos/votl
+	url = git://github.com/vim-scripts/votl.git
+[submodule "repos/vim-django"]
+	path = repos/vim-django
+	url = git://github.com/vim-scripts/vim-django.git
+[submodule "repos/localvimrc"]
+	path = repos/localvimrc
+	url = git://github.com/vim-scripts/localvimrc.git
+[submodule "repos/rainbow-parantheses-improved"]
+	path = repos/rainbow-parantheses-improved
+	url = git://github.com/vim-scripts/Rainbow-Parentheses-Improved.git

@@ -205,3 +205,6 @@
 [submodule "repos/mustache"]
 	path = repos/mustache
 	url = git://github.com/juvenn/mustache.vim.git
+[submodule "repos/vimpidgin-svn"]
+	path = repos/vimpidgin-svn
+	url = git://github.com/akatrevorjay/vimpidgin.git

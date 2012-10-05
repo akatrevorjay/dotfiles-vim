@@ -202,3 +202,6 @@
 [submodule "repos/junos_vim_syntax_highlight"]
 	path = repos/junos_vim_syntax_highlight
 	url = https://bitbucket.org/sentimental/junos_vim_syntax_highlight.git
+[submodule "repos/mustache"]
+	path = repos/mustache
+	url = git://github.com/juvenn/mustache.vim.git

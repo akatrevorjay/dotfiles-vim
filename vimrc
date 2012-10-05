@@ -292,8 +292,8 @@ let g:SuperTabLongestEnhanced=1
 "let g:SuperTabCrMapping=1
 
 " Run pylint on save
-"autocmd FileType python compiler pylint
-"let g:pyflakes_use_quickfix = 1
+"autocmd FileType python compiler pyflakes
+let g:pyflakes_use_quickfix = 1
 
 " mouse
 "set mouse=nvch " all modes but insert

@@ -247,3 +247,6 @@
 [submodule "repos/mru"]
 	path = repos/mru
 	url = git://github.com/vim-scripts/mru.vim.git
+[submodule "repos/salt-vim"]
+	path = repos/salt-vim
+	url = git://github.com/saltstack/salt-vim.git

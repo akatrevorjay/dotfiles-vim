@@ -202,7 +202,7 @@ set guifont="Menlo for Powerline 12"
 "set guifont="ProFontWindows 12"
 if has("gui_running")
     "colorscheme railscasts-trevorj
-    colorscheme neverland-darker
+    "colorscheme neverland-darker
 endif
 
 
@@ -211,18 +211,19 @@ endif
 " Tab completion options {{{1
 set wildmode=longest,list
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak
+set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak,*.pyo
 "set complete=.,t
 
 
 " Filetype specifics
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
-" Python tab completion
-"autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
-"autocmd FileType python setlocal omnifunc=pysmell#Complete
-"au Filetype python set omnifunc=pysmell#Complete
+"" Python tab completion
+""autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+""autocmd FileType python setlocal omnifunc=pysmell#Complete
+""au Filetype python set omnifunc=pysmell#Complete
 "au FileType python set omnifunc=pythoncomplete#Complete
+
 
 " Eclim
 "let g:EclimPythonInterpreter = "python"
@@ -257,7 +258,9 @@ function! SuperCleverTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
         return "\<Tab>"
     else
-        if &omnifunc != ''
+        if &ft == 'python'
+            return "\<M-/>"
+        elseif &omnifunc != ''
             return "\<C-X>\<C-O>"
         elseif &dictionary != ''
             return "\<C-K>"
@@ -268,55 +271,221 @@ function! SuperCleverTab()
 endfunction
 
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
-
-"function! SuperCleverTab()
-"    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-"        return "\"
-"    else
-"        if &omnifunc != ''
-"            return "\\"
-"        elseif &dictionary != ''
-"            return "\"
-"        else
-"            return "\"
-"        endif
-"    endif
-"endfunction
-
-"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+"inoremap <buffer><Tab> <M-/>
+"imap <buffer><Tab> <M-/>
 
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
-let g:SuperTabLongestEnhanced=1
+"let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
 "let g:SuperTabCrMapping=1
 
-" Run pylint on save
-"autocmd FileType python compiler pyflakes
-let g:pyflakes_use_quickfix = 1
+"" Run pylint on save
+""autocmd FileType python compiler pyflakes
+""let g:pyflakes_use_quickfix = 1
+""let g:pyflakes_use_quickfix = 0
+
+" Python-Mode {{{
+
+" Load show documentation plugin
+let g:pymode_doc = 1
+
+" Key for show python documentation
+let g:pymode_doc_key = 'K'
+
+" Load run code plugin
+let g:pymode_run = 1
+
+" Key for run python code
+let g:pymode_run_key = '<leader>r'
+
+" Load pylint code plugin
+let g:pymode_lint = 1
+
+" Switch pylint, pyflakes, pep8, mccabe code-checkers
+" Can have multiply values "pep8,pyflakes,mccabe"
+let g:pymode_lint_checker = "pyflakes,pep8,pymetrics"
+
+" Skip errors and warnings
+" E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc
+let g:pymode_lint_ignore = "E501"
+
+" Select errors and warnings
+" E.g. "E4,W"
+let g:pymode_lint_select = ""
+
+" Run linter on the fly
+let g:pymode_lint_onfly = 0
+
+" Pylint configuration file
+" If file not found use 'pylintrc' from python-mode plugin directory
+let g:pymode_lint_config = "$HOME/.pylintrc"
+
+" Check code every save
+let g:pymode_lint_write = 1
+
+" Auto open cwindow if errors be finded
+let g:pymode_lint_cwindow = 1
+
+" Show error message if cursor placed at the error line
+let g:pymode_lint_message = 1
+
+" Auto jump on first error
+let g:pymode_lint_jump = 0
+
+" Hold cursor in current window
+" when quickfix is open
+let g:pymode_lint_hold = 0
+
+" Place error signs
+let g:pymode_lint_signs = 1
+
+" Maximum allowed mccabe complexity
+let g:pymode_lint_mccabe_complexity = 8
+
+" Minimal height of pylint error window
+let g:pymode_lint_minheight = 3
+
+" Maximal height of pylint error window
+let g:pymode_lint_maxheight = 6
+
+
+
+" Load rope plugin
+let g:pymode_rope = 1
+
+" Auto create and open ropeproject
+let g:pymode_rope_auto_project = 1
+
+" Enable autoimport
+let g:pymode_rope_enable_autoimport = 1
+
+" Auto generate global cache
+let g:pymode_rope_autoimport_generate = 1
+
+let g:pymode_rope_autoimport_underlineds = 0
+
+let g:pymode_rope_codeassist_maxfixes = 10
+
+let g:pymode_rope_sorted_completions = 1
+
+let g:pymode_rope_extended_complete = 1
+
+let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+
+let g:pymode_rope_confirm_saving = 1
+
+let g:pymode_rope_global_prefix = "<C-x>p"
+
+let g:pymode_rope_local_prefix = "<C-c>r"
+
+let g:pymode_rope_vim_completion = 1
+
+let g:pymode_rope_guess_project = 1
+
+let g:pymode_rope_goto_def_newwin = ""
+
+let g:pymode_rope_always_show_complete_menu = 0
+
+
+" Enable python folding
+let g:pymode_folding = 1
+
+
+" Enable python objects and motion
+let g:pymode_motion = 1
+
+
+" Auto fix vim python paths if virtualenv enabled
+let g:pymode_virtualenv = 1
+
+
+" Additional python paths
+let g:pymode_paths = []
+
+" Load breakpoints plugin
+let g:pymode_breakpoint = 1
+
+" Key for set/unset breakpoint
+let g:pymode_breakpoint_key = '<leader>b'
+
+" Autoremove unused whitespaces
+let g:pymode_utils_whitespaces = 1
+
+" Enable pymode indentation
+let g:pymode_indent = 1
+
+" Set default pymode python options
+let g:pymode_options = 1
+
+
+
+" Enable pymode's custom syntax highlighting
+let g:pymode_syntax = 1
+
+" Enable all python highlightings
+let g:pymode_syntax_all = 1
+
+" Highlight "print" as function
+let g:pymode_syntax_print_as_function = 0
+
+" Highlight indentation errors
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+
+" Highlight trailing spaces
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Highlight string formatting
+let g:pymode_syntax_string_formatting = g:pymode_syntax_all
+
+" Highlight str.format syntax
+let g:pymode_syntax_string_format = g:pymode_syntax_all
+
+" Highlight string.Template syntax
+let g:pymode_syntax_string_templates = g:pymode_syntax_all
+
+" Highlight doc-tests
+let g:pymode_syntax_doctests = g:pymode_syntax_all
+
+" Highlight builtin objects (__doc__, self, etc)
+let g:pymode_syntax_builtin_objs = g:pymode_syntax_all
+
+" Highlight builtin functions
+let g:pymode_syntax_builtin_funcs = g:pymode_syntax_all
+
+" Highlight exceptions
+let g:pymode_syntax_highlight_exceptions = g:pymode_syntax_all
+
+" For fast machines
+let g:pymode_syntax_slow_sync = 0
+
+
+
+
+
+" }}}
+
 
 " mouse
 "set mouse=nvch " all modes but insert
 set mouse= " mouse urges hatred in me
 set mousemodel="extend" " popup popup_setpos
 
-let g:syntastic_enable_balloons = 1
-let g:syntastic_check_on_open = 1
-"let g:syntastic_python_checker_args = ""
-"let g:syntastic_auto_jump = 1
-let g:syntastic_auto_loc_list = 1
-"let g:syntastic_enable_highlighting = 0
-let g:syntastic_enable_signs = 1
-let g:syntastic_echo_current_error = 1
-"let g:syntastic_mode_map = {}
-"let g:syntastic_quiet_warnings = 1
-"let g:syntastic_loc_list_height = 10
+"let g:syntastic_enable_balloons = 1
+"let g:syntastic_check_on_open = 1
+""let g:syntastic_python_checker_args = ""
+""let g:syntastic_auto_jump = 1
+"let g:syntastic_auto_loc_list = 1
+""let g:syntastic_enable_highlighting = 0
+"let g:syntastic_enable_signs = 1
+"let g:syntastic_echo_current_error = 1
+""let g:syntastic_mode_map = {}
+""let g:syntastic_quiet_warnings = 1
+""let g:syntastic_loc_list_height = 10
 
-"ropevim
-let g:ropevim_vim_completion = 1
-let g:ropevim_extended_complete = 1
-"let ropevim_vim_completion=1
-"let ropevim_extended_complete=1
+""ropevim
+"let g:ropevim_vim_completion = 1
+"let g:ropevim_extended_complete = 1
 
 " }}}1
 
@@ -364,6 +533,7 @@ map <Leader>] <Plug>MakeGreen
 
 " TaskList defaults to \t
 map <leader>v <Plug>TaskList
+map <leader>td <Plug>TaskList
 
 " MiniBufExplorer Toggle default is \mbe
 map <Leader>b :TMiniBufExplorer<cr>
@@ -411,14 +581,14 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 " Fix vim being run through a virtualenv {{{1
 " Add the virtualenv's site-packages to vim path
 py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
+#import os.path
+#import sys
+#import vim
+#if 'VIRTUAL_ENV' in os.environ:
+#    project_base_dir = os.environ['VIRTUAL_ENV']
+#    sys.path.insert(0, project_base_dir)
+#    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+#    execfile(activate_this, dict(__file__=activate_this))
 EOF
 " }}}1
 
@@ -429,7 +599,7 @@ set foldmarker={{{,}}}
 set foldcolumn=2
 "set foldnestmax=2
 set foldmethod=indent
-set foldlevel=2
+set foldlevel=1
 
 "augroup vimrc
 "  au BufReadPre * setlocal foldmethod=indent
@@ -494,7 +664,7 @@ let g:haddock_browser = "xdg-open"
 " }}}
 
 " Pidgin settings
-let g:python_pidgin_plugin_path='~/.vim/repos/vimpidgin-svn/src/pidgin_server.py'
+"let g:python_pidgin_plugin_path='~/.vim/repos/vimpidgin-svn/src/pidgin_server.py'
 
 " Tagbar settings
 "let g:tagbar_left = 1

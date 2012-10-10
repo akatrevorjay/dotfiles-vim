@@ -1,6 +1,6 @@
 
 " For now, all HTML files
-au BufRead,BufNewFile *.html set filetype=jinja
+au BufRead,BufNewFile *.html set filetype=htmldjango
 
 " All pys
 au BufRead,BufNewFile *.py set filetype=python

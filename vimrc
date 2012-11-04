@@ -276,9 +276,9 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
-"let g:SuperTabLongestEnhanced=1
-"let g:SuperTabLongestHighlight=1
-"let g:SuperTabCrMapping=1
+let g:SuperTabLongestEnhanced=1
+let g:SuperTabLongestHighlight=1
+let g:SuperTabCrMapping=1
 
 "" Run pylint on save
 ""autocmd FileType python compiler pyflakes
@@ -304,7 +304,9 @@ let g:pymode_lint = 1
 
 " Switch pylint, pyflakes, pep8, mccabe code-checkers
 " Can have multiply values "pep8,pyflakes,mccabe"
-let g:pymode_lint_checker = "pyflakes,pep8,pymetrics"
+"let g:pymode_lint_checker = "pyflakes,pep8,pymetrics"
+"let g:pymode_lint_checker = "flake8"
+let g:pymode_lint_checker = "pyflakes,pep8"
 
 " Skip errors and warnings
 " E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc

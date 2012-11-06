@@ -250,3 +250,12 @@
 [submodule "repos/salt-vim"]
 	path = repos/salt-vim
 	url = git://github.com/saltstack/salt-vim.git
+[submodule "repos/vim-ipython"]
+	path = repos/vim-ipython
+	url = git://github.com/ivanov/vim-ipython.git
+[submodule "repos/jedi"]
+	path = repos/jedi
+	url = git://github.com/davidhalter/jedi.git
+[submodule "repos/jedi-vim"]
+	path = repos/jedi-vim
+	url = git://github.com/davidhalter/jedi-vim.git

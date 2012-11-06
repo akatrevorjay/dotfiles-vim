@@ -212,17 +212,22 @@ endif
 set wildmode=longest,list
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak,*.pyo
-"set complete=.,t
+set complete=.,t
 
 
 " Filetype specifics
-"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 "" Python tab completion
 ""autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
 ""autocmd FileType python setlocal omnifunc=pysmell#Complete
-""au Filetype python set omnifunc=pysmell#Complete
-"au FileType python set omnifunc=pythoncomplete#Complete
+""autocmd Filetype python set omnifunc=pysmell#Complete
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 
 " Eclim
@@ -270,15 +275,33 @@ function! SuperCleverTab()
     endif
 endfunction
 
-inoremap <Tab> <C-R>=SuperCleverTab()<cr>
-"inoremap <buffer><Tab> <M-/>
-"imap <buffer><Tab> <M-/>
+"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+""inoremap <buffer><Tab> <M-/>
+""imap <buffer><Tab> <M-/>
 
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 let g:SuperTabLongestEnhanced=1
-let g:SuperTabLongestHighlight=1
+"let g:SuperTabLongestHighlight=1
 let g:SuperTabCrMapping=1
+"let g:SuperTabClosePreviewOnPopupClose=1
+
+
+let g:jedi#goto_command = "<leader>g"
+let g:jedi#auto_initialization = 1
+let g:jedi#get_definition_command = "<leader>d"
+let g:jedi#pydoc = "K"
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#popup_on_dot = 1
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#related_names_command = "<leader>n"
+
+
+"autocmd FileType *
+"    \ if &omnifunc != '' |
+"    \   call SuperTabChain(&omnifunc, "<c-p>") |
+"    \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+"    \ endif
 
 "" Run pylint on save
 ""autocmd FileType python compiler pyflakes
@@ -373,7 +396,9 @@ let g:pymode_rope_sorted_completions = 1
 
 let g:pymode_rope_extended_complete = 1
 
-let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+"let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+let g:pymode_rope_autoimport_modules = ["os.*", "shutil", "datetime", "traceback", "django.*", "xml.etree", "flask.*"]
+"imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 let g:pymode_rope_confirm_saving = 1
 
@@ -602,6 +627,7 @@ set foldcolumn=2
 "set foldnestmax=2
 set foldmethod=indent
 set foldlevel=1
+set shiftround                          " Indent/outdent to nearest tabstops
 
 "augroup vimrc
 "  au BufReadPre * setlocal foldmethod=indent

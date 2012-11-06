@@ -291,7 +291,7 @@ let g:jedi#goto_command = "<leader>g"
 let g:jedi#auto_initialization = 1
 let g:jedi#get_definition_command = "<leader>d"
 let g:jedi#pydoc = "K"
-let g:jedi#use_tabs_not_buffers = 0
+"let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 1
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#related_names_command = "<leader>n"
@@ -311,7 +311,7 @@ let g:jedi#related_names_command = "<leader>n"
 " Python-Mode {{{
 
 " Load show documentation plugin
-let g:pymode_doc = 1
+let g:pymode_doc = 0
 
 " Key for show python documentation
 let g:pymode_doc_key = 'K'

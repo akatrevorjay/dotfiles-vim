@@ -259,3 +259,6 @@
 [submodule "repos/jedi-vim"]
 	path = repos/jedi-vim
 	url = git://github.com/davidhalter/jedi-vim.git
+[submodule "repos/supertab"]
+	path = repos/supertab
+	url = git://github.com/ervandew/supertab.git

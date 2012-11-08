@@ -192,7 +192,8 @@ let g:zenburn_high_Contrast=1
 "colorscheme hemisu
 "colorscheme zenburn
 "colorscheme railscasts-trevorj
-colorscheme mustang
+"colorscheme mustang
+colorscheme molokai
 
 " gvim
 set guioptions=acMh
@@ -203,6 +204,17 @@ set guifont="Menlo for Powerline 12"
 if has("gui_running")
     "colorscheme railscasts-trevorj
     "colorscheme neverland-darker
+    if has("gui_gtk2")
+        set guifont=Menlo\ for\ Powerline\ 12
+    "elseif has("gui_photon")
+    "    set guifont=Menlo\ for\ Powerline:s12
+    "elseif has("gui_kde")
+    "    set guifont=Menlo\ for\ Powerline/12/-1/5/50/0/0/0/1/0
+    ""elseif has("x12")
+    ""    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+    "else
+    "    set guifont=Menlo_for_Powerline:h12:cDEFAULT
+    endif
 endif
 
 
@@ -553,7 +565,7 @@ noremap <silent> <C-F12> :bd!<CR>
 
 
 " NERDTree Toggle
-map <Leader>d :NERDTreeToggle<CR>
+map <Leader>t :NERDTreeToggle<CR>
 
 " MakeGreen defaults to \t
 map <Leader>] <Plug>MakeGreen

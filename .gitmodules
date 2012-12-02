@@ -262,3 +262,12 @@
 [submodule "repos/supertab"]
 	path = repos/supertab
 	url = git://github.com/ervandew/supertab.git
+[submodule "repos/notmuch-vim-ruby"]
+	path = repos/notmuch-vim-ruby
+	url = git://github.com/felipec/notmuch-vim-ruby.git
+[submodule "repos/querycommandcomplete"]
+	path = repos/querycommandcomplete
+	url = git://github.com/caio/querycommandcomplete.vim.git
+[submodule "repos/Recover.vim"]
+	path = repos/Recover.vim
+	url = git://github.com/chrisbra/Recover.vim.git

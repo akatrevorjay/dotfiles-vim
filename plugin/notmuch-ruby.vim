@@ -1,0 +1,1 @@
+../repos/notmuch-vim-ruby/notmuch-ruby.vim

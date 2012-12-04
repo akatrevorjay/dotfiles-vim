@@ -227,6 +227,7 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak,*.pyo
 set complete=.,t
 
 
+
 " Filetype specifics
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -871,6 +872,23 @@ let g:indent_guides_start_level = 2
 ""does not work with these snippets...
 ""let g:UltiSnipsSnippetDirectories=['UltiSnips', '/home/trevorj/.vim/snippets']
 "" }}}
+
+"" NotMuch (notmuch-ruby)
+let g:notmuch_sendmail = 'sendmail'
+
+let g:notmuch_rb_custom_search_maps = {
+    \ 't':      'search_tag("+to-do -inbox")',
+    \ }
+
+let g:notmuch_rb_custom_show_maps = {
+    \ 't':      'show_tag("+to-do -inbox")',
+    \ }
+
+" Mutt
+"let g:qcc_query_command='abook'
+let g:qcc_query_command='goobook query'
+au BufRead /tmp/mutt* :source ~/.vim/mail.vim | :source ~/.vim/mail-goobook.vim | setlocal omnifunc=QueryCommandComplete
+
 
 " }}}1
 

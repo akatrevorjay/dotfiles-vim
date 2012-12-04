@@ -221,9 +221,11 @@ endif
 " }}}
 
 " Tab completion options {{{1
+set wildchar=<Tab>
+set wildmenu
 set wildmode=longest,list
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak,*.pyo
+set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak,*.pyo,*.pyc,*.svn
 set complete=.,t
 
 
@@ -242,6 +244,8 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 ""autocmd Filetype python set omnifunc=pysmell#Complete
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
 
+" Python stuffs
+"autocmd filetype python source ~/.vim/python.vim
 
 " Eclim
 "let g:EclimPythonInterpreter = "python"
@@ -692,7 +696,7 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_width=30
 
 " Pidgin
-nmap <F12> :Chat<CR>
+"nmap <F12> :Chat<CR>
 
 " vim-haskell
 " use ghc functionality for haskell files
@@ -889,6 +893,38 @@ let g:notmuch_rb_custom_show_maps = {
 let g:qcc_query_command='goobook query'
 au BufRead /tmp/mutt* :source ~/.vim/mail.vim | :source ~/.vim/mail-goobook.vim | setlocal omnifunc=QueryCommandComplete
 
+"" BufSel
+"function! BufSel(pattern)
+"  let bufcount = bufnr("$")
+"  let currbufnr = 1
+"  let nummatches = 0
+"  let firstmatchingbufnr = 0
+"  while currbufnr <= bufcount
+"    if(bufexists(currbufnr))
+"      let currbufname = bufname(currbufnr)
+"      if(match(currbufname, a:pattern) > -1)
+"        echo currbufnr . ": ". bufname(currbufnr)
+"        let nummatches += 1
+"        let firstmatchingbufnr = currbufnr
+"      endif
+"    endif
+"    let currbufnr = currbufnr + 1
+"  endwhile
+"  if(nummatches == 1)
+"    execute ":buffer ". firstmatchingbufnr
+"  elseif(nummatches > 1)
+"    let desiredbufnr = input("Enter buffer number: ")
+"    if(strlen(desiredbufnr) != 0)
+"      execute ":buffer ". desiredbufnr
+"    endif
+"  else
+"    echo "No matching buffers"
+"  endif
+"endfunction
+
+""Bind the BufSel() function to a user-command
+"command! -nargs=1 Bs :call BufSel("<args>")
+"nnoremap <Leader>o :Bs<Space>
 
 " }}}1
 

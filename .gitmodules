@@ -271,3 +271,12 @@
 [submodule "repos/Recover.vim"]
 	path = repos/Recover.vim
 	url = git://github.com/chrisbra/Recover.vim.git
+[submodule "repos/powerline"]
+	path = repos/powerline
+	url = git://github.com/Lokaltog/powerline.git
+[submodule "repos/DBGPavim"]
+	path = repos/DBGPavim
+	url = git://github.com/brookhong/DBGPavim.git
+[submodule "repos/vdebug"]
+	path = repos/vdebug
+	url = git://github.com/joonty/vdebug.git

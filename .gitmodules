@@ -280,3 +280,6 @@
 [submodule "repos/vdebug"]
 	path = repos/vdebug
 	url = git://github.com/joonty/vdebug.git
+[submodule "repos/vim-powerline"]
+	path = repos/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline.git

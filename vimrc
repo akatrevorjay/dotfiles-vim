@@ -705,6 +705,9 @@ au Bufenter *.hs compiler ghc
 " configure browser for haskell_doc.vim
 let g:haddock_browser = "xdg-open"
 
+" Color column @ cols=80
+"set cc=80
+hi ColorColumn ctermbg=lightblue guibg=lightblue
 
 " }}}
 
@@ -776,6 +779,11 @@ set encoding=utf-8
 "let Powerline_symbols="unicode"
 let Powerline_symbols="fancy"
 "let g:Powerline_colorscheme="skwp"
+
+" New powerline alpha python
+"python import plugin.vim.load_vim_plugin
+" or
+source $HOME/.vim/repos/powerline/plugin/vim/powerline.vim
 
 " ConqueTerm
 let g:ConqueTerm_Color = 1

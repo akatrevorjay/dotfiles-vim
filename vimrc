@@ -248,26 +248,27 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "autocmd filetype python source ~/.vim/python.vim
 
 " Eclim
-"let g:EclimPythonInterpreter = "python"
-"let g:EclimDjangoAdmin= "django-admin.py"
-"let g:EclimMenus = 1
-""let g:EclimProjectProblemsUpdateOnSave = 1
-"let g:EclimProjectTreeAutoOpen = 1
-"let g:EclimPythonValidate = 1
-""let g:EclimShowCurrentError = 1
-""let g:EclimShowCurrentErrorBalloon = 1
-""let g:EclimProjectTreeExpandPathOnOpen = 1
-""let g:EclimProjectTreeSharedInstance = 1
-""let g:EclimShowErrors = 1
-""let g:EclimShowLoclistSigns = 1
-""let g:EclimShowQuickfixSigns = 1
-""let g:EclimMakeLCD = 1
-""let g:EclimMakeQfFilter = 1
-""let g:EclimTodoSearchExtensions = ['py', 'xml', 'html', 'css', 'js']
-"let g:EclimTodoSearchExtensions = ['py', 'html']
-"let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<fuck\>\|\<wtf\>\)\c'
-"nnoremap <silent> <buffer> <cr> :PythonSearchContext<cr>
-"let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+let g:EclimPythonInterpreter = "python"
+let g:EclimDjangoAdmin= "django-admin.py"
+let g:EclimMenus = 1
+"let g:EclimProjectProblemsUpdateOnSave = 1
+let g:EclimProjectTreeAutoOpen = 1
+let g:EclimPythonValidate = 1
+"let g:EclimShowCurrentError = 1
+"let g:EclimShowCurrentErrorBalloon = 1
+"let g:EclimProjectTreeExpandPathOnOpen = 1
+"let g:EclimProjectTreeSharedInstance = 1
+"let g:EclimShowErrors = 1
+"let g:EclimShowLoclistSigns = 1
+"let g:EclimShowQuickfixSigns = 1
+"let g:EclimMakeLCD = 1
+"let g:EclimMakeQfFilter = 1
+"let g:EclimTodoSearchExtensions = ['py', 'xml', 'html', 'css', 'js']
+let g:EclimTodoSearchExtensions = ['py', 'html']
+let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<fuck\>\|\<wtf\>\)\c'
+nnoremap <silent> <buffer> <cr> :PythonSearchContext<cr>
+let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+
 "function! s:MyFind ()
 "  let found = eclim#python#django#find#ContextFind()
 "  if !found
@@ -778,12 +779,15 @@ set laststatus=2
 set encoding=utf-8
 "let Powerline_symbols="unicode"
 let Powerline_symbols="fancy"
+"let g:Powerline_symbols="fancy"
 "let g:Powerline_colorscheme="skwp"
 
 " New powerline alpha python
 "python import plugin.vim.load_vim_plugin
 " or
-source $HOME/.vim/repos/powerline/plugin/vim/powerline.vim
+"source $HOME/.vim/repos/powerline/plugin/vim/powerline.vim
+"source $HOME/.vim/repos/powerline/powerline/ext/vim/powerline.vim
+source $HOME/.vim/repos/powerline/powerline/ext/vim/source_plugin.vim
 
 " ConqueTerm
 let g:ConqueTerm_Color = 1
@@ -935,4 +939,3 @@ au BufRead /tmp/mutt* :source ~/.vim/mail.vim | :source ~/.vim/mail-goobook.vim 
 "nnoremap <Leader>o :Bs<Space>
 
 " }}}1
-

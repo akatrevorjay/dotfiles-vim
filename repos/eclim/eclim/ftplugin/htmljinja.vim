@@ -21,8 +21,8 @@
 "
 " }}}
 
-runtime ftplugin/html.vim
-runtime indent/html.vim
+runtime! ftplugin/html.vim
+runtime! indent/html.vim
 runtime eclim/ftplugin/html.vim
 
 " Global Variables {{{

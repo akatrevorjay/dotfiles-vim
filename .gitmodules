@@ -283,3 +283,21 @@
 [submodule "repos/vim-powerline"]
 	path = repos/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule "repos/vim-redmine"]
+	path = repos/vim-redmine
+	url = git://github.com/toritori0318/vim-redmine.git
+[submodule "repos/webapi-vim"]
+	path = repos/webapi-vim
+	url = git://github.com/mattn/webapi-vim.git
+[submodule "repos/unite.vim"]
+	path = repos/unite.vim
+	url = git://github.com/Shougo/unite.vim.git
+[submodule "repos/unite-yarm"]
+	path = repos/unite-yarm
+	url = git://github.com/basyura/unite-yarm.git
+[submodule "repos/open-browser"]
+	path = repos/open-browser
+	url = https://github.com/tyru/open-browser.vim
+[submodule "repos/vimoutliner"]
+	path = repos/vimoutliner
+	url = git://github.com/vimoutliner/vimoutliner.git

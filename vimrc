@@ -795,7 +795,9 @@ if ! has('gui_running')
 endif
 
 " New powerline alpha python
-source $HOME/.vim/repos/powerline/powerline/bindings/vim/plugin/powerline.vim
+"source $HOME/.vim/repos/powerline/powerline/bindings/vim/plugin/powerline.vim
+set rtp+=$HOME/.vim/repos/powerline/powerline/bindings/vim
+
 
 " }}}
 

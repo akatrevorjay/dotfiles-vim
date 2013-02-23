@@ -1,14 +1,30 @@
 #!/bin/bash -e
 set -xv
+pushd ~/
 
-cd
-mv .vimrc .vim/
-mv .vim .vim.sav
-git clone git://github.com/akatrevorjay/dotfiles-vim.git .vim
-ln -s .vim/vimrc .vimrc
-cd .vim
+if ! test -e ~/.vim; then
+    test -f ~/.vimrc && mv .vimrc .vim/
+    test -d ~/.vim && mv .vim .vim.sav
+    git clone git://github.com/akatrevorjay/dotfiles-vim.git .vim
+    ln -s .vim/vimrc .vimrc
+    pushd .vim
+else
+    pushd .vim
+    git pull
+fi
+
 git submodule update --init --recursive
 
+pushd ./repos/powerline/
+python ./setup.py install || sudo python ./setup.py install || echo "Failed to install powerline" >&2
+popd
+
+pushd ./repos/jedi-vim/jedi
+python ./setup.py install || sudo python ./setup.py install || echo "Failed to install jedi" >&2
+popd
+
+popd
+
+popd
 set +xv
 echo enjoy
-

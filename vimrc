@@ -783,11 +783,7 @@ let Powerline_symbols="fancy"
 "let g:Powerline_colorscheme="skwp"
 
 " New powerline alpha python
-"python import plugin.vim.load_vim_plugin
-" or
-"source $HOME/.vim/repos/powerline/plugin/vim/powerline.vim
-"source $HOME/.vim/repos/powerline/powerline/ext/vim/powerline.vim
-source $HOME/.vim/repos/powerline/powerline/ext/vim/source_plugin.vim
+source $HOME/.vim/repos/powerline/powerline/bindings/vim/plugin/powerline.vim
 
 " ConqueTerm
 let g:ConqueTerm_Color = 1

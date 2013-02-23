@@ -777,15 +777,28 @@ let g:notes_directory = "~/Notes"
 "VimpyLoad ~/.vim/vimpy-projects.index
 
 " Powerline {{{
-set laststatus=2
 set encoding=utf-8
+set laststatus=2 " Always display the statusline in all windows
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 "let Powerline_symbols="unicode"
 let Powerline_symbols="fancy"
 "let g:Powerline_symbols="fancy"
 "let g:Powerline_colorscheme="skwp"
 
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
 " New powerline alpha python
 source $HOME/.vim/repos/powerline/powerline/bindings/vim/plugin/powerline.vim
+
+" }}}
+
 
 " ConqueTerm
 let g:ConqueTerm_Color = 1

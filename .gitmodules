@@ -301,3 +301,15 @@
 [submodule "repos/vimoutliner"]
 	path = repos/vimoutliner
 	url = git://github.com/vimoutliner/vimoutliner.git
+[submodule "repos/vim-lucius"]
+	path = repos/vim-lucius
+	url = git://github.com/jonathanfilip/vim-lucius.git
+[submodule "repos/vim-distinguished"]
+	path = repos/vim-distinguished
+	url = git://github.com/Lokaltog/vim-distinguished.git
+[submodule "repos/jellybeans"]
+	path = repos/jellybeans
+	url = git://github.com/nanotech/jellybeans.vim.git
+[submodule "repos/vim-vividchalk"]
+	path = repos/vim-vividchalk
+	url = git://github.com/tpope/vim-vividchalk.git

@@ -6,7 +6,7 @@ au BufRead,BufNewFile *.html set filetype=htmldjango
 au BufRead,BufNewFile *.py set filetype=python
 
 " Bash
-au BufRead,BufNewFile *.sh set filetype=bash
+au BufRead,BufNewFile *.sh set filetype=sh
 
 " Readmes
 au BufRead,BufNewFile readme* set filetype=mkd
@@ -18,9 +18,9 @@ if did_filetype()   " filetype already set
 elseif getline(1) =~ '^#!/usr/bin/env python'
     setfiletype python
 elseif getline(1) =~ '^#!/bin/bash'
-    setfiletype bash
+    setfiletype sh
 elseif getline(1) =~ '^#!/bin/sh'
-    setfiletype bash
+    setfiletype sh
 elseif getline(1) =~ '^<html'
     setfiletype jinja
 elseif getline(1) =~ '^<doctype'

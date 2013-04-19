@@ -127,3 +127,6 @@
 [submodule "repos/notes"]
 	path = repos/notes
 	url = git://github.com/xolox/vim-notes.git
+[submodule "repos/tagbar"]
+	path = repos/tagbar
+	url = git://github.com/majutsushi/tagbar.git

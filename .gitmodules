@@ -130,3 +130,6 @@
 [submodule "repos/tagbar"]
 	path = repos/tagbar
 	url = git://github.com/majutsushi/tagbar.git
+[submodule "repos/nerdcommenter"]
+	path = repos/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git

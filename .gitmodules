@@ -1,165 +1,27 @@
-[submodule "bundle/fugitive"]
-	path = bundle/fugitive
-	url = http://github.com/tpope/vim-fugitive.git
-[submodule "bundle/minibufexpl"]
-	path = bundle/minibufexpl
-	url = https://github.com/sontek/minibufexpl.vim.git
-[submodule "bundle/surround"]
-	path = bundle/surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "repos/snipmate"]
-	path = repos/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
-[submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = https://github.com/ervandew/supertab.git
-[submodule "bundle/ctrlp"]
-	path = bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
-[submodule "bundle/command-t"]
-	path = bundle/command-t
-	url = https://github.com/wincent/Command-T.git
-[submodule "bundle/ack"]
-	path = bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
-[submodule "bundle/gundo"]
-	path = bundle/gundo
-	url = https://github.com/sjl/gundo.vim.git
-[submodule "bundle/pydoc"]
-	path = bundle/pydoc
-	url = https://github.com/fs111/pydoc.vim.git
-[submodule "bundle/pep8"]
-	path = bundle/pep8
-	url = https://github.com/vim-scripts/pep8.git
-[submodule "bundle/py.test"]
-	path = bundle/py.test
-	url = https://github.com/alfredodeza/pytest.vim.git
-[submodule "bundle/makegreen"]
-	path = bundle/makegreen
-	url = https://github.com/reinh/vim-makegreen
-[submodule "bundle/tasklist"]
-	path = bundle/tasklist
-	url = https://github.com/vim-scripts/TaskList.vim.git
-[submodule "bundle/ropevim"]
-	path = bundle/ropevim
-	url = https://github.com/sontek/rope-vim.git
-[submodule "bundle/notes"]
-	path = bundle/notes
-	url = git://github.com/xolox/vim-notes.git
-[submodule "bundle/powerline"]
-	path = bundle/powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
 [submodule "repos/less.vim"]
 	path = repos/less.vim
 	url = git://github.com/huyz/less.vim.git
-[submodule "repos/pysmell"]
-	path = repos/pysmell
-	url = git://github.com/orestis/pysmell.git
-[submodule "repos/efficient-python-folding"]
-	path = repos/efficient-python-folding
-	url = git://github.com/vim-scripts/Efficient-python-folding.git
 [submodule "repos/pathogen"]
 	path = repos/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
-[submodule "bundle/vimpy"]
-	path = bundle/vimpy
-	url = git://github.com/LimpidTech/Vimpy.git
-[submodule "repos/vimpy"]
-	path = repos/vimpy
-	url = git://github.com/amitdev/vimpy.git
-[submodule "bundle/html5"]
-	path = bundle/html5
-	url = https://github.com/othree/html5.vim.git
-[submodule "bundle/argtextobj"]
-	path = bundle/argtextobj
-	url = https://github.com/vim-scripts/argtextobj.vim.git
-[submodule "bundle/virtualenv"]
-	path = bundle/virtualenv
-	url = https://github.com/jmcantrell/vim-virtualenv.git
-[submodule "bundle/json"]
-	path = bundle/json
-	url = https://github.com/leshill/vim-json.git
-[submodule "bundle/CamelCaseMotion"]
-	path = bundle/CamelCaseMotion
-	url = https://github.com/bkad/CamelCaseMotion.git
-[submodule "bundle/indent-obj"]
-	path = bundle/indent-obj
-	url = https://github.com/michaeljsmith/vim-indent-object.git
-[submodule "bundle/neocompcache"]
-	path = bundle/neocompcache
-	url = https://github.com/Shougo/neocomplcache.git
-[submodule "bundle/neocompcache-snippets-complete"]
-	path = bundle/neocompcache-snippets-complete
-	url = https://github.com/Shougo/neocomplcache-snippets-complete
-[submodule "bundle/vimshell"]
-	path = bundle/vimshell
-	url = http://github.com/Shougo/vimshell
-[submodule "bundle/vimproc"]
-	path = bundle/vimproc
-	url = http://github.com/Shougo/vimproc
-[submodule "bundle/nerdcommenter"]
-	path = bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "bundle/UltiSnips"]
-	path = bundle/UltiSnips
-	url = https://github.com/vim-scripts/UltiSnips.git
-[submodule "bundle/MatchTag"]
-	path = bundle/MatchTag
-	url = git://github.com/gregsexton/MatchTag.git
-[submodule "bundle/unimpaired"]
-	path = bundle/unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "bundle/repeat"]
-	path = bundle/repeat
-	url = https://github.com/tpope/vim-repeat
-[submodule "bundle/trailing-whitspace"]
-	path = bundle/trailing-whitspace
-	url = git://github.com/vim-scripts/trailing-whitespace.git
-[submodule "bundle/tagbar"]
-	path = bundle/tagbar
-	url = git://github.com/majutsushi/tagbar.git
-[submodule "bundle/conque-term"]
-	path = bundle/conque-term
-	url = git://github.com/rosenfeld/conque-term.git
 [submodule "repos/vim-haskell"]
 	path = repos/vim-haskell
 	url = git://github.com/wlangstroth/vim-haskell.git
 [submodule "repos/prettyprint"]
 	path = repos/prettyprint
 	url = git://github.com/thinca/vim-prettyprint.git
-[submodule "repos/easymotion"]
-	path = repos/easymotion
-	url = git://github.com/Lokaltog/vim-easymotion.git
-[submodule "repos/git"]
-	path = repos/git
-	url = git://github.com/motemen/git-vim.git
-[submodule "repos/vinarise"]
-	path = repos/vinarise
-	url = git://github.com/Shougo/vinarise.git
-[submodule "repos/indent-guides"]
-	path = repos/indent-guides
-	url = git://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "repos/vim-railscasts-jgdavey"]
 	path = repos/vim-railscasts-jgdavey
 	url = git://github.com/jgdavey/vim-railscasts.git
 [submodule "repos/zencoding"]
 	path = repos/zencoding
 	url = git://github.com/mattn/zencoding-vim.git
-[submodule "repos/pasta"]
-	path = repos/pasta
-	url = git://github.com/sickill/vim-pasta.git
 [submodule "repos/speeddating"]
 	path = repos/speeddating
 	url = git://github.com/tpope/vim-speeddating.git
 [submodule "repos/repeat"]
 	path = repos/repeat
 	url = git://github.com/tpope/vim-repeat.git
-[submodule "repos/ipython"]
-	path = repos/ipython
-	url = git://github.com/vim-scripts/vim-ipython.git
 [submodule "repos/badwolf-colors"]
 	path = repos/badwolf-colors
 	url = git://github.com/vim-scripts/badwolf.git
@@ -184,18 +46,6 @@
 [submodule "repos/vim-markdown"]
 	path = repos/vim-markdown
 	url = git://github.com/tpope/vim-markdown.git
-[submodule "repos/neocomplcache"]
-	path = repos/neocomplcache
-	url = https://github.com/Shougo/neocomplcache.git
-[submodule "repos/neocomplcache-snippets-complete"]
-	path = repos/neocomplcache-snippets-complete
-	url = https://github.com/Shougo/neocomplcache-snippets-complete
-[submodule "repos/snipmate_for_django"]
-	path = repos/snipmate_for_django
-	url = git://github.com/robhudson/snipmate_for_django.git
-[submodule "repos/vim-zeitgeist"]
-	path = repos/vim-zeitgeist
-	url = git://github.com/fmoralesc/vim-zeitgeist.git
 [submodule "repos/python-mode"]
 	path = repos/python-mode
 	url = git://github.com/klen/python-mode.git
@@ -205,96 +55,39 @@
 [submodule "repos/mustache"]
 	path = repos/mustache
 	url = git://github.com/juvenn/mustache.vim.git
-[submodule "repos/vim-fuzzyfinder"]
-	path = repos/vim-fuzzyfinder
-	url = git://github.com/vim-scripts/FuzzyFinder.git
 [submodule "repos/vimpidgin-svn"]
 	path = repos/vimpidgin-svn
 	url = git://github.com/akatrevorjay/vimpidgin.git
-[submodule "repos/L9"]
-	path = repos/L9
-	url = git://github.com/vim-scripts/L9.git
 [submodule "repos/tropikos"]
 	path = repos/tropikos
 	url = git://github.com/vim-scripts/tropikos.git
-[submodule "repos/flake8"]
-	path = repos/flake8
-	url = git://github.com/vim-scripts/vim-flake8.git
-[submodule "repos/hyperlist"]
-	path = repos/hyperlist
-	url = git://github.com/vim-scripts/HyperList.git
-[submodule "repos/css3-mod"]
-	path = repos/css3-mod
-	url = git://github.com/vim-scripts/css3-mod.git
-[submodule "repos/votl"]
-	path = repos/votl
-	url = git://github.com/vim-scripts/votl.git
-[submodule "repos/vim-django"]
-	path = repos/vim-django
-	url = git://github.com/vim-scripts/vim-django.git
-[submodule "repos/localvimrc"]
-	path = repos/localvimrc
-	url = git://github.com/vim-scripts/localvimrc.git
 [submodule "repos/rainbow-parantheses-improved"]
 	path = repos/rainbow-parantheses-improved
 	url = git://github.com/vim-scripts/Rainbow-Parentheses-Improved.git
-[submodule "repos/sparkup"]
-	path = repos/sparkup
-	url = git://github.com/rstacruz/sparkup.git
-[submodule "repos/indentpython"]
-	path = repos/indentpython
-	url = git://github.com/vim-scripts/indentpython.vim.git
 [submodule "repos/mru"]
 	path = repos/mru
 	url = git://github.com/vim-scripts/mru.vim.git
 [submodule "repos/salt-vim"]
 	path = repos/salt-vim
 	url = git://github.com/saltstack/salt-vim.git
-[submodule "repos/vim-ipython"]
-	path = repos/vim-ipython
-	url = git://github.com/ivanov/vim-ipython.git
 [submodule "repos/jedi"]
 	path = repos/jedi
 	url = git://github.com/davidhalter/jedi.git
 [submodule "repos/jedi-vim"]
 	path = repos/jedi-vim
 	url = git://github.com/davidhalter/jedi-vim.git
-[submodule "repos/supertab"]
-	path = repos/supertab
-	url = git://github.com/ervandew/supertab.git
 [submodule "repos/notmuch-vim-ruby"]
 	path = repos/notmuch-vim-ruby
 	url = git://github.com/felipec/notmuch-vim-ruby.git
-[submodule "repos/querycommandcomplete"]
-	path = repos/querycommandcomplete
-	url = git://github.com/caio/querycommandcomplete.vim.git
 [submodule "repos/Recover.vim"]
 	path = repos/Recover.vim
 	url = git://github.com/chrisbra/Recover.vim.git
 [submodule "repos/powerline"]
 	path = repos/powerline
 	url = git://github.com/Lokaltog/powerline.git
-[submodule "repos/DBGPavim"]
-	path = repos/DBGPavim
-	url = git://github.com/brookhong/DBGPavim.git
 [submodule "repos/vdebug"]
 	path = repos/vdebug
 	url = git://github.com/joonty/vdebug.git
-[submodule "repos/vim-powerline"]
-	path = repos/vim-powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
-[submodule "repos/vim-redmine"]
-	path = repos/vim-redmine
-	url = git://github.com/toritori0318/vim-redmine.git
-[submodule "repos/webapi-vim"]
-	path = repos/webapi-vim
-	url = git://github.com/mattn/webapi-vim.git
-[submodule "repos/unite.vim"]
-	path = repos/unite.vim
-	url = git://github.com/Shougo/unite.vim.git
-[submodule "repos/unite-yarm"]
-	path = repos/unite-yarm
-	url = git://github.com/basyura/unite-yarm.git
 [submodule "repos/open-browser"]
 	path = repos/open-browser
 	url = https://github.com/tyru/open-browser.vim
@@ -313,3 +106,24 @@
 [submodule "repos/vim-vividchalk"]
 	path = repos/vim-vividchalk
 	url = git://github.com/tpope/vim-vividchalk.git
+[submodule "repos/fugitive"]
+	path = repos/fugitive
+	url = http://github.com/tpope/vim-fugitive.git
+[submodule "repos/minibufexpl"]
+	path = repos/minibufexpl
+	url = https://github.com/sontek/minibufexpl.vim.git
+[submodule "repos/surround"]
+	path = repos/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "repos/nerdtree"]
+	path = repos/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "repos/ctrlp"]
+	path = repos/ctrlp
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule "repos/gundo"]
+	path = repos/gundo
+	url = https://github.com/sjl/gundo.vim.git
+[submodule "repos/notes"]
+	path = repos/notes
+	url = git://github.com/xolox/vim-notes.git

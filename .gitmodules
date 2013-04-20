@@ -133,3 +133,9 @@
 [submodule "repos/nerdcommenter"]
 	path = repos/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "repos/neocomplcache"]
+	path = repos/neocomplcache
+	url = https://github.com/Shougo/neocomplcache.git
+[submodule "repos/supertab"]
+	path = repos/supertab
+	url = git://github.com/ervandew/supertab.git

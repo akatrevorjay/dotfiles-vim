@@ -139,3 +139,6 @@
 [submodule "repos/supertab"]
 	path = repos/supertab
 	url = git://github.com/ervandew/supertab.git
+[submodule "repos/trailing-whitespace"]
+	path = repos/trailing-whitespace
+	url = git://github.com/vim-scripts/trailing-whitespace.git

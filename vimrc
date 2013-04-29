@@ -313,9 +313,8 @@ let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 1
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#related_names_command = "<leader>n"
-"let g:jedi#popup_select_first = 0
+let g:jedi#popup_select_first = 1
 "let g:jedi#show_function_definition = 1
-
 
 "autocmd FileType *
 "    \ if &omnifunc != '' |

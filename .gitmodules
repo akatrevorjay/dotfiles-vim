@@ -139,3 +139,6 @@
 [submodule "repos/trailing-whitespace"]
 	path = repos/trailing-whitespace
 	url = git://github.com/vim-scripts/trailing-whitespace.git
+[submodule "repos/json"]
+	path = repos/json
+	url = https://github.com/leshill/vim-json.git

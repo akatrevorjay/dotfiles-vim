@@ -247,27 +247,27 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " Python stuffs
 "autocmd filetype python source ~/.vim/python.vim
 
-" Eclim
-let g:EclimPythonInterpreter = "python"
-let g:EclimDjangoAdmin= "django-admin.py"
-let g:EclimMenus = 1
-"let g:EclimProjectProblemsUpdateOnSave = 1
-let g:EclimProjectTreeAutoOpen = 1
-let g:EclimPythonValidate = 1
-"let g:EclimShowCurrentError = 1
-"let g:EclimShowCurrentErrorBalloon = 1
-"let g:EclimProjectTreeExpandPathOnOpen = 1
-"let g:EclimProjectTreeSharedInstance = 1
-"let g:EclimShowErrors = 1
-"let g:EclimShowLoclistSigns = 1
-"let g:EclimShowQuickfixSigns = 1
-"let g:EclimMakeLCD = 1
-"let g:EclimMakeQfFilter = 1
-"let g:EclimTodoSearchExtensions = ['py', 'xml', 'html', 'css', 'js']
-let g:EclimTodoSearchExtensions = ['py', 'html']
-let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<fuck\>\|\<wtf\>\)\c'
-nnoremap <silent> <buffer> <cr> :PythonSearchContext<cr>
-let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+"" Eclim
+"let g:EclimPythonInterpreter = "python"
+"let g:EclimDjangoAdmin= "django-admin.py"
+"let g:EclimMenus = 1
+""let g:EclimProjectProblemsUpdateOnSave = 1
+"let g:EclimProjectTreeAutoOpen = 1
+"let g:EclimPythonValidate = 1
+""let g:EclimShowCurrentError = 1
+""let g:EclimShowCurrentErrorBalloon = 1
+""let g:EclimProjectTreeExpandPathOnOpen = 1
+""let g:EclimProjectTreeSharedInstance = 1
+""let g:EclimShowErrors = 1
+""let g:EclimShowLoclistSigns = 1
+""let g:EclimShowQuickfixSigns = 1
+""let g:EclimMakeLCD = 1
+""let g:EclimMakeQfFilter = 1
+""let g:EclimTodoSearchExtensions = ['py', 'xml', 'html', 'css', 'js']
+"let g:EclimTodoSearchExtensions = ['py', 'html']
+"let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<fuck\>\|\<wtf\>\)\c'
+"nnoremap <silent> <buffer> <cr> :PythonSearchContext<cr>
+"let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
 
 "function! s:MyFind ()
 "  let found = eclim#python#django#find#ContextFind()
@@ -277,21 +277,21 @@ let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
 "endfunction
 "nnoremap <silent> <buffer> <cr> :call <SID>MyFind()<cr>
 
-function! SuperCleverTab()
-    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-        return "\<Tab>"
-    else
-        if &ft == 'python'
-            return "\<M-/>"
-        elseif &omnifunc != ''
-            return "\<C-X>\<C-O>"
-        elseif &dictionary != ''
-            return "\<C-K>"
-        else
-            return "\<C-N>"
-        endif
-    endif
-endfunction
+"function! SuperCleverTab()
+"    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+"        return "\<Tab>"
+"    else
+"        if &ft == 'python'
+"            return "\<M-/>"
+"        elseif &omnifunc != ''
+"            return "\<C-X>\<C-O>"
+"        elseif &dictionary != ''
+"            return "\<C-K>"
+"        else
+"            return "\<C-N>"
+"        endif
+"    endif
+"endfunction
 
 "inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 ""inoremap <buffer><Tab> <M-/>
@@ -302,7 +302,7 @@ set completeopt=menuone,longest,preview
 let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
 let g:SuperTabCrMapping=1
-"let g:SuperTabClosePreviewOnPopupClose=1
+let g:SuperTabClosePreviewOnPopupClose=1
 
 
 let g:jedi#goto_command = "<leader>g"
@@ -314,7 +314,7 @@ let g:jedi#popup_on_dot = 1
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#related_names_command = "<leader>n"
 let g:jedi#popup_select_first = 1
-"let g:jedi#show_function_definition = 1
+let g:jedi#show_function_definition = 1
 
 "autocmd FileType *
 "    \ if &omnifunc != '' |
@@ -330,10 +330,10 @@ let g:jedi#popup_select_first = 1
 " Python-Mode {{{
 
 " Load show documentation plugin
-let g:pymode_doc = 0
+let g:pymode_doc = 1
 
 " Key for show python documentation
-let g:pymode_doc_key = 'K'
+let g:pymode_doc_key = '<leader>K'
 
 " Load run code plugin
 let g:pymode_run = 1
@@ -348,7 +348,8 @@ let g:pymode_lint = 1
 " Can have multiply values "pep8,pyflakes,mccabe"
 "let g:pymode_lint_checker = "pyflakes,pep8,pymetrics"
 "let g:pymode_lint_checker = "flake8"
-let g:pymode_lint_checker = "pyflakes,pep8"
+"let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_checker = "pep8"
 
 " Skip errors and warnings
 " E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc

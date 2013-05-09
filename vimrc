@@ -397,7 +397,7 @@ let g:pymode_lint_maxheight = 6
 
 
 " Load rope plugin
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 
 " Auto create and open ropeproject
 let g:pymode_rope_auto_project = 1
@@ -417,7 +417,7 @@ let g:pymode_rope_sorted_completions = 1
 let g:pymode_rope_extended_complete = 1
 
 "let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
-let g:pymode_rope_autoimport_modules = ["os.*", "shutil", "datetime", "traceback", "django.*", "xml.etree", "flask.*"]
+let g:pymode_rope_autoimport_modules = ["os.*", "shutil", "datetime", "traceback", "django.*", "xml.etree", "flask.*", "solarsan.*"]
 "imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 let g:pymode_rope_confirm_saving = 1

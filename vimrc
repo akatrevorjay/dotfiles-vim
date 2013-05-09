@@ -349,7 +349,7 @@ let g:pymode_lint = 1
 "let g:pymode_lint_checker = "pyflakes,pep8,pymetrics"
 "let g:pymode_lint_checker = "flake8"
 "let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_lint_checker = "pep8"
+let g:pymode_lint_checker = "flake8"
 
 " Skip errors and warnings
 " E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc

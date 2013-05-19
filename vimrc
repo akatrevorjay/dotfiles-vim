@@ -236,6 +236,7 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType python setlocal completefunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 "" Python tab completion
@@ -417,7 +418,7 @@ let g:pymode_rope_sorted_completions = 1
 let g:pymode_rope_extended_complete = 1
 
 "let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
-let g:pymode_rope_autoimport_modules = ["os.*", "shutil", "datetime", "traceback", "django.*", "xml.etree", "flask.*", "solarsan.*"]
+let g:pymode_rope_autoimport_modules = ["os.*", "shutil", "time", "datetime", "traceback", "django.*", "xml.etree", "flask.*"]
 "imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 let g:pymode_rope_confirm_saving = 1
@@ -426,7 +427,7 @@ let g:pymode_rope_global_prefix = "<C-x>p"
 
 let g:pymode_rope_local_prefix = "<C-c>r"
 
-let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_vim_completion = 0
 
 let g:pymode_rope_guess_project = 1
 

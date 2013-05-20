@@ -772,7 +772,7 @@ let NERDTreeDirArrows=1
 "set statusline+=%{fugitive#statusline()}
 
 " vim-notes
-let g:notes_directory = "~/Notes"
+let g:notes_directories = ["~/Notes"]
 
 " vimpy
 "VimpyLoad ~/.vim/vimpy-projects.index

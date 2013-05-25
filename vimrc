@@ -194,6 +194,7 @@ let g:zenburn_high_Contrast=1
 "colorscheme railscasts-trevorj
 "colorscheme mustang
 "colorscheme molokai
+let g:hybrid_use_Xresources = 1
 colorscheme hybrid
 
 

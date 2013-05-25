@@ -160,3 +160,6 @@
 [submodule "repos/vim-hybrid"]
 	path = repos/vim-hybrid
 	url = git://github.com/w0ng/vim-hybrid.git
+[submodule "repos/Atom"]
+	path = repos/Atom
+	url = git://github.com/zaiste/Atom.git

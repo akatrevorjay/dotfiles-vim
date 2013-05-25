@@ -193,7 +193,9 @@ let g:zenburn_high_Contrast=1
 "colorscheme zenburn
 "colorscheme railscasts-trevorj
 "colorscheme mustang
-colorscheme molokai
+"colorscheme molokai
+colorscheme hybrid
+
 
 " gvim
 set guioptions=acMh

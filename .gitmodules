@@ -157,3 +157,6 @@
 [submodule "repos/vim-misc"]
 	path = repos/vim-misc
 	url = git://github.com/xolox/vim-misc.git
+[submodule "repos/vim-hybrid"]
+	path = repos/vim-hybrid
+	url = git://github.com/w0ng/vim-hybrid.git

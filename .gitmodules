@@ -145,3 +145,12 @@
 [submodule "repos/vim-orgmode"]
 	path = repos/vim-orgmode
 	url = git://github.com/jceb/vim-orgmode.git
+[submodule "repos/csapprox"]
+	path = repos/csapprox
+	url = git://github.com/godlygeek/csapprox.git
+[submodule "repos/vim-buffergator"]
+	path = repos/vim-buffergator
+	url = git://github.com/jeetsukumaran/vim-buffergator.git
+[submodule "repos/eunuch"]
+	path = repos/eunuch
+	url = git://github.com/tpope/vim-eunuch.git

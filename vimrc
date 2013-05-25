@@ -221,13 +221,6 @@ endif
 " }}}
 
 " Tab completion options {{{1
-set wildchar=<Tab>
-set wildmenu
-set wildmode=longest,list
-"set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak,*.pyo,*.pyc,*.svn
-set complete=.,t
-
 
 
 " Filetype specifics
@@ -298,16 +291,19 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 ""inoremap <buffer><Tab> <M-/>
 ""imap <buffer><Tab> <M-/>
 
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
-let g:SuperTabLongestEnhanced=1
+
+"let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "<c-n>"
+"let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+"set completeopt=menuone,longest,preview
+"let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
-let g:SuperTabCrMapping=1
+"let g:SuperTabCrMapping=1
 let g:SuperTabClosePreviewOnPopupClose=1
 
-
 let g:jedi#goto_command = "<leader>g"
-"let g:jedi#auto_initialization = 1
+let g:jedi#auto_initialization = 1
 let g:jedi#get_definition_command = "<leader>d"
 let g:jedi#pydoc = "K"
 let g:jedi#use_tabs_not_buffers = 0
@@ -316,6 +312,23 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#related_names_command = "<leader>n"
 let g:jedi#popup_select_first = 1
 let g:jedi#show_function_definition = 1
+
+let g:jedi#auto_vim_configuration = 1
+"let g:jedi#autocompletion_command = "<tab>"
+"let g:jedi#quickfix_window_height = 10
+let g:jedi#function_definition_escape = 1
+let g:jedi#get_definition_command = "<leader>d"
+
+autocmd FileType python setlocal completefunc=jedi#complete
+autocmd FileType python setlocal omnifunc=jedi#complete
+
+set wildchar=<Tab>
+set wildmenu
+set wildmode=longest,list
+"set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak,*.pyo,*.pyc,*.svn
+"set complete=.,t
+
 
 "autocmd FileType *
 "    \ if &omnifunc != '' |
@@ -390,15 +403,15 @@ let g:pymode_lint_signs = 1
 let g:pymode_lint_mccabe_complexity = 8
 
 " Minimal height of pylint error window
-let g:pymode_lint_minheight = 3
+let g:pymode_lint_minheight = 1
 
 " Maximal height of pylint error window
-let g:pymode_lint_maxheight = 6
+let g:pymode_lint_maxheight = 2
 
 
 
 " Load rope plugin
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 
 " Auto create and open ropeproject
 let g:pymode_rope_auto_project = 1
@@ -415,7 +428,7 @@ let g:pymode_rope_codeassist_maxfixes = 10
 
 let g:pymode_rope_sorted_completions = 1
 
-let g:pymode_rope_extended_complete = 1
+let g:pymode_rope_extended_complete = 0
 
 "let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
 let g:pymode_rope_autoimport_modules = ["os.*", "shutil", "time", "datetime", "traceback", "django.*", "xml.etree", "flask.*"]
@@ -431,9 +444,9 @@ let g:pymode_rope_vim_completion = 0
 
 let g:pymode_rope_guess_project = 1
 
-let g:pymode_rope_goto_def_newwin = ""
+"let g:pymode_rope_goto_def_newwin = ""
 
-let g:pymode_rope_always_show_complete_menu = 0
+"let g:pymode_rope_always_show_complete_menu = 0
 
 
 " Enable python folding
@@ -449,7 +462,7 @@ let g:pymode_virtualenv = 1
 
 
 " Additional python paths
-let g:pymode_paths = []
+let g:pymode_paths = ['/opt/solarsan', '/opt/solarsan/solarsan', '~/Projects']
 
 " Load breakpoints plugin
 let g:pymode_breakpoint = 1
@@ -736,7 +749,7 @@ hi ColorColumn ctermbg=lightblue guibg=lightblue
 
 " CtrlP
 " Specific ignore for DVCS/VCS
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\.pyc$'
 "let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_dotfiles = 1

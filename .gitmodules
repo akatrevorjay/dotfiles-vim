@@ -154,3 +154,6 @@
 [submodule "repos/eunuch"]
 	path = repos/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
+[submodule "repos/vim-misc"]
+	path = repos/vim-misc
+	url = git://github.com/xolox/vim-misc.git

@@ -163,3 +163,6 @@
 [submodule "repos/Atom"]
 	path = repos/Atom
 	url = git://github.com/zaiste/Atom.git
+[submodule "repos/jacinto"]
+	path = repos/jacinto
+	url = git://github.com/alfredodeza/jacinto.vim.git

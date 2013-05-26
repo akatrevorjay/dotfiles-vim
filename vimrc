@@ -23,9 +23,6 @@ filetype plugin indent on   " enable loading indent file for filetype
 
 " }}}
 
-" Syntax highlighting
-set background=dark
-
 " Jump to the last position when reopening a file {{{
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -165,9 +162,12 @@ set nofsync
 
 
 " Colors {{{
-"colorscheme elflord
+"
+"" Syntax highlighting
 set t_Co=256
-let g:zenburn_high_Contrast=1
+set background=dark
+
+"colorscheme elflord
 "let g:zenburn_unified_CursorColumn=1
 "colorscheme navajo-night
 "colorscheme camo
@@ -190,13 +190,15 @@ let g:zenburn_high_Contrast=1
 "colorscheme darkeclipse
 "colorscheme slate
 "colorscheme hemisu
+"let g:zenburn_high_Contrast=1
 "colorscheme zenburn
 "colorscheme railscasts-trevorj
 "colorscheme mustang
 "colorscheme molokai
-let g:hybrid_use_Xresources = 1
-let g:liquidcarbon_high_contrast = 1
+"let g:liquidcarbon_high_contrast = 1
+"let g:hybrid_use_Xresources = 1
 colorscheme hybrid
+"colorscheme herald_modified
 
 
 " gvim

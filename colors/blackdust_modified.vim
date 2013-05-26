@@ -36,7 +36,7 @@ hi Conditional guifg=#ffffff guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=N
 hi StorageClass guifg=#ffffff guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
 hi Todo guifg=#ffffff guibg=#000000 guisp=#000000 gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
 hi Special guifg=#7f7f7f guibg=NONE guisp=NONE gui=NONE ctermfg=8 ctermbg=NONE cterm=NONE
-hi LineNr guifg=#c7c7c7 guibg=#464646 guisp=#464646 gui=NONE ctermfg=251 ctermbg=238 cterm=NONE
+hi LineNr guifg=#a1a1a1 guibg=#262626 guisp=#262626 gui=NONE ctermfg=247 ctermbg=235 cterm=NONE
 hi StatusLine guifg=#333333 guibg=#f18c96 guisp=#f18c96 gui=NONE ctermfg=236 ctermbg=210 cterm=NONE
 hi Normal guifg=#f7f7f7 guibg=#050505 guisp=#050505 gui=NONE ctermfg=15 ctermbg=232 cterm=NONE
 hi Label guifg=#8fffff guibg=NONE guisp=NONE gui=NONE ctermfg=123 ctermbg=NONE cterm=NONE
@@ -48,7 +48,7 @@ hi Delimiter guifg=#8f8f8f guibg=NONE guisp=NONE gui=NONE ctermfg=245 ctermbg=NO
 hi Statement guifg=#8fffff guibg=NONE guisp=NONE gui=NONE ctermfg=123 ctermbg=NONE cterm=NONE
 "hi SpellRare -- no settings --
 "hi EnumerationValue -- no settings --
-hi Comment guifg=#7f7f7f guibg=NONE guisp=NONE gui=NONE ctermfg=8 ctermbg=NONE cterm=NONE
+hi Comment guifg=#d1d1d1 guibg=#424242 guisp=#424242 gui=NONE ctermfg=252 ctermbg=238 cterm=NONE
 hi Character guifg=#dca3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=181 ctermbg=NONE cterm=NONE
 hi Float guifg=#9c93b3 guibg=NONE guisp=NONE gui=NONE ctermfg=103 ctermbg=NONE cterm=NONE
 hi Number guifg=#aca0a3 guibg=NONE guisp=NONE gui=NONE ctermfg=145 ctermbg=NONE cterm=NONE
@@ -64,7 +64,7 @@ hi DiffDelete guifg=#333333 guibg=#464646 guisp=#464646 gui=NONE ctermfg=236 cte
 hi ModeMsg guifg=#dca3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=181 ctermbg=NONE cterm=NONE
 "hi CursorColumn -- no settings --
 hi Define guifg=#ffcfaf guibg=NONE guisp=NONE gui=NONE ctermfg=223 ctermbg=NONE cterm=NONE
-hi Function guifg=#ffff8f guibg=NONE guisp=NONE gui=NONE ctermfg=228 ctermbg=NONE cterm=NONE
+hi Function guifg=#ffff8f guibg=#292929 guisp=#292929 gui=NONE ctermfg=228 ctermbg=235 cterm=NONE
 hi FoldColumn guifg=#dca3a3 guibg=#464646 guisp=#464646 gui=NONE ctermfg=181 ctermbg=238 cterm=NONE
 hi PreProc guifg=#ffcfaf guibg=NONE guisp=NONE gui=NONE ctermfg=223 ctermbg=NONE cterm=NONE
 "hi EnumerationName -- no settings --
@@ -74,7 +74,7 @@ hi MoreMsg guifg=#ffffff guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE 
 hi VertSplit guifg=#333333 guibg=#cccccc guisp=#cccccc gui=NONE ctermfg=236 ctermbg=252 cterm=NONE
 hi Exception guifg=#8fffff guibg=NONE guisp=NONE gui=NONE ctermfg=123 ctermbg=NONE cterm=NONE
 hi Keyword guifg=#ffffff guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
-hi Type guifg=#ffffff guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
+hi Type guifg=#e8bae8 guibg=#292929 guisp=#292929 gui=bold ctermfg=182 ctermbg=235 cterm=bold
 hi DiffChange guifg=NONE guibg=#333333 guisp=#333333 gui=NONE ctermfg=NONE ctermbg=236 cterm=NONE
 hi Cursor guifg=#000000 guibg=#aeaeae guisp=#aeaeae gui=NONE ctermfg=NONE ctermbg=145 cterm=NONE
 "hi SpellLocal -- no settings --
@@ -84,7 +84,7 @@ hi SpecialKey guifg=#7e7e7e guibg=NONE guisp=NONE gui=NONE ctermfg=8 ctermbg=NON
 hi Constant guifg=#dca3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=181 ctermbg=NONE cterm=NONE
 "hi DefinedName -- no settings --
 hi Tag guifg=#dca3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=181 ctermbg=NONE cterm=NONE
-hi String guifg=#f2acac guibg=#292929 guisp=#292929 gui=NONE ctermfg=217 ctermbg=235 cterm=NONE
+hi String guifg=#ffc4c4 guibg=#333233 guisp=#333233 gui=NONE ctermfg=224 ctermbg=236 cterm=NONE
 hi PMenuThumb guifg=NONE guibg=#7f7f7f guisp=#7f7f7f gui=NONE ctermfg=NONE ctermbg=8 cterm=NONE
 "hi MatchParen -- no settings --
 "hi LocalVariable -- no settings --

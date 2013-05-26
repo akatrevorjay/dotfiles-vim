@@ -195,6 +195,7 @@ let g:zenburn_high_Contrast=1
 "colorscheme mustang
 "colorscheme molokai
 let g:hybrid_use_Xresources = 1
+let g:liquidcarbon_high_contrast = 1
 colorscheme hybrid
 
 

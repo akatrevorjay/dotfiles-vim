@@ -584,6 +584,13 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+" Fix arrows in screen
+"map ^[OC <Right>
+"map ^[OD <Left>
+"map ^[[C <S-Right>
+"map ^[[D <S-Left>
+
 " Allow move around using ctrl+arrows
 noremap <silent> <C-Down> <C-W>j
 noremap <silent> <C-Up> <C-W>k

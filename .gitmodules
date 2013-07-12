@@ -72,7 +72,7 @@
 	url = git://github.com/saltstack/salt-vim.git
 [submodule "repos/jedi-vim"]
 	path = repos/jedi-vim
-	url = git://github.com/akatrevorjay/jedi-vim.git
+	url = git://github.com/davidhalter/jedi-vim.git
 [submodule "repos/notmuch-vim-ruby"]
 	path = repos/notmuch-vim-ruby
 	url = git://github.com/felipec/notmuch-vim-ruby.git

@@ -572,8 +572,9 @@ vmap Q gq
 nmap Q gqap
 
 " Paste
-"set pastetoggle=<Leader>pt
-set pastetoggle=<F3>
+set pastetoggle=<leader><tab>
+"set pastetoggle=<F3>
+map <F3> <leader><tab>
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>

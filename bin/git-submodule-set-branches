@@ -1,0 +1,12 @@
+#!/bin/bash
+set -xv
+
+pushd ~/.vim
+
+git submodule foreach git checkout -B master origin/master
+
+pushd bundle/powerline
+git checkout -B develop origin/develop
+popd
+
+popd

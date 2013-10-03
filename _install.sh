@@ -16,11 +16,11 @@ fi
 git submodule update --init --recursive
 
 pushd ./repos/powerline/
-python ./setup.py install || sudo python ./setup.py install || echo "Failed to install powerline" >&2
+python ./setup.py develop || sudo python ./setup.py develop || echo "Failed to install powerline" >&2
 popd
 
 pushd ./repos/jedi-vim/jedi
-python ./setup.py install || sudo python ./setup.py install || echo "Failed to install jedi" >&2
+python ./setup.py develop || sudo python ./setup.py develop || echo "Failed to install jedi" >&2
 popd
 
 popd

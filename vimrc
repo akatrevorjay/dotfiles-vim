@@ -308,25 +308,27 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "let g:SuperTabCrMapping=1
 let g:SuperTabClosePreviewOnPopupClose=1
 
-let g:jedi#goto_command = "<leader>g"
-let g:jedi#auto_initialization = 1
-let g:jedi#get_definition_command = "<leader>d"
-let g:jedi#pydoc = "K"
+"let g:jedi#auto_initialization = 1
+"let g:jedi#auto_vim_configuration = 1
 let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#popup_on_dot = 1
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#related_names_command = "<leader>n"
-let g:jedi#popup_select_first = 1
-let g:jedi#show_function_definition = 1
-
-let g:jedi#auto_vim_configuration = 1
-"let g:jedi#autocompletion_command = "<tab>"
+"let g:jedi#use_splits_not_buffers = "left"
 "let g:jedi#quickfix_window_height = 10
-let g:jedi#function_definition_escape = 1
-let g:jedi#get_definition_command = "<leader>d"
+"let g:jedi#function_definition_escape = 1
+"let g:jedi#popup_on_dot = 1
+"let g:jedi#popup_select_first = 1
 
-autocmd FileType python setlocal completefunc=jedi#complete
-autocmd FileType python setlocal omnifunc=jedi#complete
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = 1
+
+"autocmd FileType python setlocal completefunc=jedi#complete
+"autocmd FileType python setlocal omnifunc=jedi#complete
+" Don't show docstring popup on completion
+"autocmd FileType python setlocal completeopt-=preview
 
 set wildchar=<Tab>
 set wildmenu

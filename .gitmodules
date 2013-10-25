@@ -67,9 +67,6 @@
 [submodule "repos/salt-vim"]
 	path = repos/salt-vim
 	url = git://github.com/saltstack/salt-vim.git
-[submodule "repos/jedi-vim"]
-	path = repos/jedi-vim
-	url = git://github.com/davidhalter/jedi-vim.git
 [submodule "repos/notmuch-vim-ruby"]
 	path = repos/notmuch-vim-ruby
 	url = git://github.com/felipec/notmuch-vim-ruby.git
@@ -130,9 +127,6 @@
 [submodule "repos/neocomplcache"]
 	path = repos/neocomplcache
 	url = https://github.com/Shougo/neocomplcache.git
-[submodule "repos/supertab"]
-	path = repos/supertab
-	url = git://github.com/ervandew/supertab.git
 [submodule "repos/trailing-whitespace"]
 	path = repos/trailing-whitespace
 	url = git://github.com/vim-scripts/trailing-whitespace.git

@@ -204,14 +204,15 @@ colorscheme hybrid
 " gvim
 set guioptions=acMh
 set mousefocus " focus follows mouse in gvim
-set guifont="Menlo for Powerline 12"
-"set guifont="Monaco for Powerline 12"
-"set guifont="ProFontWindows 12"
 if has("gui_running")
     "colorscheme railscasts-trevorj
     "colorscheme neverland-darker
+    set clipboard=unnamedplus
     if has("gui_gtk2")
-        set guifont=Menlo\ for\ Powerline\ 12
+        set guifont=Menlo\ for\ Powerline\ 16
+        set guifontwide=Menlo\ for\ Powerline\ 16
+        "set guifont=Monaco\ for\ Powerline\ 16
+        "set guifont=ProFontWindows\ 12
     "elseif has("gui_photon")
     "    set guifont=Menlo\ for\ Powerline:s12
     "elseif has("gui_kde")
@@ -525,6 +526,15 @@ let g:pymode_syntax_builtin_funcs = g:pymode_syntax_all
 " Highlight exceptions
 let g:pymode_syntax_highlight_exceptions = g:pymode_syntax_all
 
+" Highlight equal operator
+let g:pymode_syntax_highlight_equal_operator = g:pymode_syntax_all
+
+" Highlight stars operator
+let g:pymode_syntax_highlight_stars_operator = g:pymode_syntax_all
+
+" Highlight `self`
+let g:pymode_syntax_highlight_self = g:pymode_syntax_all
+
 " For fast machines
 let g:pymode_syntax_slow_sync = 0
 
@@ -537,7 +547,8 @@ let g:pymode_syntax_slow_sync = 0
 
 " mouse
 "set mouse=nvch " all modes but insert
-set mouse= " mouse urges hatred in me
+set mouse=a
+"set mouse= " mouse urges hatred in me
 set mousemodel="extend" " popup popup_setpos
 
 "let g:syntastic_enable_balloons = 1

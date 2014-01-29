@@ -175,3 +175,6 @@
 [submodule "repos/promptline"]
 	path = repos/promptline
 	url = https://github.com/edkolev/promptline.vim.git
+[submodule "repos/neobundle"]
+	path = repos/neobundle
+	url = https://github.com/Shougo/neobundle.vim

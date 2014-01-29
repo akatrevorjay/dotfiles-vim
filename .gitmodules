@@ -172,3 +172,6 @@
 [submodule "repos/vim-luna"]
 	path = repos/vim-luna
 	url = https://github.com/Pychimp/vim-luna.git
+[submodule "repos/promptline"]
+	path = repos/promptline
+	url = https://github.com/edkolev/promptline.vim.git

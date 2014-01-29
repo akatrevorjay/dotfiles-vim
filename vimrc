@@ -818,37 +818,59 @@ let g:notes_directories = ["~/Notes"]
 " vimpy
 "VimpyLoad ~/.vim/vimpy-projects.index
 
-" Powerline {{{
+"" Powerline {{{
 set encoding=utf-8
 set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-"let Powerline_symbols="unicode"
-let Powerline_symbols="fancy"
-"let g:Powerline_symbols="fancy"
-"let g:Powerline_colorscheme="skwp"
+""let Powerline_symbols="unicode"
+"let Powerline_symbols="fancy"
+""let g:Powerline_symbols="fancy"
+""let g:Powerline_colorscheme="skwp"
 
-if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
+"if ! has('gui_running')
+"    set ttimeoutlen=10
+"    augroup FastEscape
+"        autocmd!
+"        au InsertEnter * set timeoutlen=0
+"        au InsertLeave * set timeoutlen=1000
+"    augroup END
+"endif
 
-" New powerline alpha python
-"source $HOME/.vim/repos/powerline/powerline/bindings/vim/plugin/powerline.vim
-"set rtp+=$HOME/.vim/repos/powerline/powerline/bindings/vim
+"" New powerline alpha python
+""source $HOME/.vim/repos/powerline/powerline/bindings/vim/plugin/powerline.vim
+""set rtp+=$HOME/.vim/repos/powerline/powerline/bindings/vim
 
 
-" }}}
+"" }}}
 
 
 " Airline {{{
 
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" Promptline
+"let g:promptline_preset = 'full'
+let g:promptline_preset = {
+    \'a': [ promptline#slices#host(), promptline#slices#user(), promptline#slices#python_virtualenv() ],
+    \'b': [ promptline#slices#cwd() ],
+    \'c' : [ promptline#slices#vcs_branch() ],
+    \'warn' : [ promptline#slices#last_exit_code(), promptline#slices#battery() ]}
+
+"    \'z' : [ promptline#slices#python_virtualenv() ],
+
+" Optional extensions
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
+
+" TODO Are these automatically enabled or not?
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#csv#enabled = 1
+"let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+"let g:airline#extensions#eclim#enabled = 1
+let g:airline#extensions#promptline#enabled = 1
+"let g:airline#extensions#promptline#snapshot_file = $HOME.'/.bash/themes/airline.sh'
 
 " }}}
 

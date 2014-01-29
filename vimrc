@@ -197,8 +197,9 @@ set background=dark
 "colorscheme molokai
 "let g:liquidcarbon_high_contrast = 1
 "let g:hybrid_use_Xresources = 1
-colorscheme hybrid
+"colorscheme hybrid
 "colorscheme herald_modified
+colorscheme luna
 
 
 " gvim
@@ -837,11 +838,19 @@ endif
 
 " New powerline alpha python
 "source $HOME/.vim/repos/powerline/powerline/bindings/vim/plugin/powerline.vim
-set rtp+=$HOME/.vim/repos/powerline/powerline/bindings/vim
+"set rtp+=$HOME/.vim/repos/powerline/powerline/bindings/vim
 
 
 " }}}
 
+
+" Airline {{{
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+
+" }}}
 
 " ConqueTerm
 let g:ConqueTerm_Color = 1

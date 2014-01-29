@@ -160,3 +160,15 @@
 [submodule "repos/YouCompleteMe"]
 	path = repos/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "repos/airline"]
+	path = repos/airline
+	url = https://github.com/bling/vim-airline.git
+[submodule "repos/csv.vim"]
+	path = repos/csv.vim
+	url = https://github.com/chrisbra/csv.vim.git
+[submodule "repos/vim-gitgutter"]
+	path = repos/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "repos/vim-luna"]
+	path = repos/vim-luna
+	url = https://github.com/Pychimp/vim-luna.git

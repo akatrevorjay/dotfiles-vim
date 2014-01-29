@@ -97,6 +97,7 @@ NeoBundle 'zaiste/Atom'
 NeoBundle 'Shougo/unite.vim', {'recipe' : 'unite'}
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'rstacruz/sparkup', {'rtp' : 'vim'}
 
 " Required:
 "filetype plugin indent on

@@ -88,6 +88,7 @@ NeoBundle 'vim-scripts/mru.vim'
 NeoBundle 'vim-scripts/Rainbow-Parentheses-Improved'
 NeoBundle 'vim-scripts/trailing-whitespace'
 NeoBundle 'vim-scripts/tropikos'
+NeoBundle 'vim-scripts/ciscoasa.vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'wlangstroth/vim-haskell'
 NeoBundle 'xolox/vim-misc'
@@ -98,6 +99,7 @@ NeoBundle 'Shougo/unite.vim', {'recipe' : 'unite'}
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'rstacruz/sparkup', {'rtp' : 'vim'}
+
 
 " Required:
 "filetype plugin indent on

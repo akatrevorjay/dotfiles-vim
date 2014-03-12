@@ -41,64 +41,73 @@ NeoBundle 'Shougo/neobundle-vim-recipes'
 " Support local bundles
 NeoBundleLocal $HOME.'/.vim/bundle-local'
 
-" Bundles
-NeoBundle 'airblade/vim-gitgutter'
+" UI
 NeoBundle 'bling/vim-airline'
-NeoBundle 'chrisbra/csv.vim'
-NeoBundle 'chrisbra/Recover.vim'
 NeoBundle 'edkolev/promptline.vim'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'godlygeek/csapprox'
-NeoBundle 'jceb/vim-orgmode'
-NeoBundle 'jeetsukumaran/vim-buffergator'
-NeoBundle 'jonathanfilip/vim-lucius'
-NeoBundle 'joonty/vdebug'
-NeoBundle 'jtriley/vim-rst-headings'
-NeoBundle 'juvenn/mustache.vim'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'klen/python-mode'
-NeoBundle 'leshill/vim-json'
-NeoBundle 'majutsushi/tagbar'
 
-" Replaced by emmet-vim
-"NeoBundle 'mattn/zencoding-vim'
-NeoBundle "mattn/emmet-vim"
-
-NeoBundle 'noahfrederick/Hemisu'
-NeoBundle 'nvie/vim-rst-tables'
-NeoBundle 'Pychimp/vim-luna'
-NeoBundle 'saltstack/salt-vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'thinca/vim-prettyprint'
+" Git
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tpope/vim-speeddating'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'trapd00r/neverland-vim-theme'
+
+" Productivity
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'scrooloose/nerdcommenter'
+"NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'chrisbra/Recover.vim'
+"NeoBundle 'thinca/vim-prettyprint'
+"NeoBundle 'tpope/vim-speeddating'
+"NeoBundle 'tpope/vim-surround'
 NeoBundle 'Valloric/YouCompleteMe', {
 \    'build' : {
 \        'unix' : './install.sh --clang-completer --omnisharp-completer --system-libclang',
 \    },
 \ }
-NeoBundle 'veselosky/vim-rst'
-NeoBundle 'vim-scripts/badwolf'
-NeoBundle 'vim-scripts/mru.vim'
+"NeoBundle 'vim-scripts/mru.vim'
 NeoBundle 'vim-scripts/Rainbow-Parentheses-Improved'
 NeoBundle 'vim-scripts/trailing-whitespace'
-NeoBundle 'vim-scripts/tropikos'
-NeoBundle 'vim-scripts/ciscoasa.vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'wlangstroth/vim-haskell'
 NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-notes'
-NeoBundle 'zaiste/Atom'
-
 NeoBundle 'Shougo/unite.vim', {'recipe' : 'unite'}
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'rstacruz/sparkup', {'rtp' : 'vim'}
+"NeoBundle 'rstacruz/sparkup', {'rtp' : 'vim'}
+"NeoBundle 'Raimondi/delimitMate'
+"NeoBundle 'jeetsukumaran/vim-buffergator'
+"NeoBundle 'joonty/vdebug'
+"NeoBundle "mattn/emmet-vim"  " Previously known as zencoding
+
+" Notes
+NeoBundle 'xolox/vim-notes'
+NeoBundle 'jceb/vim-orgmode'
+
+" Syntax
+NeoBundle 'saltstack/salt-vim'
+NeoBundle 'veselosky/vim-rst'
+"NeoBundle 'nvie/vim-rst-tables'
+"NeoBundle 'jtriley/vim-rst-headings'
+NeoBundle 'vim-scripts/ciscoasa.vim'
+NeoBundle 'wlangstroth/vim-haskell'
+NeoBundle 'leshill/vim-json'
+NeoBundle 'juvenn/mustache.vim'
+NeoBundle 'tpope/vim-markdown'
+"NeoBundle 'chrisbra/csv.vim'
+
+" Python, oh python
+NeoBundle 'klen/python-mode'
+
+" Approximately converts gui only colorschemes to console
+NeoBundle 'godlygeek/csapprox'
+
+" Colors
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'vim-scripts/tropikos'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'vim-scripts/badwolf'
+NeoBundle 'Pychimp/vim-luna'
+NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'trapd00r/neverland-vim-theme'
+NeoBundle 'noahfrederick/Hemisu'
+NeoBundle 'zaiste/Atom'
 
 
 " Required:
@@ -144,6 +153,9 @@ set hlsearch
 " Ctrl-L clears the highlight from the last search
 noremap <C-l> :nohlsearch<CR><C-l>
 noremap! <C-l> <ESC>:nohlsearch<CR><C-l>
+
+" Stupid hack for qtile not telling gvim to redraw
+nmap r :redraw!<cr>
 
 " Highlight the line the cursor is on (local to window)
 set cul
@@ -623,28 +635,30 @@ map <leader>v <Plug>TaskList
 map <leader>td <Plug>TaskList
 
 " MiniBufExplorer Toggle default is \mbe
-map <Leader>b :TMiniBufExplorer<cr>
+"map <Leader>b :TMiniBufExplorer<cr>
 "map <Leader>b :let g:miniBufExplSplitBelow=0<cr>:let g:miniBufExplVSplit=0<cr>:TMiniBufExplorer<cr>
 "map <Leader>] :let g:miniBufExplSplitBelow=1<cr>:let g:miniBufExplVSplit=1<cr>:TMiniBufExplorer<cr>
 
 " Ack (! means do not open the first file automagically)
-nmap <leader>a <Esc>:Ack!
+"nmap <leader>a <Esc>:Ack!
 
 " Gundo
 map <Leader>u :GundoToggle<cr>
 
 " Rope
 "map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
+"map <leader>r :RopeRename<CR>
 
 " YouCompleteMe
 "map <leader>j :YcmCompleter GotoDefinition
 "map <leader>d :YcmCompleter GotoDeclaration
+nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " CommandT
-nmap <leader>` :CommandT<CR>
-nmap <leader><leader>` :CommandTBuffer<CR>
+"nmap <leader>` :CommandT<CR>
+"nmap <leader><leader>` :CommandTBuffer<CR>
 
 " Quit
 map q :q<cr>
@@ -769,6 +783,7 @@ let g:ctrlp_dotfiles = 1
 let g:ctrlp_max_height = 50
 let g:ctrlp_max_files = 0
 let g:ctrlp_lazy_update = 1
+map <leader>B :CtrlPBuffer<cr>
 
 " TaskList
 let g:tlTokenList = ['FUCK', 'FIX', 'FIXME', 'TODO', 'XXX', 'WTF', 'OMG', 'OMFG', 'IMPORTANT', 'HACK']

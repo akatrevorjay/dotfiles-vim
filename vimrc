@@ -68,7 +68,17 @@ NeoBundle 'Valloric/YouCompleteMe', {
 NeoBundle 'vim-scripts/Rainbow-Parentheses-Improved'
 NeoBundle 'vim-scripts/trailing-whitespace'
 NeoBundle 'xolox/vim-misc'
+
+NeoBundle 'Shougo/vimproc', {
+\ 'build' : {
+\     'windows' : 'make -f make_mingw32.mak',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'unix' : 'make -f make_unix.mak',
+\    },
+\ }
 NeoBundle 'Shougo/unite.vim', {'recipe' : 'unite'}
+
 NeoBundle 'scrooloose/syntastic'
 "NeoBundle 'rstacruz/sparkup', {'rtp' : 'vim'}
 "NeoBundle 'Raimondi/delimitMate'
@@ -89,7 +99,8 @@ NeoBundle 'vim-scripts/ciscoasa.vim'
 NeoBundle 'wlangstroth/vim-haskell'
 NeoBundle 'leshill/vim-json'
 NeoBundle 'juvenn/mustache.vim'
-NeoBundle 'tpope/vim-markdown'
+"NeoBundle 'tpope/vim-markdown'
+NeoBundle 'plasticboy/vim-markdown'
 "NeoBundle 'chrisbra/csv.vim'
 
 " Python, oh python
@@ -625,7 +636,7 @@ noremap <silent> <C-F12> :bd!<CR>
 
 
 " NERDTree Toggle
-map <Leader>t :NERDTreeToggle<CR>
+"map <Leader>t :NERDTreeToggle<CR>
 
 " MakeGreen defaults to \t
 map <Leader>] <Plug>MakeGreen
@@ -755,8 +766,8 @@ au Bufenter *.hs compiler ghc
 let g:haddock_browser = "xdg-open"
 
 " Color column @ cols=80
-"set cc=80
-hi ColorColumn ctermbg=lightblue guibg=lightblue
+set cc=80
+"hi ColorColumn ctermbg=lightblue guibg=lightblue
 
 " Tagbar settings
 "let g:tagbar_left = 1
@@ -784,6 +795,26 @@ let g:ctrlp_max_height = 50
 let g:ctrlp_max_files = 0
 let g:ctrlp_lazy_update = 1
 map <leader>B :CtrlPBuffer<cr>
+
+" Unite
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
 
 " TaskList
 let g:tlTokenList = ['FUCK', 'FIX', 'FIXME', 'TODO', 'XXX', 'WTF', 'OMG', 'OMFG', 'IMPORTANT', 'HACK']

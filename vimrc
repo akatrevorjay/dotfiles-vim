@@ -340,8 +340,8 @@ if has("gui_running")
     "    set guifont=Menlo\ for\ Powerline/12/-1/5/50/0/0/0/1/0
     ""elseif has("x12")
     ""    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-    "else
-    "    set guifont=Menlo_for_Powerline:h12:cDEFAULT
+    else
+        set guifont=Menlo\ for\ Powerline:h12
     endif
 endif
 

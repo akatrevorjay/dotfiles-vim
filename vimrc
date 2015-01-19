@@ -32,7 +32,7 @@ if has('vim_starting')
 endif
 
 " Required:
-call neobundle#rc(expand('~/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -123,6 +123,7 @@ NeoBundle 'trapd00r/neverland-vim-theme'
 NeoBundle 'noahfrederick/Hemisu'
 NeoBundle 'zaiste/Atom'
 
+call neobundle#end()
 
 " Required:
 "filetype plugin indent on

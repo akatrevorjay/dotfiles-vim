@@ -106,12 +106,16 @@ NeoBundle 'juvenn/mustache.vim'
 "NeoBundle 'tpope/vim-markdown'
 NeoBundle 'plasticboy/vim-markdown'
 "NeoBundle 'chrisbra/csv.vim'
+NeoBundle 'ekalinin/Dockerfile.vim'
 
 " Python, oh python
 NeoBundle 'klen/python-mode'
 
 " Approximately converts gui only colorschemes to console
 NeoBundle 'godlygeek/csapprox'
+
+" Dash doc viewer
+NeoBundle 'rizzatti/dash.vim'
 
 " Colors
 NeoBundle 'flazz/vim-colorschemes'

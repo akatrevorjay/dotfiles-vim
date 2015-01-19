@@ -17,6 +17,9 @@ filetype on                 " try to detect filetypes
 filetype plugin indent on   " enable loading indent file for filetype
 "set ofu=syntaxcomplete#Complete
 
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
 " NeoBundle {{{
 
 "let g:neobundle#types#git#default_protocol = 'git'

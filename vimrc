@@ -64,7 +64,8 @@ NeoBundle 'chrisbra/Recover.vim'
 "NeoBundle 'tpope/vim-surround'
 NeoBundle 'Valloric/YouCompleteMe', {
 \    'build' : {
-\        'unix' : './install.sh --clang-completer --omnisharp-completer --system-libclang',
+\        'unix': './install.sh --clang-completer --omnisharp-completer --system-libclang',
+\        'osx': './install.sh',
 \    },
 \ }
 "NeoBundle 'vim-scripts/mru.vim'

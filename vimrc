@@ -39,7 +39,7 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Use neobundle standard recipes.
-NeoBundle 'Shougo/neobundle-vim-recipes'
+NeoBundle 'Shougo/neobundle-vim-recipes', {'force': 1}
 
 " Support local bundles
 NeoBundleLocal $HOME.'/.vim/bundle-local'
@@ -56,22 +56,24 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/nerdcommenter'
-"NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'chrisbra/Recover.vim'
 "NeoBundle 'thinca/vim-prettyprint'
 "NeoBundle 'tpope/vim-speeddating'
 "NeoBundle 'tpope/vim-surround'
+
+let g:neobundle#install_process_timeout = 1800  "YouCompleteMe is so slow
 NeoBundle 'Valloric/YouCompleteMe', {
 \    'build' : {
-\        'unix': './install.sh --clang-completer --omnisharp-completer --system-libclang',
-\        'osx': './install.sh',
+\        'unix': './install.py --clang-completer --gocode-completer',
+\        'mac': './install.py --clang-completer --gocode-completer',
 \    },
 \ }
 "NeoBundle 'vim-scripts/mru.vim'
-NeoBundle 'vim-scripts/Rainbow-Parentheses-Improved'
+"NeoBundle 'vim-scripts/Rainbow-Parentheses-Improved'
 NeoBundle 'vim-scripts/trailing-whitespace'
-NeoBundle 'xolox/vim-misc'
+"NeoBundle 'xolox/vim-misc'
 
 NeoBundle 'Shougo/vimproc', {
 \ 'build' : {
@@ -91,11 +93,12 @@ NeoBundle 'scrooloose/syntastic'
 "NeoBundle "mattn/emmet-vim"  " Previously known as zencoding
 
 " Notes
-NeoBundle 'xolox/vim-notes'
-NeoBundle 'jceb/vim-orgmode'
+"NeoBundle 'xolox/vim-notes'
+"NeoBundle 'jceb/vim-orgmode'
 
 " Syntax
 NeoBundle 'saltstack/salt-vim'
+NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'veselosky/vim-rst'
 "NeoBundle 'nvie/vim-rst-tables'
 "NeoBundle 'jtriley/vim-rst-headings'
@@ -115,10 +118,13 @@ NeoBundle 'klen/python-mode'
 NeoBundle 'godlygeek/csapprox'
 
 " Dash doc viewer
-NeoBundle 'rizzatti/dash.vim'
+"NeoBundle 'rizzatti/dash.vim'
+
+" Todo.txt
+"NeoBundle 'freitass/todo.txt-vim.git'
 
 " Colors
-NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'vim-scripts/tropikos'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'vim-scripts/badwolf'
@@ -127,6 +133,10 @@ NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'trapd00r/neverland-vim-theme'
 NeoBundle 'noahfrederick/Hemisu'
 NeoBundle 'zaiste/Atom'
+NeoBundle 'ratazzi/blackboard.vim'
+NeoBundle 'effkay/argonaut.vim'
+NeoBundle 'jedverity/feral-vim'
+"NeoBundle 'stephanedemotte/beekai'
 
 call neobundle#end()
 
@@ -314,12 +324,12 @@ set background=dark
 "colorscheme zenburn
 "colorscheme railscasts-trevorj
 "colorscheme mustang
-"colorscheme molokai
+colorscheme molokai
 "let g:liquidcarbon_high_contrast = 1
 "let g:hybrid_use_Xresources = 1
 "colorscheme hybrid
 "colorscheme herald_modified
-colorscheme luna
+"colorscheme luna
 
 
 " gvim
@@ -567,6 +577,12 @@ let g:pymode_syntax_slow_sync = 0
 
 " }}}
 
+" profiling {{{
+nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
+nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
+nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
+" }}}
 
 " mouse {{{
 
@@ -645,7 +661,7 @@ noremap <silent> <C-F12> :bd!<CR>
 
 
 " NERDTree Toggle
-"map <Leader>t :NERDTreeToggle<CR>
+map <Leader>E :NERDTreeToggle<CR>
 
 " MakeGreen defaults to \t
 map <Leader>] <Plug>MakeGreen
@@ -670,11 +686,9 @@ map <Leader>u :GundoToggle<cr>
 "map <leader>r :RopeRename<CR>
 
 " YouCompleteMe
-"map <leader>j :YcmCompleter GotoDefinition
-"map <leader>d :YcmCompleter GotoDeclaration
-nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>j :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>d :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>g :YcmCompleter GoTo<CR>
 
 " CommandT
 "nmap <leader>` :CommandT<CR>
@@ -834,11 +848,13 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 " NERDtree {{{
 "autocmd vimenter * NERDTree
 " Add NERDtree by default on new vim runs without any args
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if NERDTree is the only window left open
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " misc
-let NERDTreeQuitOnOpen=1
+"let NERDTreeQuitOnOpen=1
 let NERDTreeShowBookmarks=1
 "let NERDTreeStatusline=1
 let NERDTreeMinimalUI=1

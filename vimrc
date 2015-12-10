@@ -459,7 +459,7 @@ let g:pymode_lint_maxheight = 2
 
 
 " Load rope plugin
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 
 " Auto create and open ropeproject
 let g:pymode_rope_auto_project = 1

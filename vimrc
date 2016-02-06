@@ -13,26 +13,70 @@ runtime! debian.vim
 syntax on                   " syntax highlighing
 filetype on                 " try to detect filetypes
 filetype plugin indent on   " enable loading indent file for filetype
-"set ofu=syntaxcomplete#Complete
 
 " Note: Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
+"if !1 | finish | endif
+if 0 | endif
+
+
+" vim-plug {{{
+
+call plug#begin('~/.vim/bundle')
+
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+
+" github dash?
+Plug 'junegunn/vim-github-dashboard'
+
+"" Group dependencies, vim-snippets depends on ultisnips
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+"" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+"" Using a non-master branch
+"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+"" Plugin options
+"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+"" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', {
+    'dir': expand('~/.vim/bundle-local/fzf'),
+}
+"    'do': './install --all',
+
+"" Unmanaged plugin (manually installed and updated)
+"Plug '~/my-prototype-plugin'
+
+" Add plugins to &runtimepath
+"call plug#end()
+
+" }}}
+
+"" NeoVim
 
 
 " NeoBundle {{{
-
 let g:neobundle#install_process_timeout = 1800  "YouCompleteMe is so slow
-"let g:neobundle#types#git#default_protocol = 'git'
+let g:neobundle#types#git#default_protocol = 'ssh'
 
 if has('vim_starting')
-  set nocompatible               " Be iMproved
+  if &compatible
+    set nocompatible               " Be iMproved
+    filetype off                   " Supposedly this is needed for vundle and other plugin managers
+  endif
 
   " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim
+  set runtimepath^=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -40,58 +84,58 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Support local bundles
 NeoBundleLocal $HOME.'/.vim/bundle-local'
+NeoBundleLocal $HOME.'/.vim/bundle-local/fzf'
 
 " Use neobundle standard recipes.
 NeoBundle 'Shougo/neobundle-vim-recipes', {'force': 1}
 
-" Productivity
-"NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'vim-ctrlspace/vim-ctrlspace'
-NeoBundle 'majutsushi/tagbar'
+"" UI
+NeoBundle 'bling/vim-airline'
+NeoBundle 'edkolev/promptline.vim'
+
+"" Git
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-fugitive'
+
+"" Syntax checks
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'myint/syntastic-extras'
+
+"" Python
+NeoBundle 'davidhalter/jedi-vim'
+" Do not load vim-pyenv until *.py is opened and
+" make sure that it is loaded after jedi-vim is loaded.
+NeoBundleLazy 'lambdalisue/vim-pyenv', {
+\ 'depends': ['davidhalter/jedi-vim'],
+\ 'autoload': {
+\   'filetypes': ['python', 'python3'],
+\ }}
+
+" BATS test runner and syntax
+NeoBundle 'markcornick/vim-bats'
+
+"" Productivity
+NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
+
+"NeoBundle 'vim-ctrlspace/vim-ctrlspace'
+NeoBundle 'majutsushi/tagbar'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'chrisbra/Recover.vim'
+NeoBundle 'vim-scripts/trailing-whitespace'
+
+"" Vetting
+"NeoBundle 'vim-scripts/mru.vim'
+"NeoBundle 'vim-scripts/Rainbow-Parentheses-Improved'
+"NeoBundle 'xolox/vim-misc'
+
 "NeoBundle 'thinca/vim-prettyprint'
 "NeoBundle 'tpope/vim-speeddating'
 "NeoBundle 'tpope/vim-surround'
 "NeoBundle 'farseer90718/vim-taskwarrior'
 "NeoBundle 'bling/vim-bufferline'
-
-" UI
-NeoBundle 'bling/vim-airline'
-NeoBundle 'edkolev/promptline.vim'
-
-" Git
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive'
-
-" Completions
-"NeoBundle 'Valloric/YouCompleteMe', {
-"\    'build' : {
-"\        'unix': './install.py --clang-completer --gocode-completer --tern-completer',
-"\        'mac': './install.py --clang-completer --gocode-completer --tern-completer',
-"\    },
-"\ }
-
-NeoBundle 'davidhalter/jedi-vim'
-
-
-" Do not load vim-pyenv until *.py is opened and
-" make sure that it is loaded after jedi-vim is loaded.
-NeoBundleLazy 'lambdalisue/vim-pyenv', {
-        \ 'depends': ['davidhalter/jedi-vim'],
-        \ 'autoload': {
-        \   'filetypes': ['python', 'python3'],
-        \ }}
-
-
-
-" Misc
-"NeoBundle 'vim-scripts/mru.vim'
-"NeoBundle 'vim-scripts/Rainbow-Parentheses-Improved'
-NeoBundle 'vim-scripts/trailing-whitespace'
-"NeoBundle 'xolox/vim-misc'
+"NeoBundle 'MarkWeber/vim-addon-signs'
 
 "NeoBundle 'Shougo/vimproc', {
 "\ 'build' : {
@@ -103,13 +147,6 @@ NeoBundle 'vim-scripts/trailing-whitespace'
 "\ }
 "NeoBundle 'Shougo/unite.vim', {'recipe' : 'unite'}
 "NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'MarkWeber/vim-addon-signs'
-
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'myint/syntastic-extras'
-
-" bats runner and syntax
-NeoBundle 'markcornick/vim-bats'
 
 "NeoBundle 'rstacruz/sparkup', {'rtp' : 'vim'}
 "NeoBundle 'Raimondi/delimitMate'
@@ -176,15 +213,17 @@ NeoBundle 'godlygeek/csapprox'
 "NeoBundle 'jedverity/feral-vim'
 ""NeoBundle 'stephanedemotte/beekai'
 
-call neobundle#end()
+" Add plugins to &runtimepath
+"call neobundle#end()
+call plug#end()
 
 
 " Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+"" If there are uninstalled bundles found on startup,
+"" this will conveniently prompt you to install them.
+"NeoBundleCheck
 
 " }}}
 
@@ -472,6 +511,8 @@ endif
 ""let g:ycm_collect_identifiers_from_comments_and_strings = 0
 "" }}}
 
+"set ofu=syntaxcomplete#Complete
+
 "" Filetype specifics
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -480,188 +521,6 @@ endif
 ""autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 ""autocmd FileType python setlocal completefunc=pythoncomplete#Complete
 "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" }}}
-
-"" Python-Mode {{{
-
-"" Load show documentation plugin
-"let g:pymode_doc = 1
-
-"" Key for show python documentation
-"let g:pymode_doc_key = '<leader>K'
-
-"" Load run code plugin
-"let g:pymode_run = 1
-
-"" Key for run python code
-"let g:pymode_run_key = '<leader>r'
-
-"" Load pylint code plugin
-"let g:pymode_lint = 1
-
-"" Switch pylint, pyflakes, pep8, mccabe code-checkers
-"" Can have multiply values "pep8,pyflakes,mccabe"
-""let g:pymode_lint_checker = "pyflakes,pep8,pymetrics"
-""let g:pymode_lint_checker = "flake8"
-""let g:pymode_lint_checker = "pyflakes,pep8"
-"let g:pymode_lint_checker = "pyflakes"
-
-"" Skip errors and warnings
-"" E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc
-"let g:pymode_lint_ignore = "E501"
-
-"" Select errors and warnings
-"" E.g. "E4,W"
-"let g:pymode_lint_select = ""
-
-"" Run linter on the fly
-"let g:pymode_lint_onfly = 0
-
-"" Pylint configuration file
-"" If file not found use 'pylintrc' from python-mode plugin directory
-"let g:pymode_lint_config = "$HOME/.pylintrc"
-
-"" Check code every save
-"let g:pymode_lint_write = 1
-
-"" Auto open cwindow if errors be finded
-"let g:pymode_lint_cwindow = 1
-
-"" Show error message if cursor placed at the error line
-"let g:pymode_lint_message = 1
-
-"" Auto jump on first error
-"let g:pymode_lint_jump = 0
-
-"" Hold cursor in current window
-"" when quickfix is open
-"let g:pymode_lint_hold = 0
-
-"" Place error signs
-"let g:pymode_lint_signs = 1
-
-"" Maximum allowed mccabe complexity
-"let g:pymode_lint_mccabe_complexity = 8
-
-"" Minimal height of pylint error window
-"let g:pymode_lint_minheight = 1
-
-"" Maximal height of pylint error window
-"let g:pymode_lint_maxheight = 2
-
-"" Load rope plugin
-"let g:pymode_rope = 0
-
-"" Auto create and open ropeproject
-"let g:pymode_rope_auto_project = 1
-
-"" Enable autoimport
-"let g:pymode_rope_enable_autoimport = 1
-
-"" Auto generate global cache
-"let g:pymode_rope_autoimport_generate = 1
-
-"let g:pymode_rope_autoimport_underlineds = 0
-
-"let g:pymode_rope_codeassist_maxfixes = 10
-
-"let g:pymode_rope_sorted_completions = 1
-
-"let g:pymode_rope_extended_complete = 0
-
-""let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
-"let g:pymode_rope_autoimport_modules = ["os.*", "shutil", "time", "datetime", "traceback", "django.*", "xml.etree", "flask.*"]
-""imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
-
-"let g:pymode_rope_confirm_saving = 1
-
-"let g:pymode_rope_global_prefix = "<C-x>p"
-
-"let g:pymode_rope_local_prefix = "<C-c>r"
-
-"let g:pymode_rope_vim_completion = 0
-
-"let g:pymode_rope_guess_project = 1
-
-""let g:pymode_rope_goto_def_newwin = ""
-
-""let g:pymode_rope_always_show_complete_menu = 0
-
-"" Enable python folding
-"let g:pymode_folding = 1
-
-"" Enable python objects and motion
-"let g:pymode_motion = 1
-
-"" Auto fix vim python paths if virtualenv enabled
-"let g:pymode_virtualenv = 1
-
-"" Additional python paths
-""let g:pymode_paths = []
-
-"" Load breakpoints plugin
-"let g:pymode_breakpoint = 1
-
-"" Key for set/unset breakpoint
-"let g:pymode_breakpoint_key = '<leader>b'
-
-"" Autoremove unused whitespaces
-"let g:pymode_utils_whitespaces = 1
-
-"" Enable pymode indentation
-"let g:pymode_indent = 1
-
-"" Set default pymode python options
-"let g:pymode_options = 1
-
-"" Enable pymode's custom syntax highlighting
-"let g:pymode_syntax = 1
-
-"" Enable all python highlightings
-"let g:pymode_syntax_all = 1
-
-"" Highlight "print" as function
-"let g:pymode_syntax_print_as_function = 0
-
-"" Highlight indentation errors
-"let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-
-"" Highlight trailing spaces
-"let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-"" Highlight string formatting
-"let g:pymode_syntax_string_formatting = g:pymode_syntax_all
-
-"" Highlight str.format syntax
-"let g:pymode_syntax_string_format = g:pymode_syntax_all
-
-"" Highlight string.Template syntax
-"let g:pymode_syntax_string_templates = g:pymode_syntax_all
-
-"" Highlight doc-tests
-"let g:pymode_syntax_doctests = g:pymode_syntax_all
-
-"" Highlight builtin objects (__doc__, self, etc)
-"let g:pymode_syntax_builtin_objs = g:pymode_syntax_all
-
-"" Highlight builtin functions
-"let g:pymode_syntax_builtin_funcs = g:pymode_syntax_all
-
-"" Highlight exceptions
-"let g:pymode_syntax_highlight_exceptions = g:pymode_syntax_all
-
-"" Highlight equal operator
-"let g:pymode_syntax_highlight_equal_operator = g:pymode_syntax_all
-
-"" Highlight stars operator
-"let g:pymode_syntax_highlight_stars_operator = g:pymode_syntax_all
-
-"" Highlight `self`
-"let g:pymode_syntax_highlight_self = g:pymode_syntax_all
-
-"" For fast machines
-"let g:pymode_syntax_slow_sync = 0
-
 " }}}
 
 "" profiling {{{
@@ -925,38 +784,38 @@ let g:tagbar_left = 1
 
 " Plugin Options {{{1
 
-" Ctrl-Space {{{
-set showtabline=0
+"" Ctrl-Space {{{
+"set showtabline=0
 
-"if has("gui_running")
-"    " Settings for MacVim and Inconsolata font
-"    let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
+""if has("gui_running")
+""    " Settings for MacVim and Inconsolata font
+""    let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
+""endif
+
+"if executable("ag")
+"    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 "endif
 
-if executable("ag")
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-endif
+""let g:CtrlSpaceSearchTiming = 500
 
-"let g:CtrlSpaceSearchTiming = 500
+"nnoremap <silent><C-p> :CtrlSpace O<CR>
 
-nnoremap <silent><C-p> :CtrlSpace O<CR>
-
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceSaveWorkspaceOnExit = 1
-" }}}
+"let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+"let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+"let g:CtrlSpaceSaveWorkspaceOnExit = 1
+"" }}}
 
 
-"" CtrlP
-"" Specific ignore for DVCS/VCS
-"let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\.pyc$'
-""let g:ctrlp_by_filename = 1
-"let g:ctrlp_match_window_bottom = 1
-"let g:ctrlp_dotfiles = 1
-"let g:ctrlp_max_height = 50
-"let g:ctrlp_max_files = 0
-"let g:ctrlp_lazy_update = 1
-"map <leader>B :CtrlPBuffer<cr>
+" CtrlP
+" Specific ignore for DVCS/VCS
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\.pyc$'
+"let g:ctrlp_by_filename = 1
+let g:ctrlp_match_window_bottom = 1
+let g:ctrlp_dotfiles = 1
+let g:ctrlp_max_height = 50
+let g:ctrlp_max_files = 0
+let g:ctrlp_lazy_update = 1
+map <leader>B :CtrlPBuffer<cr>
 
 "" Unite
 "let g:unite_source_history_yank_enable = 1
@@ -1036,18 +895,3 @@ let g:airline#extensions#promptline#snapshot_file = $HOME.'/.shell/themes/airlin
 let g:indent_guides_start_level = 2
 " }}}
 
-"" NotMuch (notmuch-ruby)
-let g:notmuch_sendmail = 'sendmail'
-
-let g:notmuch_rb_custom_search_maps = {
-    \ 't':      'search_tag("+to-do -inbox")',
-    \ }
-
-let g:notmuch_rb_custom_show_maps = {
-    \ 't':      'show_tag("+to-do -inbox")',
-    \ }
-
-" Mutt
-"let g:qcc_query_command='abook'
-let g:qcc_query_command='goobook query'
-au BufRead /tmp/mutt* :source ~/.vim/mail.vim | :source ~/.vim/mail-goobook.vim | setlocal omnifunc=QueryCommandComplete

@@ -498,27 +498,18 @@ if jedi#init_python()
 endif
 " }}}
 
-"" YouCompleteMe {{{
-""set completeopt-=preview
-"let g:ycm_complete_in_comments = 1
-"let g:ycm_add_preview_to_completeopt = 1
-"let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_autoclose_preview_window_after_insertion = 1
-"let g:ycm_seed_identifiers_with_syntax = 1
-"let g:ycm_collect_identifiers_from_tags_files = 1
-""let g:ycm_collect_identifiers_from_comments_and_strings = 0
-"" }}}
-
 "" Filetype specifics {{{
-set completefunc=syntaxcomplete#Complete  " ofu
+set completefunc=syntaxcomplete#Complete
 "set omnifunc=syntaxcomplete#Complete
+
+" Python omni is handled by Jedi <3
+""autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType python setlocal completefunc=pythoncomplete#Complete
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-""autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType python setlocal completefunc=pythoncomplete#Complete
-"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " }}}
 
 "" profiling {{{
@@ -780,6 +771,8 @@ vnoremap <Space> zf
 
 "" Toggle quickfix {{{
 noremap <silent> <F4> :QFix<CR>
+noremap <silent> <Leader>f :QFix<CR>
+"noremap <silent> <Leader>qf :QFix<CR>
 
 "the quickfix window is not always 10 lines height
 au FileType qf call AdjustWindowHeight(3, 10)
@@ -803,10 +796,20 @@ function! QFixToggle(forced)
 endfunction
 "" }}}
 
-" Tagbar
+" Tagbar {{{
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_width=30
-let g:tagbar_left = 1
+"let g:tagbar_left = 1
+"let g:tagbar_vertical = 1
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_autopreview = 0
+let g:tagbar_autoshowtag = 0
+let g:tagbar_compact = 0
+"let g:tagbar_indent = 2
+let g:tagbar_show_linenumbers = 1
+let g:tagbar_singleclick = 1
+" }}}
 
 " vim-haskell
 " use ghc functionality for haskell files
@@ -817,29 +820,15 @@ let g:tagbar_left = 1
 
 " Plugin Options {{{1
 
-"" Ctrl-Space {{{
-"set showtabline=0
-"
-""if has("gui_running")
-""    " Settings for MacVim and Inconsolata font
-""    let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
-""endif
-"
-"if executable("ag")
-"    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-"endif
-"
-""let g:CtrlSpaceSearchTiming = 500
-"
-"nnoremap <silent><C-p> :CtrlSpace O<CR>
-"
-"let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-"let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-"let g:CtrlSpaceSaveWorkspaceOnExit = 1
-"" }}}
-
-
 " CtrlP {{{
+map <leader>3 :CtrlPBufTag<cr>
+map <leader># :CtrlPBufTagAll<cr>
+map <leader>b :CtrlPBuffer<cr>
+map <leader>B :CtrlPBuffer<cr>
+"map <leader>u :CtrlPUndo<cr>
+map <leader>u :CtrlPChange<cr>
+map <leader>mru :CtrlPMRUFiles<cr>
+map <leader>` :suspend<cr>
 
 "let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window_bottom = 1
@@ -847,7 +836,13 @@ let g:ctrlp_dotfiles = 1
 let g:ctrlp_max_height = 50
 let g:ctrlp_max_files = 100000
 let g:ctrlp_lazy_update = 1
-map <leader>B :CtrlPBuffer<cr>
+let g:ctrlp_regexp_search = 1
+
+"let g:ctrlp_tilde_homedir = 1
+
+let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'setup.py', 'Dockerfile', 'package.json']
+" ag is pretty nice, skips gitignore and all that jazz
+let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
 " Specific ignore for DVCS/VCS
 " let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\.pyc$'
@@ -857,12 +852,6 @@ map <leader>B :CtrlPBuffer<cr>
 "   \ 'file': '\v\.(exe|so|dll)$',
 "   \ 'link': 'some_bad_symbolic_links',
 "   \ }
-
-let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'setup.py', 'Dockerfile']
-
-" ag is pretty nice, skips gitignore and all that jazz
-let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-
 " }}}
 
 "" Unite

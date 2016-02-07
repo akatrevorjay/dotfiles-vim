@@ -21,18 +21,20 @@ if 0 | endif
 
 " }}}
 
-"" NeoVim
-
+" NeoVim {{{
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+" }}}
 
 " Plug {{{
 
 if has('vim_starting')
   if &compatible
     set nocompatible               " Be iMproved
-    filetype off                   " Supposedly this is needed for vundle and other plugin managers
+    " filetype off                   " Supposedly this is needed for vundle and other plugin managers
   endif
 
-  " Required:
   "set runtimepath^=~/.vim/bundle/neobundle.vim/
 endif
 
@@ -43,13 +45,6 @@ call plug#begin('~/.vim/plugger')
 "Plug expand('~/.vim/bundle-local')
 "Plug expand('~/.vim/bundle-local/fzf')
 
-" Use neobundle standard recipes.
-"Plug 'Shougo/neobundle-vim-recipes', {'force': 1}
-
-"" UI
-Plug 'bling/vim-airline'
-Plug 'edkolev/promptline.vim'
-
 "" Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -58,52 +53,40 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'myint/syntastic-extras'
 
-"" Python
-Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv', {'for': ['python', 'python3']}
+"" Python, oh python
 " Do not load vim-pyenv until *.py is opened and
 " make sure that it is loaded after jedi-vim is loaded.
-"Plug 'lambdalisue/vim-pyenv'
-"\ 'depends': ['davidhalter/jedi-vim'],
-"\ 'autoload': {
-"\   'filetypes': ['python', 'python3'],
-"\ }}
+Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv', {'for': ['python', 'python3']}
 
-" BATS test runner and syntax
+"" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': ['bats', 'sh', 'bash', 'shell', 'zsh']}
 
 "" Productivity
-Plug 'kien/ctrlp.vim'  ", {'on': 'CtrlP' }
+" Plug 'kien/ctrlp.vim'  ", {'on': 'CtrlP' }
+Plug 'ctrlpvim/ctrlp.vim'  " active fork
+
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'tomtom/tcomment_vim'
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 
 "Plug 'vim-ctrlspace/vim-ctrlspace'
-Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }
+Plug 'majutsushi/tagbar' ", { 'on': ['TagbarToggle', 'Tagbar'] }
 Plug 'sjl/gundo.vim', {'on': 'Gundo' }
 Plug 'chrisbra/Recover.vim'
 Plug 'vim-scripts/trailing-whitespace'
 
 "" Vetting
-"Plug 'vim-scripts/mru.vim'
+Plug 'vim-scripts/mru.vim'
 "Plug 'vim-scripts/Rainbow-Parentheses-Improved'
 "Plug 'xolox/vim-misc'
-
 "Plug 'thinca/vim-prettyprint'
 "Plug 'tpope/vim-speeddating'
 "Plug 'tpope/vim-surround'
 "Plug 'farseer90718/vim-taskwarrior'
 "Plug 'bling/vim-bufferline'
-"Plug 'MarkWeber/vim-addon-signs'
-
-"Plug 'Shougo/vimproc', {
-"\ 'build' : {
-"\     'windows' : 'make -f make_mingw32.mak',
-"\     'cygwin' : 'make -f make_cygwin.mak',
-"\     'mac' : 'make -f make_mac.mak',
-"\     'unix' : 'make -f make_unix.mak',
-"\    },
-"\ }
-"Plug 'Shougo/unite.vim', {'recipe' : 'unite'}
-"Plug 'Shougo/neomru.vim'
+"Plug 'MarcWeber/vim-addon-signs'
+Plug 'tomtom/quickfixsigns_vim'
 
 "Plug 'rstacruz/sparkup', {'rtp' : 'vim'}
 "Plug 'Raimondi/delimitMate'
@@ -114,6 +97,20 @@ Plug 'vim-scripts/trailing-whitespace'
 " Notes
 "Plug 'xolox/vim-notes'
 "Plug 'jceb/vim-orgmode'
+
+"" Stuff I never used
+" Use neobundle standard recipes.
+"Plug 'Shougo/neobundle-vim-recipes', {'force': 1}
+"Plug 'Shougo/vimproc', {
+"\ 'build' : {
+"\     'windows' : 'make -f make_mingw32.mak',
+"\     'cygwin' : 'make -f make_cygwin.mak',
+"\     'mac' : 'make -f make_mac.mak',
+"\     'unix' : 'make -f make_unix.mak',
+"\    },
+"\ }
+"Plug 'Shougo/unite.vim', {'recipe' : 'unite'}
+"Plug 'Shougo/neomru.vim'
 
 " Syntax
 Plug 'saltstack/salt-vim', { 'for': 'sls' }
@@ -133,35 +130,13 @@ Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
 "Plug 'chrisbra/csv.vim'
 "Plug 'ekalinin/Dockerfile.vim'
 
-" Python, oh python
-"Plug 'klen/python-mode'
-
-" Approximately converts gui only colorschemes to console
-Plug 'godlygeek/csapprox'
-
 " Dash doc viewer
 "Plug 'rizzatti/dash.vim'
 
 " Todo.txt
 "Plug 'freitass/todo.txt-vim.git'
 
-" Colors
-""Plug 'flazz/vim-colorschemes'
-"Plug 'vim-scripts/tropikos'
-"Plug 'w0ng/vim-hybrid'
-"Plug 'vim-scripts/badwolf'
-"Plug 'Pychimp/vim-luna'
-"Plug 'jonathanfilip/vim-lucius'
-"Plug 'trapd00r/neverland-vim-theme'
-"Plug 'noahfrederick/Hemisu'
-"Plug 'zaiste/Atom'
-"Plug 'ratazzi/blackboard.vim'
-"Plug 'effkay/argonaut.vim'
-"Plug 'jedverity/feral-vim'
-""Plug 'stephanedemotte/beekai'
 
-
-" Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -183,13 +158,42 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 "" Plugin outside ~/.vim/plugged with post-update hook
-"Plug 'junegunn/fzf', {
-"    'dir': expand('~/.vim/bundle-local/fzf'),
-"    'do': './install --all',
-"}
+Plug 'junegunn/fzf', {
+\   'dir': expand('~/.shell/repos/fzf'),
+\   'do': './install --bin',
+\ }
 
 "" Unmanaged plugin (manually installed and updated)
 "Plug '~/.vim/bundle-local/fzf'
+
+
+
+"" UI
+Plug 'bling/vim-airline'
+\ | Plug 'edkolev/promptline.vim'
+\ | Plug 'ryanoasis/vim-devicons'  " Pretty iconize everything
+
+" Approximately converts gui only colorschemes to console
+Plug 'godlygeek/csapprox'
+
+" Colors
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-scripts/tropikos'
+Plug 'w0ng/vim-hybrid'
+Plug 'vim-scripts/badwolf'
+Plug 'Pychimp/vim-luna'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'trapd00r/neverland-vim-theme'
+Plug 'noahfrederick/Hemisu'
+Plug 'zaiste/Atom'
+Plug 'ratazzi/blackboard.vim'
+Plug 'effkay/argonaut.vim'
+Plug 'jedverity/feral-vim'
+Plug 'stephanedemotte/beekai'
+" Plug 'marcopaganini/mojave-vim-theme'
+Plug 'trevorrjohn/vim-obsidian'
+Plug 'mhartington/oceanic-next'
+
 
 
 ""
@@ -199,12 +203,13 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Add plugins to &runtimepath
 call plug#end()
 
-" Required:
-filetype plugin indent on
+if has('vim_starting')
+    " Required:
+    filetype plugin indent on
+endif
 
 "" If there are uninstalled bundles found on startup,
 "" this will conveniently prompt you to install them.
-"NeoBundleCheck
 "PlugInstall
 
 
@@ -216,22 +221,22 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 
-  "" Mark last pos with vim-addon-signs
-  sign define cursor_location text=-
-  augroup TRACK_LAST_CURSOR_POS_FOR_EACH_WINDOW
-    au!
-    autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI *
-      \   let b:last_cursor_pos = [bufnr('%'), line('.'), 'cursor_location']
-      \ | call vim_addon_signs#Push("last_cursor_pos", map(filter(range(1, bufnr('$')), 'bufexists(v:val) && has_key(getbufvar(v:val,""),"last_cursor_pos")'), 'getbufvar(v:val, "last_cursor_pos")' ))
-  augroup end
-
-  "" Add a dummy sign so that the left column showing the signs is always present:
-  " can't use an opaque sign :-(
-  sign define dummy text=.
-  augroup TRACK_LAST_CURSOR_POS_FOR_EACH_WINDOW
-    au!
-    autocmd BufNew * call vim_addon_signs#Push("dummy", map(filter(range(1, bufnr('$')), 'bufexists(v:val)'), '[v:val, 1, "dummy"]' ))
-  augroup end
+  """ Mark last pos with vim-addon-signs
+  "sign define cursor_location text=-
+  "augroup TRACK_LAST_CURSOR_POS_FOR_EACH_WINDOW
+  "  au!
+  "  autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI *
+  "    \   let b:last_cursor_pos = [bufnr('%'), line('.'), 'cursor_location']
+  "    \ | call vim_addon_signs#Push("last_cursor_pos", map(filter(range(1, bufnr('$')), 'bufexists(v:val) && has_key(getbufvar(v:val,""),"last_cursor_pos")'), 'getbufvar(v:val, "last_cursor_pos")' ))
+  "augroup end
+  "
+  """ Add a dummy sign so that the left column showing the signs is always present:
+  "" can't use an opaque sign :-(
+  "sign define dummy text=.
+  "augroup TRACK_LAST_CURSOR_POS_FOR_EACH_WINDOW
+  "  au!
+  "  autocmd BufNew * call vim_addon_signs#Push("dummy", map(filter(range(1, bufnr('$')), 'bufexists(v:val)'), '[v:val, 1, "dummy"]' ))
+  "augroup end
 endif
 " }}}
 
@@ -409,12 +414,15 @@ set background=dark
 "colorscheme zenburn
 "colorscheme railscasts-trevorj
 "colorscheme mustang
-colorscheme molokai
 "let g:liquidcarbon_high_contrast = 1
 "let g:hybrid_use_Xresources = 1
 "colorscheme hybrid
 "colorscheme herald_modified
 "colorscheme luna
+"colorscheme molokai
+colorscheme OceanicNext
+
+let g:airline_theme = 'oceanicnext'
 
 
 " gvim
@@ -439,7 +447,8 @@ if has("gui_running")
     ""elseif has("x12")
     ""    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
     else
-        set guifont=Menlo\ for\ Powerline:h12
+        "set guifont=Menlo\ for\ Powerline:h12
+        set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14  " nerd font complete
     endif
 endif
 
@@ -448,9 +457,15 @@ endif
 " Tab completion options {{{
 set wildchar=<Tab>
 set wildmenu
-set wildmode=longest,list
-"set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.bak,*.pyo,*.pyc,*.svn
+"set wildmode=longest,list
+"set wildmode=longest:full,list:longest,list:full
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.swo,*.bak,*.pyo,*.pyc,*.svn,*/tmp/*,__pycache__,sdist,bdist,dist,build,*.egg-info
+
+"" Allow to use <S-Tab> for CTRL-P in an xterm:
+"" > put in shrc: xmodmap -e "keysym Tab = Tab Find"
+" cmap <Esc>[1~ <C-P>
+
 "set complete=.,t
 " }}}
 
@@ -463,7 +478,7 @@ let g:jedi#show_call_signatures = "1"
 
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
+let g:jedi#goto_definitions_command = "<leader>gg"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
@@ -494,15 +509,15 @@ endif
 ""let g:ycm_collect_identifiers_from_comments_and_strings = 0
 "" }}}
 
-"set ofu=syntaxcomplete#Complete
-
-"" Filetype specifics
-"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"" Filetype specifics {{{
+set completefunc=syntaxcomplete#Complete  " ofu
+"set omnifunc=syntaxcomplete#Complete
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 ""autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-""autocmd FileType python setlocal completefunc=pythoncomplete#Complete
+autocmd FileType python setlocal completefunc=pythoncomplete#Complete
 "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " }}}
 
@@ -548,9 +563,7 @@ let g:syntastic_enable_signs = 1
 ""let g:syntastic_quiet_warnings = 1
 ""let g:syntastic_loc_list_height = 10
 
-" }}}
-
-" Syntastic-extras
+" Syntastic-extras {{{2
 " Like Syntastic's normal checker, but only checks files if there is a
 " '.syntastic_c_config' file existing in the directory or an ancestor
 " directory. It ignores warnings in included files by using '-isystem'
@@ -581,13 +594,11 @@ let g:syntastic_yaml_checkers = ['pyyaml']
 
 "" Block ZZ if there are syntax errors:
 nnoremap ZZ :call syntastic_extras#quit_hook()<cr>
+" 2}}}
 
-
-"" ropevim {{{
-
+" ropevim {{{
 "let g:ropevim_vim_completion = 1
 "let g:ropevim_extended_complete = 1
-
 " }}}
 
 " Keys {{{
@@ -611,14 +622,21 @@ set pastetoggle=<leader><tab>
 map <F3> <leader><tab>
 
 " Quickly edit/reload the vimrc file
-"augroup reload_vimrc
-"    autocmd!
-"    autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
-"augroup END
+augroup reload_vimrc
+    autocmd!
+    autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
 
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-"nmap <silent> <leader>rv :call reload_vimrc()<CR>
+    if exists("g:loaded_webdevicons")
+        call webdevicons#refresh()
+    endif
+ 
+    if exists("g:loaded_airline")
+        exec 'AirlineRefresh'
+    endif
+augroup END
+"nmap <silent> <leader>rv augroup reload_vimrc<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
 " Fix arrows in screen
 "map ^[OC <Right>
@@ -641,8 +659,37 @@ map <c-h> <c-w>h
 
 
 
-" NERDTree Toggle
+" NERDTree {{{
+"
 map <Leader>E :NERDTreeToggle<CR>
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
+
+" }}}
+
 
 "" MakeGreen defaults to \t
 "map <Leader>] <Plug>MakeGreen
@@ -709,49 +756,52 @@ set foldmethod=indent
 "set foldlevel=1
 "set shiftround                          " Indent/outdent to nearest tabstops
 
-"augroup vimrc
-"  au BufReadPre * setlocal foldmethod=indent
-"  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=marker | endif
-"augroup END
+"" Vimrc files get to use marker folds
+augroup vimrc
+ au BufReadPre * setlocal foldmethod=indent
+ au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=marker | endif
+augroup END
 
-" Use space to toggle folding
-"nnoremap <space> za
-"vnoremap <space> zf
-" OR
-"nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-"vnoremap <Space> zf
+"" Use space to toggle folding
+" nnoremap <space> za
+" vnoremap <space> zf
+"" OR
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 " }}}
 
-
-" Toggle quickfix
-noremap <silent> <F4> :QFix<CR>
 " Code complete
 "inoremap <Nul> <C-x><C-o>
 
 " remove trailing whitespace
 "autocmd FileType python autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
-""the quickfix window is not always 10 lines height
-"au FileType qf call AdjustWindowHeight(3, 10)
-"function! AdjustWindowHeight(minheight, maxheight)
-"    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-"endfunction
 
-""quickfix toogle
-"command! -bang -nargs=? QFix call QFixToggle(<bang>0)
-"function! QFixToggle(forced)
-"  if exists("g:qfix_win") && a:forced == 0
-"    cclose
-"    let g:pylint_cwindow = 0
-"    unlet g:qfix_win
-"  else
-"    copen 10
-"    call AdjustWindowHeight(3, 10)
-"    let g:pylint_cwindow = 1
-"    let g:qfix_win = bufnr("$")
-"  endif
-"endfunction
+"" Toggle quickfix {{{
+noremap <silent> <F4> :QFix<CR>
+
+"the quickfix window is not always 10 lines height
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
+" quickfix toogler
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    "let g:pylint_cwindow = 0
+    unlet g:qfix_win
+  else
+    copen 10
+    call AdjustWindowHeight(3, 10)
+    "let g:pylint_cwindow = 1
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+"" }}}
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -769,36 +819,51 @@ let g:tagbar_left = 1
 
 "" Ctrl-Space {{{
 "set showtabline=0
-
+"
 ""if has("gui_running")
 ""    " Settings for MacVim and Inconsolata font
 ""    let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
 ""endif
-
+"
 "if executable("ag")
 "    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 "endif
-
+"
 ""let g:CtrlSpaceSearchTiming = 500
-
+"
 "nnoremap <silent><C-p> :CtrlSpace O<CR>
-
+"
 "let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 "let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 "let g:CtrlSpaceSaveWorkspaceOnExit = 1
 "" }}}
 
 
-" CtrlP
-" Specific ignore for DVCS/VCS
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\.pyc$'
+" CtrlP {{{
+
 "let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_dotfiles = 1
 let g:ctrlp_max_height = 50
-let g:ctrlp_max_files = 0
+let g:ctrlp_max_files = 100000
 let g:ctrlp_lazy_update = 1
 map <leader>B :CtrlPBuffer<cr>
+
+" Specific ignore for DVCS/VCS
+" let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\.pyc$'
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"   \ 'link': 'some_bad_symbolic_links',
+"   \ }
+
+let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'setup.py', 'Dockerfile']
+
+" ag is pretty nice, skips gitignore and all that jazz
+let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+
+" }}}
 
 "" Unite
 "let g:unite_source_history_yank_enable = 1
@@ -826,21 +891,21 @@ let g:tlTokenList = ['FUCK', 'FIX', 'FIXME', 'TODO', 'XXX', 'WTF', 'OMG', 'OMFG'
 "" Ack (grep replacement)
 "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-" NERDtree {{{
-"autocmd vimenter * NERDTree
-" Add NERDtree by default on new vim runs without any args
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"autocmd vimenter * if !argc() | NERDTree | endif
-" Close vim if NERDTree is the only window left open
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" misc
-"let NERDTreeQuitOnOpen=1
-let NERDTreeShowBookmarks=1
-"let NERDTreeStatusline=1
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=1
-" }}}
+"" NERDtree {{{
+""autocmd vimenter * NERDTree
+"" Add NERDtree by default on new vim runs without any args
+""autocmd StdinReadPre * let s:std_in=1
+""autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+""autocmd vimenter * if !argc() | NERDTree | endif
+"" Close vim if NERDTree is the only window left open
+""autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"" misc
+""let NERDTreeQuitOnOpen=1
+"let NERDTreeShowBookmarks=1
+""let NERDTreeStatusline=1
+"let NERDTreeMinimalUI=1
+"let NERDTreeDirArrows=1
+"" }}}
 
 " vim-notes
 let g:notes_directories = ["~/Notes"]
@@ -849,7 +914,7 @@ let g:notes_directories = ["~/Notes"]
 
 if has('vim_starting')
     "" These are required by airline
-    set encoding=utf-8
+    set encoding=utf8
     set laststatus=2 " Always display the statusline in all windows
     set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 endif
@@ -872,12 +937,32 @@ let g:airline#extensions#promptline#snapshot_file = $HOME.'/.shell/themes/airlin
 
 " }}}
 
-" Indent guides {{{
-"let g:indent_guides_auto_colors = 0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=100
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=40
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
+" Devicons {{{
+"let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsEnableFolderExtensionPatternMatching = 1
 " }}}
+
+" " Indent guides {{{
+" "let g:indent_guides_auto_colors = 0
+" "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=100
+" "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=40
+" "let g:indent_guides_enable_on_vim_startup = 1
+" "let g:indent_guides_guide_size = 1
+" let g:indent_guides_start_level = 2
+" " }}}
+
+" quickfixsigns {{{
+noremap <silent> <leader><c-l> :call quickfixsigns#RelNumbersOnce()<cr>
+
+let g:quickfixsigns_classes = ['loc', 'marks', 'vcsdiff', 'breakpoints']
+let g:quickfixsigns_aggregated_errors = 1
+let g:quickfixsigns_sort_aggregated_errors = 1
+
+" }}}
+
+" 1}}}
+
 

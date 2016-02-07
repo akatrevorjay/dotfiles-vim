@@ -19,9 +19,147 @@ filetype plugin indent on   " enable loading indent file for filetype
 if 0 | endif
 
 
-" vim-plug {{{
+" }}}
 
-call plug#begin('~/.vim/bundle')
+"" NeoVim
+
+
+" Plug {{{
+
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+    filetype off                   " Supposedly this is needed for vundle and other plugin managers
+  endif
+
+  " Required:
+  "set runtimepath^=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call plug#begin('~/.vim/plugger')
+
+" Support local bundles
+"Plug expand('~/.vim/bundle-local')
+"Plug expand('~/.vim/bundle-local/fzf')
+
+" Use neobundle standard recipes.
+"Plug 'Shougo/neobundle-vim-recipes', {'force': 1}
+
+"" UI
+Plug 'bling/vim-airline'
+Plug 'edkolev/promptline.vim'
+
+"" Git
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+
+"" Syntax checks
+Plug 'scrooloose/syntastic'
+Plug 'myint/syntastic-extras'
+
+"" Python
+Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv', {'for': ['python', 'python3']}
+" Do not load vim-pyenv until *.py is opened and
+" make sure that it is loaded after jedi-vim is loaded.
+"Plug 'lambdalisue/vim-pyenv'
+"\ 'depends': ['davidhalter/jedi-vim'],
+"\ 'autoload': {
+"\   'filetypes': ['python', 'python3'],
+"\ }}
+
+" BATS test runner and syntax
+Plug 'markcornick/vim-bats', {'for': ['bats', 'sh', 'bash', 'shell', 'zsh']}
+
+"" Productivity
+Plug 'kien/ctrlp.vim'  ", {'on': 'CtrlP' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+"Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }
+Plug 'sjl/gundo.vim', {'on': 'Gundo' }
+Plug 'chrisbra/Recover.vim'
+Plug 'vim-scripts/trailing-whitespace'
+
+"" Vetting
+"Plug 'vim-scripts/mru.vim'
+"Plug 'vim-scripts/Rainbow-Parentheses-Improved'
+"Plug 'xolox/vim-misc'
+
+"Plug 'thinca/vim-prettyprint'
+"Plug 'tpope/vim-speeddating'
+"Plug 'tpope/vim-surround'
+"Plug 'farseer90718/vim-taskwarrior'
+"Plug 'bling/vim-bufferline'
+"Plug 'MarkWeber/vim-addon-signs'
+
+"Plug 'Shougo/vimproc', {
+"\ 'build' : {
+"\     'windows' : 'make -f make_mingw32.mak',
+"\     'cygwin' : 'make -f make_cygwin.mak',
+"\     'mac' : 'make -f make_mac.mak',
+"\     'unix' : 'make -f make_unix.mak',
+"\    },
+"\ }
+"Plug 'Shougo/unite.vim', {'recipe' : 'unite'}
+"Plug 'Shougo/neomru.vim'
+
+"Plug 'rstacruz/sparkup', {'rtp' : 'vim'}
+"Plug 'Raimondi/delimitMate'
+"Plug 'jeetsukumaran/vim-buffergator'
+"Plug 'joonty/vdebug'
+"Plug 'mattn/emmet-vim'  " Previously known as zencoding
+
+" Notes
+"Plug 'xolox/vim-notes'
+"Plug 'jceb/vim-orgmode'
+
+" Syntax
+Plug 'saltstack/salt-vim', { 'for': 'sls' }
+Plug 'fatih/vim-go', {'for': 'go'}
+
+"Plug 'ingydotnet/yaml-vim'
+"Plug 'veselosky/vim-rst'
+"Plug 'nvie/vim-rst-tables'
+"Plug 'jtriley/vim-rst-headings'
+"Plug 'vim-scripts/ciscoasa.vim'
+"Plug 'wlangstroth/vim-haskell'
+"Plug 'leshill/vim-json'
+"Plug 'juvenn/mustache.vim'
+"Plug 'tpope/vim-markdown'
+Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
+
+"Plug 'chrisbra/csv.vim'
+"Plug 'ekalinin/Dockerfile.vim'
+
+" Python, oh python
+"Plug 'klen/python-mode'
+
+" Approximately converts gui only colorschemes to console
+Plug 'godlygeek/csapprox'
+
+" Dash doc viewer
+"Plug 'rizzatti/dash.vim'
+
+" Todo.txt
+"Plug 'freitass/todo.txt-vim.git'
+
+" Colors
+""Plug 'flazz/vim-colorschemes'
+"Plug 'vim-scripts/tropikos'
+"Plug 'w0ng/vim-hybrid'
+"Plug 'vim-scripts/badwolf'
+"Plug 'Pychimp/vim-luna'
+"Plug 'jonathanfilip/vim-lucius'
+"Plug 'trapd00r/neverland-vim-theme'
+"Plug 'noahfrederick/Hemisu'
+"Plug 'zaiste/Atom'
+"Plug 'ratazzi/blackboard.vim'
+"Plug 'effkay/argonaut.vim'
+"Plug 'jedverity/feral-vim'
+""Plug 'stephanedemotte/beekai'
+
 
 " Make sure you use single quotes
 
@@ -35,7 +173,7 @@ Plug 'junegunn/vim-github-dashboard'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 "" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 "" Using a non-master branch
@@ -45,178 +183,21 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 "" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', {
-    'dir': expand('~/.vim/bundle-local/fzf'),
-}
+"Plug 'junegunn/fzf', {
+"    'dir': expand('~/.vim/bundle-local/fzf'),
 "    'do': './install --all',
+"}
 
 "" Unmanaged plugin (manually installed and updated)
-"Plug '~/my-prototype-plugin'
+"Plug '~/.vim/bundle-local/fzf'
+
+
+""
+"" Finish up plugins
+""
 
 " Add plugins to &runtimepath
-"call plug#end()
-
-" }}}
-
-"" NeoVim
-
-
-" NeoBundle {{{
-let g:neobundle#install_process_timeout = 1800  "YouCompleteMe is so slow
-let g:neobundle#types#git#default_protocol = 'ssh'
-
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-    filetype off                   " Supposedly this is needed for vundle and other plugin managers
-  endif
-
-  " Required:
-  set runtimepath^=~/.vim/bundle/neobundle.vim/
-endif
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Support local bundles
-NeoBundleLocal $HOME.'/.vim/bundle-local'
-NeoBundleLocal $HOME.'/.vim/bundle-local/fzf'
-
-" Use neobundle standard recipes.
-NeoBundle 'Shougo/neobundle-vim-recipes', {'force': 1}
-
-"" UI
-NeoBundle 'bling/vim-airline'
-NeoBundle 'edkolev/promptline.vim'
-
-"" Git
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive'
-
-"" Syntax checks
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'myint/syntastic-extras'
-
-"" Python
-NeoBundle 'davidhalter/jedi-vim'
-" Do not load vim-pyenv until *.py is opened and
-" make sure that it is loaded after jedi-vim is loaded.
-NeoBundleLazy 'lambdalisue/vim-pyenv', {
-\ 'depends': ['davidhalter/jedi-vim'],
-\ 'autoload': {
-\   'filetypes': ['python', 'python3'],
-\ }}
-
-" BATS test runner and syntax
-NeoBundle 'markcornick/vim-bats'
-
-"" Productivity
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-
-"NeoBundle 'vim-ctrlspace/vim-ctrlspace'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'chrisbra/Recover.vim'
-NeoBundle 'vim-scripts/trailing-whitespace'
-
-"" Vetting
-"NeoBundle 'vim-scripts/mru.vim'
-"NeoBundle 'vim-scripts/Rainbow-Parentheses-Improved'
-"NeoBundle 'xolox/vim-misc'
-
-"NeoBundle 'thinca/vim-prettyprint'
-"NeoBundle 'tpope/vim-speeddating'
-"NeoBundle 'tpope/vim-surround'
-"NeoBundle 'farseer90718/vim-taskwarrior'
-"NeoBundle 'bling/vim-bufferline'
-"NeoBundle 'MarkWeber/vim-addon-signs'
-
-"NeoBundle 'Shougo/vimproc', {
-"\ 'build' : {
-"\     'windows' : 'make -f make_mingw32.mak',
-"\     'cygwin' : 'make -f make_cygwin.mak',
-"\     'mac' : 'make -f make_mac.mak',
-"\     'unix' : 'make -f make_unix.mak',
-"\    },
-"\ }
-"NeoBundle 'Shougo/unite.vim', {'recipe' : 'unite'}
-"NeoBundle 'Shougo/neomru.vim'
-
-"NeoBundle 'rstacruz/sparkup', {'rtp' : 'vim'}
-"NeoBundle 'Raimondi/delimitMate'
-"NeoBundle 'jeetsukumaran/vim-buffergator'
-"NeoBundle 'joonty/vdebug'
-"NeoBundle 'mattn/emmet-vim'  " Previously known as zencoding
-
-" Notes
-"NeoBundle 'xolox/vim-notes'
-"NeoBundle 'jceb/vim-orgmode'
-
-" Syntax
-NeoBundleLazy 'saltstack/salt-vim', {
-        \ 'autoload': {
-        \   'filetypes': ['sls'],
-        \ }}
-"NeoBundleLazy 'fatih/vim-go', {
-"        \ 'autoload': {
-"        \   'filetypes': ['go'],
-"        \ }}
-NeoBundle 'fatih/vim-go'
-
-"NeoBundle 'ingydotnet/yaml-vim'
-"NeoBundle 'veselosky/vim-rst'
-"NeoBundle 'nvie/vim-rst-tables'
-"NeoBundle 'jtriley/vim-rst-headings'
-"NeoBundle 'vim-scripts/ciscoasa.vim'
-"NeoBundle 'wlangstroth/vim-haskell'
-"NeoBundle 'leshill/vim-json'
-"NeoBundle 'juvenn/mustache.vim'
-"NeoBundle 'tpope/vim-markdown'
-NeoBundleLazy 'plasticboy/vim-markdown', {
-        \ 'autoload': {
-        \   'filetypes': ['md', 'mkd', 'markdown'],
-        \ }}
-
-"NeoBundle 'chrisbra/csv.vim'
-"NeoBundle 'ekalinin/Dockerfile.vim'
-
-" Python, oh python
-"NeoBundle 'klen/python-mode'
-
-" Approximately converts gui only colorschemes to console
-NeoBundle 'godlygeek/csapprox'
-
-" Dash doc viewer
-"NeoBundle 'rizzatti/dash.vim'
-
-" Todo.txt
-"NeoBundle 'freitass/todo.txt-vim.git'
-
-" Colors
-""NeoBundle 'flazz/vim-colorschemes'
-"NeoBundle 'vim-scripts/tropikos'
-"NeoBundle 'w0ng/vim-hybrid'
-"NeoBundle 'vim-scripts/badwolf'
-"NeoBundle 'Pychimp/vim-luna'
-"NeoBundle 'jonathanfilip/vim-lucius'
-"NeoBundle 'trapd00r/neverland-vim-theme'
-"NeoBundle 'noahfrederick/Hemisu'
-"NeoBundle 'zaiste/Atom'
-"NeoBundle 'ratazzi/blackboard.vim'
-"NeoBundle 'effkay/argonaut.vim'
-"NeoBundle 'jedverity/feral-vim'
-""NeoBundle 'stephanedemotte/beekai'
-
-" Add plugins to &runtimepath
-"call neobundle#end()
 call plug#end()
-
 
 " Required:
 filetype plugin indent on
@@ -224,6 +205,8 @@ filetype plugin indent on
 "" If there are uninstalled bundles found on startup,
 "" this will conveniently prompt you to install them.
 "NeoBundleCheck
+"PlugInstall
+
 
 " }}}
 
@@ -864,9 +847,12 @@ let g:notes_directories = ["~/Notes"]
 
 " Airline {{{
 
-set encoding=utf-8
-set laststatus=2 " Always display the statusline in all windows
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+if has('vim_starting')
+    "" These are required by airline
+    set encoding=utf-8
+    set laststatus=2 " Always display the statusline in all windows
+    set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+endif
 
 let g:airline_powerline_fonts = 1
 

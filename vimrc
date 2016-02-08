@@ -22,13 +22,16 @@ filetype plugin indent on   " enable loading indent file for filetype
 if 0 | endif
 
 if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-    " filetype off                   " Supposedly this is needed for vundle and other plugin managers
-  endif
+    if &compatible
+      set nocompatible      " Be iMproved
+    endif
 
-  "set runtimepath^=~/.vim/repos/vim-plug/
-  "runtime! init.vim
+    "set runtimepath^=~/.vim/repos/vim-plug/
+
+    runtime! starting.vim
+    if has('nvim')
+      runtime! starting.nvim
+    endif
 endif
 " }}}
 
@@ -42,13 +45,15 @@ runtime! bundles.vim bundles-local.vim
 call plug#end()
 
 if has('vim_starting')
-    " Required:
-    filetype plugin indent on
-
     "" If there are uninstalled bundles found on startup,
     "" this will conveniently prompt you to install them,
     "" at the cost of your time.
     "PlugInstall
+
+    runtime! startup.vim
+    if has('nvim')
+      runtime! startup.nvim
+    endif
 endif
 " }}}
 
@@ -484,6 +489,17 @@ endif
 "endfun
 "" Map the K key to the ReadMan function:
 "noremap K :call ReadMan()<CR>
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 " }}}
 

@@ -15,6 +15,10 @@ Plug 'myint/syntastic-extras'
 " make sure that it is loaded after jedi-vim is loaded.
 Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv', {'for': ['python', 'python3']}
 
+" This is only for neovim, wonder if we can check that somehow here and not in
+" our hooks
+Plug 'Shougo/deoplete.nvim'
+
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': ['bats', 'sh', 'bash', 'shell', 'zsh']}
 

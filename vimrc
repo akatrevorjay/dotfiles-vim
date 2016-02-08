@@ -1,3 +1,5 @@
+" Debian defaults {{{
+
 " All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually just
 " /usr/share/vim/vimcurrent/debian.vim) and sourced by the call to :runtime
 " you can find below.  If you wish to change any of those settings, you should
@@ -13,21 +15,11 @@ runtime! debian.vim
 syntax on                   " syntax highlighing
 filetype on                 " try to detect filetypes
 filetype plugin indent on   " enable loading indent file for filetype
+" }}}
 
-" Note: Skip initialization for vim-tiny or vim-small.
-"if !1 | finish | endif
+" Init {{{
+"" Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
-
-
-" }}}
-
-" NeoVim {{{
-if has('nvim')
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-" }}}
-
-" Plug {{{
 
 if has('vim_starting')
   if &compatible
@@ -35,170 +27,16 @@ if has('vim_starting')
     " filetype off                   " Supposedly this is needed for vundle and other plugin managers
   endif
 
-  "set runtimepath^=~/.vim/bundle/neobundle.vim/
+  "set runtimepath^=~/.vim/repos/vim-plug/
+  "runtime! init.vim
 endif
+" }}}
 
-" Required:
+" Bundles {{{
 call plug#begin('~/.vim/plugger')
 
-" Support local bundles
-"Plug expand('~/.vim/bundle-local')
-"Plug expand('~/.vim/bundle-local/fzf')
-
-"" Git
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-
-"" Syntax checks
-Plug 'scrooloose/syntastic'
-Plug 'myint/syntastic-extras'
-
-"" Python, oh python
-" Do not load vim-pyenv until *.py is opened and
-" make sure that it is loaded after jedi-vim is loaded.
-Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv', {'for': ['python', 'python3']}
-
-"" BATS test runner and syntax
-Plug 'markcornick/vim-bats', {'for': ['bats', 'sh', 'bash', 'shell', 'zsh']}
-
-"" Productivity
-" Plug 'kien/ctrlp.vim'  ", {'on': 'CtrlP' }
-Plug 'ctrlpvim/ctrlp.vim'  " active fork
-
-Plug 'scrooloose/nerdcommenter'
-" Plug 'tomtom/tcomment_vim'
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'scrooloose/nerdtree'
-
-"Plug 'vim-ctrlspace/vim-ctrlspace'
-Plug 'majutsushi/tagbar' ", { 'on': ['TagbarToggle', 'Tagbar'] }
-Plug 'sjl/gundo.vim', {'on': 'Gundo' }
-Plug 'chrisbra/Recover.vim'
-Plug 'vim-scripts/trailing-whitespace'
-
-"" Vetting
-Plug 'vim-scripts/mru.vim'
-"Plug 'vim-scripts/Rainbow-Parentheses-Improved'
-"Plug 'xolox/vim-misc'
-"Plug 'thinca/vim-prettyprint'
-"Plug 'tpope/vim-speeddating'
-"Plug 'tpope/vim-surround'
-"Plug 'farseer90718/vim-taskwarrior'
-"Plug 'bling/vim-bufferline'
-"Plug 'MarcWeber/vim-addon-signs'
-Plug 'tomtom/quickfixsigns_vim'
-
-"Plug 'rstacruz/sparkup', {'rtp' : 'vim'}
-"Plug 'Raimondi/delimitMate'
-"Plug 'jeetsukumaran/vim-buffergator'
-"Plug 'joonty/vdebug'
-"Plug 'mattn/emmet-vim'  " Previously known as zencoding
-
-" Notes
-"Plug 'xolox/vim-notes'
-"Plug 'jceb/vim-orgmode'
-
-"" Stuff I never used
-" Use neobundle standard recipes.
-"Plug 'Shougo/neobundle-vim-recipes', {'force': 1}
-"Plug 'Shougo/vimproc', {
-"\ 'build' : {
-"\     'windows' : 'make -f make_mingw32.mak',
-"\     'cygwin' : 'make -f make_cygwin.mak',
-"\     'mac' : 'make -f make_mac.mak',
-"\     'unix' : 'make -f make_unix.mak',
-"\    },
-"\ }
-"Plug 'Shougo/unite.vim', {'recipe' : 'unite'}
-"Plug 'Shougo/neomru.vim'
-
-" Syntax
-Plug 'saltstack/salt-vim', { 'for': 'sls' }
-Plug 'fatih/vim-go', {'for': 'go'}
-
-"Plug 'ingydotnet/yaml-vim'
-"Plug 'veselosky/vim-rst'
-"Plug 'nvie/vim-rst-tables'
-"Plug 'jtriley/vim-rst-headings'
-"Plug 'vim-scripts/ciscoasa.vim'
-"Plug 'wlangstroth/vim-haskell'
-"Plug 'leshill/vim-json'
-"Plug 'juvenn/mustache.vim'
-"Plug 'tpope/vim-markdown'
-Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
-
-"Plug 'chrisbra/csv.vim'
-"Plug 'ekalinin/Dockerfile.vim'
-
-" Dash doc viewer
-"Plug 'rizzatti/dash.vim'
-
-" Todo.txt
-"Plug 'freitass/todo.txt-vim.git'
-
-
-
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
-
-" github dash?
-Plug 'junegunn/vim-github-dashboard'
-
-"" Group dependencies, vim-snippets depends on ultisnips
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-"" On-demand loading
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-"" Using a non-master branch
-"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-"" Plugin options
-"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-"" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', {
-\   'dir': expand('~/.shell/repos/fzf'),
-\   'do': './install --bin',
-\ }
-
-"" Unmanaged plugin (manually installed and updated)
-"Plug '~/.vim/bundle-local/fzf'
-
-
-
-"" UI
-Plug 'bling/vim-airline'
-\ | Plug 'edkolev/promptline.vim'
-\ | Plug 'ryanoasis/vim-devicons'  " Pretty iconize everything
-
-" Approximately converts gui only colorschemes to console
-Plug 'godlygeek/csapprox'
-
-" Colors
-Plug 'flazz/vim-colorschemes'
-Plug 'vim-scripts/tropikos'
-Plug 'w0ng/vim-hybrid'
-Plug 'vim-scripts/badwolf'
-Plug 'Pychimp/vim-luna'
-Plug 'jonathanfilip/vim-lucius'
-Plug 'trapd00r/neverland-vim-theme'
-Plug 'noahfrederick/Hemisu'
-Plug 'zaiste/Atom'
-Plug 'ratazzi/blackboard.vim'
-Plug 'effkay/argonaut.vim'
-Plug 'jedverity/feral-vim'
-Plug 'stephanedemotte/beekai'
-" Plug 'marcopaganini/mojave-vim-theme'
-Plug 'trevorrjohn/vim-obsidian'
-Plug 'mhartington/oceanic-next'
-
-
-
-""
-"" Finish up plugins
-""
+" Source bundles.vim
+runtime! bundles.vim bundles-local.vim
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -206,41 +44,15 @@ call plug#end()
 if has('vim_starting')
     " Required:
     filetype plugin indent on
-endif
 
-"" If there are uninstalled bundles found on startup,
-"" this will conveniently prompt you to install them.
-"PlugInstall
-
-
-" }}}
-
-
-" Jump to the last position when reopening a file {{{
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
-
-  """ Mark last pos with vim-addon-signs
-  "sign define cursor_location text=-
-  "augroup TRACK_LAST_CURSOR_POS_FOR_EACH_WINDOW
-  "  au!
-  "  autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI *
-  "    \   let b:last_cursor_pos = [bufnr('%'), line('.'), 'cursor_location']
-  "    \ | call vim_addon_signs#Push("last_cursor_pos", map(filter(range(1, bufnr('$')), 'bufexists(v:val) && has_key(getbufvar(v:val,""),"last_cursor_pos")'), 'getbufvar(v:val, "last_cursor_pos")' ))
-  "augroup end
-  "
-  """ Add a dummy sign so that the left column showing the signs is always present:
-  "" can't use an opaque sign :-(
-  "sign define dummy text=.
-  "augroup TRACK_LAST_CURSOR_POS_FOR_EACH_WINDOW
-  "  au!
-  "  autocmd BufNew * call vim_addon_signs#Push("dummy", map(filter(range(1, bufnr('$')), 'bufexists(v:val)'), '[v:val, 1, "dummy"]' ))
-  "augroup end
+    "" If there are uninstalled bundles found on startup,
+    "" this will conveniently prompt you to install them,
+    "" at the cost of your time.
+    "PlugInstall
 endif
 " }}}
 
-" Misc/search/highlight/nu/gui/invisibles {{{
+" Basic setup (misc/search/highlight/nu/gui/invisibles) {{{
 set showcmd		    " Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
@@ -273,31 +85,6 @@ noremap! <C-l> <ESC>:nohlsearch<CR><C-l>
 " Highlight the line the cursor is on (local to window)
 set cul
 
-""
-"" Smart in-line manpages with 'K' in command mode
-"" ~trevorj 061112 no longer needed using symlinked ftplugin/man.vim from
-"" vim installdir into plugin/ then using :Man func
-""
-"fun! ReadMan()
-"  " Assign current word under cursor to a script variable:
-"  let s:man_word = expand('<cword>')
-"  " Open a new window:
-"  :wincmd n
-"  " Read in the manpage for man_word (col -b is for formatting):
-"  :exe ":r!man " . s:man_word . " | col -b"
-"  " Goto first line...
-"  :goto
-"  " and delete it:
-"  :delete
-"  " finally set file type to 'man':
-"  :set filetype=man
-"  " lines set to 20
-"  :resize 20
-"endfun
-"" Map the K key to the ReadMan function:
-"noremap K :call ReadMan()<CR>
-
-
 " Other highlight options
 "set highlight=8r,db,es,hs,mb,Mr,nu,rs,sr,tb,vr,ws
 
@@ -321,7 +108,7 @@ set numberwidth=3
 
 " Invisibles
 "set list
-"set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
 "set listchars=tab:..
 
 " When using set list:
@@ -343,6 +130,52 @@ set cc=120
 "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " }}}
+
+
+" Vim variance (console/gvim/macvim) setup {{{1
+" GVim {{{
+set guioptions=acMh
+set mousefocus " focus follows mouse in gvim
+if has("gui_running")
+    "colorscheme railscasts-trevorj
+    "colorscheme neverland-darker
+
+    " Dunno what this does? Integration into a specific OS buffer?
+    set clipboard=unnamedplus
+
+    if has("gui_gtk2")
+        set guifont=Menlo\ for\ Powerline\ 16
+        set guifontwide=Menlo\ for\ Powerline\ 16
+        "set guifont=Monaco\ for\ Powerline\ 16
+        "set guifont=ProFontWindows\ 12
+    "elseif has("gui_photon")
+    "    set guifont=Menlo\ for\ Powerline:s12
+    "elseif has("gui_kde")
+    "    set guifont=Menlo\ for\ Powerline/12/-1/5/50/0/0/0/1/0
+    ""elseif has("x12")
+    ""    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+    else
+        "set guifont=Menlo\ for\ Powerline:h12
+        set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14  " nerd font complete
+    endif
+endif
+" }}}
+
+" Console vim {{{
+"set mouse=nvch " all modes but insert
+set mouse=a
+"set mouse= " mouse urges hatred in me
+set mousemodel="extend" " popup popup_setpos
+" }}}
+
+" 1}}}
+
+"" Vim Profiler {{{
+"nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+"nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
+"nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
+"nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
+"" }}}
 
 " Spacing tabstops/indents {{{
 
@@ -380,13 +213,13 @@ set nofsync
 
 " }}}
 
+" UI {{{1
 
-" Colors {{{
-"
-"" Syntax highlighting
+"" 256 color mode, ofc
 set t_Co=256
 set background=dark
 
+" Colorschemes {{{
 "colorscheme elflord
 "let g:zenburn_unified_CursorColumn=1
 "colorscheme navajo-night
@@ -424,37 +257,53 @@ colorscheme OceanicNext
 
 let g:airline_theme = 'oceanicnext'
 
+" }}}
 
-" gvim
-set guioptions=acMh
-set mousefocus " focus follows mouse in gvim
-if has("gui_running")
-    "colorscheme railscasts-trevorj
-    "colorscheme neverland-darker
+" Airline {{{
 
-    " Dunno what this does? Integration into a specific OS buffer?
-    set clipboard=unnamedplus
-
-    if has("gui_gtk2")
-        set guifont=Menlo\ for\ Powerline\ 16
-        set guifontwide=Menlo\ for\ Powerline\ 16
-        "set guifont=Monaco\ for\ Powerline\ 16
-        "set guifont=ProFontWindows\ 12
-    "elseif has("gui_photon")
-    "    set guifont=Menlo\ for\ Powerline:s12
-    "elseif has("gui_kde")
-    "    set guifont=Menlo\ for\ Powerline/12/-1/5/50/0/0/0/1/0
-    ""elseif has("x12")
-    ""    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-    else
-        "set guifont=Menlo\ for\ Powerline:h12
-        set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14  " nerd font complete
-    endif
+if has('vim_starting')
+    "" These are required by airline
+    set encoding=utf8
+    set laststatus=2 " Always display the statusline in all windows
+    set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 endif
+
+let g:airline_powerline_fonts = 1
+
+" Optional extensions
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
+
+" TODO Are these automatically enabled or not?
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#csv#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+"let g:airline#extensions#eclim#enabled = 1
+let g:airline#extensions#promptline#enabled = 1
+let g:airline#extensions#promptline#snapshot_file = $HOME.'/.shell/themes/airline-snapshot.sh'
 
 " }}}
 
-" Tab completion options {{{
+" Devicons {{{
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsEnableFolderExtensionPatternMatching = 1
+" }}}
+
+" quickfixsigns {{{
+noremap <silent> <leader><c-l> :call quickfixsigns#RelNumbersOnce()<cr>
+
+" No fucking flags. Nobody likes fucking flag bitmaps.
+let g:quickfixsigns_classes = ['loc', 'marks', 'vcsdiff', 'breakpoints']
+let g:quickfixsigns_aggregated_errors = 1
+let g:quickfixsigns_sort_aggregated_errors = 1
+" }}}
+
+" 1}}}
+
+" Wild completion options {{{
 set wildchar=<Tab>
 set wildmenu
 "set wildmode=longest,list
@@ -469,7 +318,23 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.swo,*.bak,*.pyo,*.pyc,*.svn,*/tmp/*
 "set complete=.,t
 " }}}
 
-" Jedi {{{
+" Completion {{{
+set completefunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
+
+" Python omni is handled by Jedi <3
+""autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType python setlocal completefunc=pythoncomplete#Complete
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" }}}
+
+" Python {{{1
+
+" Completion: Jedi {{{2
 "let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_on_dot = 1
@@ -496,37 +361,17 @@ if jedi#init_python()
     autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
   augroup END
 endif
-" }}}
+" 2}}}
 
-"" Filetype specifics {{{
-set completefunc=syntaxcomplete#Complete
-"set omnifunc=syntaxcomplete#Complete
+" Rope {{{2
+"map <leader>j :RopeGotoDefinition<CR>
+"map <leader>r :RopeRename<CR>
 
-" Python omni is handled by Jedi <3
-""autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType python setlocal completefunc=pythoncomplete#Complete
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" }}}
+"let g:ropevim_vim_completion = 1
+"let g:ropevim_extended_complete = 1
+" 2}}}
 
-"" profiling {{{
-"nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
-"nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
-"nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
-"nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
-"" }}}
-
-" mouse {{{
-
-"set mouse=nvch " all modes but insert
-set mouse=a
-"set mouse= " mouse urges hatred in me
-set mousemodel="extend" " popup popup_setpos
-
-" }}}
+" 1}}}
 
 " Syntastic {{{
 
@@ -587,9 +432,59 @@ let g:syntastic_yaml_checkers = ['pyyaml']
 nnoremap ZZ :call syntastic_extras#quit_hook()<cr>
 " 2}}}
 
-" ropevim {{{
-"let g:ropevim_vim_completion = 1
-"let g:ropevim_extended_complete = 1
+" }}}
+
+" Tools and utilities  {{{
+
+" Jump to the last position when reopening a file {{{
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+
+  """ Mark last pos with vim-addon-signs
+  "sign define cursor_location text=-
+  "augroup TRACK_LAST_CURSOR_POS_FOR_EACH_WINDOW
+  "  au!
+  "  autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI *
+  "    \   let b:last_cursor_pos = [bufnr('%'), line('.'), 'cursor_location']
+  "    \ | call vim_addon_signs#Push("last_cursor_pos", map(filter(range(1, bufnr('$')), 'bufexists(v:val) && has_key(getbufvar(v:val,""),"last_cursor_pos")'), 'getbufvar(v:val, "last_cursor_pos")' ))
+  "augroup end
+  "
+  """ Add a dummy sign so that the left column showing the signs is always present:
+  "" can't use an opaque sign :-(
+  "sign define dummy text=.
+  "augroup TRACK_LAST_CURSOR_POS_FOR_EACH_WINDOW
+  "  au!
+  "  autocmd BufNew * call vim_addon_signs#Push("dummy", map(filter(range(1, bufnr('$')), 'bufexists(v:val)'), '[v:val, 1, "dummy"]' ))
+  "augroup end
+endif
+" }}}
+
+
+""
+"" Smart in-line manpages with 'K' in command mode
+"" ~trevorj 061112 no longer needed using symlinked ftplugin/man.vim from
+"" vim installdir into plugin/ then using :Man func
+""
+"fun! ReadMan()
+"  " Assign current word under cursor to a script variable:
+"  let s:man_word = expand('<cword>')
+"  " Open a new window:
+"  :wincmd n
+"  " Read in the manpage for man_word (col -b is for formatting):
+"  :exe ":r!man " . s:man_word . " | col -b"
+"  " Goto first line...
+"  :goto
+"  " and delete it:
+"  :delete
+"  " finally set file type to 'man':
+"  :set filetype=man
+"  " lines set to 20
+"  :resize 20
+"endfun
+"" Map the K key to the ReadMan function:
+"noremap K :call ReadMan()<CR>
+
 " }}}
 
 " Keys {{{
@@ -648,13 +543,84 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" Folding {{{
+set foldenable
+""set foldmethod=marker
+"set foldmarker={{{,}}}
+"set foldcolumn=2
+""set foldnestmax=2
+set foldmethod=indent
+"set foldlevel=1
+"set shiftround                          " Indent/outdent to nearest tabstops
 
+"" Vimrc files get to use marker folds
+augroup vimrc
+ au BufReadPre * setlocal foldmethod=indent
+ au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=marker | endif
+augroup END
+
+"" Use space to toggle folding
+" nnoremap <space> za
+" vnoremap <space> zf
+"" OR
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+" }}}
+
+" Code complete
+"inoremap <Nul> <C-x><C-o>
+
+" remove trailing whitespace
+"autocmd FileType python autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+
+"" Toggle quickfix {{{
+noremap <silent> <F4> :QFix<CR>
+noremap <silent> <Leader>f :QFix<CR>
+"noremap <silent> <Leader>qf :QFix<CR>
+
+"the quickfix window is not always 10 lines height
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
+" quickfix toogler
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    "let g:pylint_cwindow = 0
+    unlet g:qfix_win
+  else
+    copen 10
+    call AdjustWindowHeight(3, 10)
+    "let g:pylint_cwindow = 1
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+"" }}}
+
+"" Plugin options {{{2
 
 " NERDTree {{{
 "
 map <Leader>E :NERDTreeToggle<CR>
 
-" NERDTress File highlighting
+""autocmd vimenter * NERDTree
+"" Add NERDtree by default on new vim runs without any args
+""autocmd StdinReadPre * let s:std_in=1
+""autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+""autocmd vimenter * if !argc() | NERDTree | endif
+"" Close vim if NERDTree is the only window left open
+""autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"" misc
+""let NERDTreeQuitOnOpen=1
+"let NERDTreeShowBookmarks=1
+""let NERDTreeStatusline=1
+"let NERDTreeMinimalUI=1
+"let NERDTreeDirArrows=1
+
+" NERDTress File highlighting {{{2
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
 exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
@@ -678,8 +644,7 @@ call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
 call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
 call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
 call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
-
-" }}}
+" 2}}}
 
 
 "" MakeGreen defaults to \t
@@ -699,10 +664,6 @@ call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
 
 " Gundo
 map <Leader>u :GundoToggle<cr>
-
-" Rope
-"map <leader>j :RopeGotoDefinition<CR>
-"map <leader>r :RopeRename<CR>
 
 "" YouCompleteMe
 "nnoremap <leader>j :YcmCompleter GoToDefinition<CR>
@@ -736,89 +697,6 @@ map W :wq<cr>
 
 
 " }}}
-
-" Folding {{{
-set foldenable
-""set foldmethod=marker
-"set foldmarker={{{,}}}
-"set foldcolumn=2
-""set foldnestmax=2
-set foldmethod=indent
-"set foldlevel=1
-"set shiftround                          " Indent/outdent to nearest tabstops
-
-"" Vimrc files get to use marker folds
-augroup vimrc
- au BufReadPre * setlocal foldmethod=indent
- au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=marker | endif
-augroup END
-
-"" Use space to toggle folding
-" nnoremap <space> za
-" vnoremap <space> zf
-"" OR
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
-
-" }}}
-
-" Code complete
-"inoremap <Nul> <C-x><C-o>
-
-" remove trailing whitespace
-"autocmd FileType python autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-
-
-"" Toggle quickfix {{{
-noremap <silent> <F4> :QFix<CR>
-noremap <silent> <Leader>f :QFix<CR>
-"noremap <silent> <Leader>qf :QFix<CR>
-
-"the quickfix window is not always 10 lines height
-au FileType qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minheight, maxheight)
-    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
-
-" quickfix toogler
-command! -bang -nargs=? QFix call QFixToggle(<bang>0)
-function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-    "let g:pylint_cwindow = 0
-    unlet g:qfix_win
-  else
-    copen 10
-    call AdjustWindowHeight(3, 10)
-    "let g:pylint_cwindow = 1
-    let g:qfix_win = bufnr("$")
-  endif
-endfunction
-"" }}}
-
-" Tagbar {{{
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_width=30
-"let g:tagbar_left = 1
-"let g:tagbar_vertical = 1
-let g:tagbar_autoclose = 1
-let g:tagbar_autofocus = 1
-let g:tagbar_autopreview = 0
-let g:tagbar_autoshowtag = 0
-let g:tagbar_compact = 0
-"let g:tagbar_indent = 2
-let g:tagbar_show_linenumbers = 1
-let g:tagbar_singleclick = 1
-" }}}
-
-" vim-haskell
-" use ghc functionality for haskell files
-"au Bufenter *.hs compiler ghc
-
-" configure browser for haskell_doc.vim
-"let g:haddock_browser = "xdg-open"
-
-" Plugin Options {{{1
 
 " CtrlP {{{
 map <leader>3 :CtrlPBufTag<cr>
@@ -854,25 +732,28 @@ let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 "   \ }
 " }}}
 
-"" Unite
-"let g:unite_source_history_yank_enable = 1
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-"nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-"nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-"nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-"nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-"nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+" Tagbar {{{
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width=30
+"let g:tagbar_left = 1
+"let g:tagbar_vertical = 1
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_autopreview = 0
+let g:tagbar_autoshowtag = 0
+let g:tagbar_compact = 0
+"let g:tagbar_indent = 2
+let g:tagbar_show_linenumbers = 1
+let g:tagbar_singleclick = 1
+" }}}
 
-"" Custom mappings for the unite buffer
-"autocmd FileType unite call s:unite_settings()
-"function! s:unite_settings()
-"  " Play nice with supertab
-"  let b:SuperTabDisabled=1
-"  " Enable navigation with control-j and control-k in insert mode
-"  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-"  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-"endfunction
+"" vim-haskell {{{
+"" use ghc functionality for haskell files
+""au Bufenter *.hs compiler ghc
+""
+"" configure browser for haskell_doc.vim
+""let g:haddock_browser = "xdg-open"
+"" }}}
 
 " TaskList
 let g:tlTokenList = ['FUCK', 'FIX', 'FIXME', 'TODO', 'XXX', 'WTF', 'OMG', 'OMFG', 'IMPORTANT', 'HACK']
@@ -880,78 +761,7 @@ let g:tlTokenList = ['FUCK', 'FIX', 'FIXME', 'TODO', 'XXX', 'WTF', 'OMG', 'OMFG'
 "" Ack (grep replacement)
 "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-"" NERDtree {{{
-""autocmd vimenter * NERDTree
-"" Add NERDtree by default on new vim runs without any args
-""autocmd StdinReadPre * let s:std_in=1
-""autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-""autocmd vimenter * if !argc() | NERDTree | endif
-"" Close vim if NERDTree is the only window left open
-""autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-"" misc
-""let NERDTreeQuitOnOpen=1
-"let NERDTreeShowBookmarks=1
-""let NERDTreeStatusline=1
-"let NERDTreeMinimalUI=1
-"let NERDTreeDirArrows=1
-"" }}}
-
 " vim-notes
 let g:notes_directories = ["~/Notes"]
-
-" Airline {{{
-
-if has('vim_starting')
-    "" These are required by airline
-    set encoding=utf8
-    set laststatus=2 " Always display the statusline in all windows
-    set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-endif
-
-let g:airline_powerline_fonts = 1
-
-" Optional extensions
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
-
-" TODO Are these automatically enabled or not?
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#csv#enabled = 1
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-"let g:airline#extensions#eclim#enabled = 1
-let g:airline#extensions#promptline#enabled = 1
-let g:airline#extensions#promptline#snapshot_file = $HOME.'/.shell/themes/airline-snapshot.sh'
-
-" }}}
-
-" Devicons {{{
-"let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
-
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:DevIconsEnableFolderExtensionPatternMatching = 1
-" }}}
-
-" " Indent guides {{{
-" "let g:indent_guides_auto_colors = 0
-" "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=100
-" "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=40
-" "let g:indent_guides_enable_on_vim_startup = 1
-" "let g:indent_guides_guide_size = 1
-" let g:indent_guides_start_level = 2
-" " }}}
-
-" quickfixsigns {{{
-noremap <silent> <leader><c-l> :call quickfixsigns#RelNumbersOnce()<cr>
-
-let g:quickfixsigns_classes = ['loc', 'marks', 'vcsdiff', 'breakpoints']
-let g:quickfixsigns_aggregated_errors = 1
-let g:quickfixsigns_sort_aggregated_errors = 1
-
-" }}}
-
-" 1}}}
 
 

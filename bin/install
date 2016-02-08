@@ -1,0 +1,17 @@
+#!/bin/bash
+set -eo pipefail
+set -xv
+
+cd
+
+if ! test -e ~/.vim; then
+    test -f ~/.vimrc && mv .vimrc .vimrc.orig
+
+    git clone git://github.com/akatrevorjay/dotfiles-vim.git .vim
+
+    ln -s .vim/vimrc .vimrc
+else
+    git pull
+fi
+
+echo enjoy

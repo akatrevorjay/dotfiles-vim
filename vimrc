@@ -39,7 +39,7 @@ endif
 call plug#begin('~/.vim/plugger')
 
 " Source bundles.vim
-runtime! bundles.vim bundles-local.vim
+runtime! bundles.vim local/bundles.vim
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -55,17 +55,23 @@ if has('vim_starting')
       runtime! startup.nvim
     endif
 endif
+
+" NeoVim
+runtime! pre.vim
+if has('nvim')
+    runtime! pre.nvim
+endif
 " }}}
 
 " Basic setup (misc/search/highlight/nu/gui/invisibles) {{{
-set showcmd		    " Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-set ignorecase		" Do case insensitive matching
-set smartcase		" Do smart case matching
-set incsearch		" Incremental search
-set autowrite		" Automatically save before commands like :next and :make
+set showcmd            " Show (partial) command in status line.
+set showmatch        " Show matching brackets.
+set ignorecase        " Do case insensitive matching
+set smartcase        " Do smart case matching
+set incsearch        " Incremental search
+set autowrite        " Automatically save before commands like :next and :make
 set hidden          " Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes) in terminals
+"set mouse=a        " Enable mouse usage (all modes) in terminals
 
 " Dont copy indent from current line when starting a new line
 "set cindent
@@ -119,7 +125,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 " When using set list:
 "set lcs=tab:▒░
 "set lcs=tab:>-,eol:$,nbsp:%,trail:X,extends:>,precedes:<
-" testing tabs 	 	 	 	 	 	 	 test
+" testing tabs									test
 
 "if $LANG =~ ".*\.UTF-8$" || $LANG =~ ".*utf8$" || $LANG =~ ".*utf-8$"
     set listchars+=tab:»·,trail:·,precedes:…,extends:…
@@ -324,7 +330,7 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.swo,*.bak,*.pyo,*.pyc,*.svn,*/tmp/*
 " }}}
 
 " Completion {{{
-set completefunc=syntaxcomplete#Complete
+"set completefunc=syntaxcomplete#Complete
 "set omnifunc=syntaxcomplete#Complete
 
 " Python omni is handled by Jedi <3
@@ -344,7 +350,12 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_on_dot = 1
 " Jedi displays function call signatures in insert mode in real-time, highlighting the current argument. The call signatures can be displayed as a pop-up in the buffer (set to 1, the default), which has the advantage of being easier to refer to, or in Vim's command line aligned with the function call (set to 2), which can improve the integrity of Vim's undo history.
-let g:jedi#show_call_signatures = "1"
+"let g:jedi#show_call_signatures = "1"
+let g:jedi#show_call_signatures = "2"  " show in cmdline
+let g:jedi#show_call_signatures_delay = 250  " ms (500)
+let g:jedi#max_doc_height = 30
+"let g:jedi#auto_close_doc = 0
+let g:jedi#squelch_py_warning = 1
 
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
@@ -354,18 +365,22 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 
-" vim-pyenv hook
-if jedi#init_python()
-  function! s:jedi_auto_force_py_version() abort
-    let major_version = pyenv#python#get_internal_major_version()
-    call jedi#force_py_version(major_version)
-  endfunction
-  augroup vim-pyenv-custom-augroup
-    autocmd! *
-    autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
-    autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
-  augroup END
+"" vim-pyenv hook to switch major python versions automagically
+"if has('python') or has('python3')
+if has('python3')
+  if jedi#init_python()
+    function! s:jedi_auto_force_py_version() abort
+      let major_version = pyenv#python#get_internal_major_version()
+      call jedi#force_py_version(major_version)
+    endfunction
+    augroup vim-pyenv-custom-augroup
+      autocmd! *
+      autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
+      autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
+    augroup END
+  endif
 endif
+
 " 2}}}
 
 " Rope {{{2
@@ -442,7 +457,17 @@ nnoremap ZZ :call syntastic_extras#quit_hook()<cr>
 " Tools and utilities  {{{
 
 " Jump to the last position when reopening a file {{{
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
 if has("autocmd")
+  autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 
@@ -531,7 +556,7 @@ augroup reload_vimrc
     if exists("g:loaded_webdevicons")
         call webdevicons#refresh()
     endif
- 
+
     if exists("g:loaded_airline")
         exec 'AirlineRefresh'
     endif
@@ -566,8 +591,8 @@ set foldenable
 "set foldcolumn=2
 ""set foldnestmax=2
 set foldmethod=indent
-"set foldlevel=1
-"set shiftround                          " Indent/outdent to nearest tabstops
+set foldlevel=1
+set shiftround                          " Indent/outdent to nearest tabstops
 
 "" Vimrc files get to use marker folds
 augroup vimrc
@@ -780,4 +805,179 @@ let g:tlTokenList = ['FUCK', 'FIX', 'FIXME', 'TODO', 'XXX', 'WTF', 'OMG', 'OMFG'
 " vim-notes
 let g:notes_directories = ["~/Notes"]
 
+
+" Only set indent when no other was loaded.
+if !exists("b:did_indent")
+  set smartindent
+endif
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
+autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+
+
+"" Vim
+"let g:indentLine_color_term = 239
+
+""GVim
+"let g:indentLine_color_gui = '#A4E57E'
+
+"" none X terminal
+"let g:indentLine_color_tty_light = 7 " (default: 4)
+"let g:indentLine_color_dark = 1 " (default: 2)
+
+"let g:indentLine_concealcursor = 'vc' "(default 'inc')
+"let g:indentLine_conceallevel = 0  "(default 2)
+
+
+"" Default mapping
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+
+
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
+
+
+let g:oblique#incsearch_highlight_all=1
+"autocmd! User Oblique       normal! zz
+"autocmd! User ObliqueStar   normal! zz
+"autocmd! User ObliqueRepeat normal! zz
+
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+
+au FileType go nmap <leader>rt <Plug>(go-run-tab)
+au FileType go nmap <Leader>rs <Plug>(go-run-split)
+au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
+
+let g:go_term_mode = "split"
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+
+
+let g:startify_bookmarks = [ {'v': '~/.vimrc'}, '~/.zshrc' ]
+
+" vim -S mysession.vim
+" If Session.vim exists in curdir, load it baby.
+let g:startify_session_autoload = 1
+
+" Automatically update sessions in two cases:
+let g:startify_session_persistence = 1
+
+let g:startify_change_to_vcs_root = 1
+
+"let g:startify_session_savevars = [
+"        \ 'g:startify_session_savevars',
+"        \ 'g:startify_session_savecmds',
+"        \ 'g:random_plugin_use_feature'
+"        \ ]
+
+let g:startify_custom_header =
+      \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+
+let g:startify_relative_path = 1
+
+" Probs with ctrlp
+autocmd User Startified setlocal buftype=
+let g:ctrlp_reuse_window = 'startify'
+
+
+
+" Author's config
+autocmd User Startified setlocal cursorline
+
+let g:startify_enable_special         = 0
+let g:startify_files_number           = 8
+let g:startify_relative_path          = 1
+let g:startify_change_to_dir          = 1
+let g:startify_session_autoload       = 1
+let g:startify_session_persistence    = 1
+let g:startify_session_delete_buffers = 1
+
+"let g:startify_list_order = [
+"    \ ['   LRU:'],
+"    \ 'files',
+"    \ ['   LRU within this dir:'],
+"    \ 'dir',
+"    \ ['   Sessions:'],
+"    \ 'sessions',
+"    \ ['   Bookmarks:'],
+"    \ 'bookmarks',
+"    \ ]
+
+let g:startify_skiplist = [
+            \ 'COMMIT_EDITMSG',
+            \ 'bundle/.*/doc',
+            \ '/data/repo/neovim/runtime/doc',
+            \ '/Users/mhi/local/vim/share/vim/vim74/doc',
+            \ ]
+
+let g:startify_bookmarks = [
+            \ { 'v': '~/.vim/vimrc' },
+            \ { 't': '/tmp' },
+            \ { 'p' : expand('~/vk/git/proxy')},
+            \ expand('~/vk/git/proxy/libs/vkconf'),
+            \ ]
+
+"let g:startify_custom_footer =
+"        \ ['', "   Vim is charityware. Please read ':help uganda'.", '']
+
+
+hi StartifyBracket ctermfg=240
+hi StartifyFile    ctermfg=147
+hi StartifyFooter  ctermfg=240
+hi StartifyHeader  ctermfg=114
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+hi StartifySpecial ctermfg=240
+
+
+
+let g:NERDCustomDelimiters = {
+            \ 'yaml': { 'left': '#'},
+            \}
+
+
+
+let g:vimwiki_folding = 1
+let g:vimwiki_fold_lists = 1
+let g:vimwiki_list = [{"path" : "~/docs/wiki"}]
+nmap <Leader>wv <Plug>VimwikiIndex
+
+
+
+
+
+" Post event
+runtime! post.vim
+" NeoVim
+if has('nvim')
+    "set lazyredraw
+    runtime! post.nvim
+endif
 

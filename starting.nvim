@@ -1,0 +1,29 @@
+
+" Path to python interpreters
+"if ! g:pyenv#pyenv#get_activated_env()
+
+let sep = has('win32') || has('win64') ? ';' : ':'
+let $PATH = join([
+            \ expand('~/.bin'),
+            \ expand('~/.pyenv/bin'),
+            \ expand('~/.pyenv/shims'),
+            \ '/usr/local/bin',
+            \ $PATH,
+            \], sep)
+
+"let g:pyenv#pyenv_exec = expand('~/.pyenv/bin/pyenv')
+"let g:pyenv#python_exec = expand('~/.pyenv/shims/python')
+
+"" NeoVim
+let g:python_host_prog  = expand('~/.pyenv/versions/neovim2/bin/python2')
+let g:python3_host_prog  = expand('~/.pyenv/versions/neovim/bin/python3')
+"" Skip the check of neovim module
+let g:python_host_skip_check = 1
+let g:python3_host_skip_check = 1
+
+"endif
+
+"let g:pyenv#auto_create_ctags = 1
+"let g:pyenv#auto_assign_ctags = 1
+
+" vim: set ts=4 sw=4 tw=0 et ft=vim :

@@ -1,23 +1,8 @@
 
-" Integration with pyenv
-", {'on': 'PyenvActivate'}
-Plug 'lambdalisue/vim-pyenv'
-
-""
-"" UI
-""
-
-" Airline + plugins + devicons
-Plug 'bling/vim-airline'
-      \ | Plug 'edkolev/promptline.vim'
-      \ | Plug 'ryanoasis/vim-devicons'
-
-" Approximately converts gui only colorschemes to console
-"Plug 'godlygeek/csapprox'
-
-"" Convert CUI to GUI (may be useful in neovim since it needs gui_running to
-" NOT be checked yet still supply guifg/guibg etc
-Plug 'jlund3/colorschemer'
+runtime! bundles_pre.vim
+if has('nvim')
+  runtime! bundles_pre.nvim
+endif
 
 ""
 "" Completions
@@ -27,13 +12,11 @@ Plug 'jlund3/colorschemer'
 ", {'for': ['python', 'python3']}
 Plug 'davidhalter/jedi-vim'
 
-Plug 'Shougo/context_filetype.vim'
+" Deoplete (now in bundles_pre.nvim)"
 
-"" Deoplete (moved to bundles.nvim)
-
-"" YCM
+" YCM
 "Plug 'Valloric/YouCompleteMe'
-"\| Plug 'rdnetto/YCM-Generator'
+"Plug 'rdnetto/YCM-Generator'
 
 ""
 "" Tools that are also common libs used by other plugins
@@ -58,21 +41,23 @@ Plug 'tpope/vim-fugitive'
 
 "" CtrlP and plugins
 Plug 'ctrlpvim/ctrlp.vim'
-      \ | Plug 'fisadev/vim-ctrlp-cmdpalette'
+Plug 'fisadev/vim-ctrlp-cmdpalette'
 
 "" NERD stuff
 " turned off autoloading as other plugins interface with it
 ", { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree'
 
-"" Tagbar:
-" autoload turned off since it's used by other plugins
-", { 'on': ['TagbarToggle', 'Tagbar'] }
-Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-unimpaired'
+"Plug 'mattn/webapi-vim'
+"Plug 'Shougo/unite.vim'
+
+"" vimscript for gist
+"Plug 'mattn/gist-vim'
 
 "" Syntastic: automagic syntax checks
 Plug 'scrooloose/syntastic'
-      \| Plug 'myint/syntastic-extras'
+Plug 'myint/syntastic-extras'
 
 ""
 "" Tools
@@ -97,15 +82,15 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'Konfekt/FastFold'
 
 " Taskwarrior: Fucking sick ftw
-Plug 'farseer90718/vim-taskwarrior', {'on': ['TW', 'TWAdd']}
+Plug 'farseer90718/vim-taskwarrior'  ", {'on': ['TW', 'TWAdd']}
 
 " Gundo: Undo browser
-Plug 'sjl/gundo.vim', {'on': 'Gundo' }
+Plug 'sjl/gundo.vim'  ", {'on': 'Gundo' }
 
 "" Snippets:
 Plug 'SirVer/ultisnips'
-      \ | Plug 'honza/vim-snippets'
-      \ | Plug 'StephenPCG/vim-snippets-salt'
+Plug 'honza/vim-snippets'
+Plug 'StephenPCG/vim-snippets-salt'
 
 " Outlines (uses utl)
 Plug 'vim-voom/VOoM'
@@ -122,12 +107,13 @@ Plug 'junegunn/fzf', {
 
 " Superb motion controls
 Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-unimpaired'
 
-Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
-"\| Plug 'junegunn/vim-fnr'
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
+"Plug 'junegunn/vim-fnr'
 Plug 'rhysd/clever-f.vim'
 "" Reset map to: <Plug>(clever-f-reset)
+"noremap! <c-l> <Plug>(clever-f-reset)
 
 "" RainbowParantheses
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -139,15 +125,25 @@ augroup END
 
 Plug 'vim-scripts/restore_view.vim'
 
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
+Plug 'Shougo/neopairs.vim'
 Plug 'Shougo/echodoc.vim'
+
+Plug 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 
 ""
 "" Language: Python
 ""
 
 " Run pytest, integrate a bit
-Plug 'alfredodeza/pytest.vim', {'on': 'Pytest'}
+Plug 'alfredodeza/pytest.vim'  ", {'on': 'Pytest'}
 
 ""
 "" Syntax
@@ -156,27 +152,29 @@ Plug 'alfredodeza/pytest.vim', {'on': 'Pytest'}
 " Better json
 Plug 'elzr/vim-json'
 " AWS (cloudformation)
-      \| Plug 'm-kat/aws-vim'
+Plug 'm-kat/aws-vim'
 
 " Go
-Plug 'fatih/vim-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
+Plug 'fatih/vim-go'  ", {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
 
 " Javascript
-"Plug 'moll/vim-node', {'for': 'javascript'}
+"Plug 'moll/vim-node'  ", {'for': 'javascript'}
+"call dein#add('ternjs/tern_for_vim', {'for':
+"'javascript'})
 
 "" BATS test runner and syntax
-Plug 'markcornick/vim-bats', {'for': ['bats', 'sh', 'bash', 'shell', 'zsh']}
+Plug 'markcornick/vim-bats'  ", {'for': ['bats', 'sh', 'bash', 'shell', 'zsh']}
 
 " Markdown
-Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
+Plug 'plasticboy/vim-markdown'  ", {'for': ['mkd', 'md', 'markdown']}
 "" Markdown with live preview
-"Plug 'junegunn/vim-xmark', { 'do': 'make' }
+"Plug 'junegunn/vim-xmark'  ", { 'do': 'make' }
 
 "" YAML: is it better syntax? What is this?
-Plug 'ingydotnet/yaml-vim', {'for': 'yaml'}
+Plug 'ingydotnet/yaml-vim'  ", {'for': 'yaml'}
 
 " Salt
-Plug 'saltstack/salt-vim', { 'for': 'sls' }
+Plug 'saltstack/salt-vim'  ", { 'for': 'sls' }
 
 " TOML
 Plug 'cespare/vim-toml'
@@ -192,13 +190,29 @@ Plug 'vim-scripts/Txtfmt-The-Vim-Highlighter'
 Plug 'xolox/vim-notes'
 Plug 'jceb/vim-orgmode'
 ", {'branch': 'dev'}
-"Plug 'vimwiki/vimwiki' 
+"Plug 'vimwiki/vimwiki'
+
+""
+"" UI
+""
+
+" Airline + plugins + devicons
+Plug 'bling/vim-airline'
+Plug 'edkolev/promptline.vim'
+Plug 'ryanoasis/vim-devicons'
+
+" Approximately converts gui only colorschemes to console
+"Plug 'godlygeek/csapprox'
+
+"" Convert CUI to GUI (may be useful in neovim since it needs gui_running to
+" NOT be checked yet still supply guifg/guibg etc
+Plug 'jlund3/colorschemer'
 
 ""
 "" Colors
 ""
 
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
 Plug 'vim-scripts/tropikos'
 Plug 'w0ng/vim-hybrid'
 Plug 'vim-scripts/badwolf'
@@ -214,5 +228,8 @@ Plug 'stephanedemotte/beekai'
 Plug 'marcopaganini/mojave-vim-theme'
 Plug 'trevorrjohn/vim-obsidian'
 Plug 'mhartington/oceanic-next'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+
+"" Dein
+"call dein#add('Shougo/dein.vim', {'rtp': ''})
 

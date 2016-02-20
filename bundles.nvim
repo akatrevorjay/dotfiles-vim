@@ -1,10 +1,2 @@
 
-Plug 'Shougo/deoplete.nvim'
-\ | Plug 'zchee/deoplete-go'
-\ | Plug 'zchee/deoplete-jedi'
-", {'for': 'go'}
-", {'for': 'python'}
-
-Plug 'bfredl/nvim-ipy'
-
 " vim: set ts=2 sw=2 tw=78 et ft=vim :

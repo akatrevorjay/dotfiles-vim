@@ -1,0 +1,17 @@
+
+Plug 'Shougo/deoplete.nvim'
+
+", {'for': 'go'}
+Plug 'zchee/deoplete-go'
+", {'for': 'python'}
+Plug 'zchee/deoplete-jedi'
+
+Plug 'Shougo/neoinclude.vim'
+
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
+
+"Plug 'bfredl/nvim-ipy'
+"Plug 'tek/proteome.nvim'
+
+Plug 'Shougo/context_filetype.vim'

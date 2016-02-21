@@ -276,6 +276,12 @@ set winheight=30
 " Setting this causes problems with Unite-outline. Don't really need it
 " set winminheight=5
 
+" Show info in window title
+set title
+
+" Set the text of the icon for this window
+set icon
+
 "" Make regex a little easier to type
 "set magic
 
@@ -283,7 +289,39 @@ set winheight=30
 " set timeout timeoutlen=1000 ttimeoutlen=1
 "set timeout timeoutlen=200 ttimeoutlen=1
 
-"set linebreak
+" wrap long lines at a character in 'breakat'
+set linebreak
+
+" preserve indent to wrapped text
+set breakindent
+
+" When completing tags in Insert mode show more info
+set showfulltag
+
+" Highlight spelling mistakes
+"set spell
+set spelllang=en_us
+
+" file that "zg" adds good words to
+"set spellfile=
+
+" Start a dialog when a command fails
+set confirm
+
+" Error bells
+set errorbells
+
+set matchpairs=(:),{:},[:],<:>,*:*,\":\",\':\',\|:\|,\^:\$
+set nrformats=bin,octal,hex
+
+"set selection=inclusive
+"set selectmode=mouse
+
+set textwidth=120
+"set wrapmargin=2
+
+"set formatoptions=jcroql
+"set formatoptions=tcroqwan2jl
 
 " Writes to the unnamed register also writes to the * and + registers. This
 " makes it easy to interact with the system clipboard
@@ -372,8 +410,27 @@ set autoindent
 "endif
 " Clever autoindenting (Means?)
 set smartindent
-" Dont copy indent from current line when starting a new line
-set cindent
+
+" copy whitespace for indenting from previous line
+set copyindent
+
+" Last line should be EoL
+set endofline
+
+"" Fixes missing EoL at end of file (default_
+"set fixeol
+
+set fileignorecase
+set wildignorecase
+
+" indenting for C code
+"set cindent
+
+" Store undo
+set undofile
+
+" Enable reading .vimrc/.exrc/.gvimrc in the current dir
+"set exrc
 
 " Don't fuck with existing spacing unless we have to.
 set preserveindent
@@ -558,7 +615,7 @@ map <C-Left> [b
 map <C-Right> ]b
 
 " Stupid osx
-"nmap <bs> <c-h>
+nmap <bs> <c-h>
 
 "" Use Q for formatting the current paragraph (or selection) (seems broken)
 "vmap <Leader>q gq
@@ -629,7 +686,10 @@ map ZZ :suspend<cr>
 "map <a-q> :q<cr>
 "map <c-q> :q<cr>
 "map QQ :q!<cr>
+map <c-q> :bd<cr>
+"map <c-Q> :bd!<cr>
 map W :wq<cr>
+map ZQ :q!<cr>
 
 "" Quickly exit insert mode
 ""imap jj <Esc>

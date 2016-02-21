@@ -1,7 +1,7 @@
 
-runtime! bundles_pre.vim
+runtime! bundles-pre.vim
 if has('nvim')
-  runtime! bundles_pre.nvim
+  runtime! bundles-pre.nvim
 endif
 
 ""
@@ -12,7 +12,7 @@ endif
 Plug 'davidhalter/jedi-vim'
 
 " Deoplete
-" (moved to bundles_pre.nvim)
+" (moved to bundles-pre.nvim)
 
 " YCM
 "Plug 'Valloric/YouCompleteMe'
@@ -254,30 +254,4 @@ Plug 'stephanedemotte/beekai'
 Plug 'marcopaganini/mojave-vim-theme'
 Plug 'trevorrjohn/vim-obsidian'
 Plug 'mhartington/oceanic-next'
-
-"""
-""" Local
-"""
-
-"runtime! bundles-local.vim
-"if has('nvim')
-"  runtime! bundles-local.nvim
-"endif
-
-""
-"" These are just for my shell, not really vim related. I just utilize vim-plug
-""  to keep them up to date, haha.
-""
-Plug 'zsh-users/zsh-completions', {
-      \   'dir': expand('~/.shell/repos/zsh-completions'),
-      \   'rtp': '',
-      \ }
-Plug 'zsh-users/zsh-syntax-highlighting', {
-      \   'dir': expand('~/.shell/repos/zsh-syntax-highlighting'),
-      \   'rtp': '',
-      \ }
-Plug 'tarruda/zsh-autosuggestions', {
-      \   'dir': expand('~/.shell/repos/zsh-autosuggestions'),
-      \   'rtp': '',
-      \ }
 

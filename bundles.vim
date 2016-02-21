@@ -9,14 +9,18 @@ endif
 ""
 
 " Python: Jedi
-", {'for': ['python', 'python3']}
 Plug 'davidhalter/jedi-vim'
 
-" Deoplete (now in bundles_pre.nvim)"
+" Deoplete
+" (moved to bundles_pre.nvim)
 
 " YCM
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'rdnetto/YCM-Generator'
+
+" Example: Code to execute when the plugin is loaded on demand
+"Plug 'Valloric/YouCompleteMe'  ", { 'for': 'cpp' }
+"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 
 ""
 "" Tools that are also common libs used by other plugins
@@ -48,16 +52,17 @@ Plug 'fisadev/vim-ctrlp-cmdpalette'
 ", { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree'
 
+" Great bindings for switching buffers and more
 Plug 'tpope/vim-unimpaired'
-"Plug 'mattn/webapi-vim'
-"Plug 'Shougo/unite.vim'
-
-"" vimscript for gist
-"Plug 'mattn/gist-vim'
 
 "" Syntastic: automagic syntax checks
 Plug 'scrooloose/syntastic'
 Plug 'myint/syntastic-extras'
+
+"Plug 'thinca/vim-prettyprint'
+
+Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}
+"autocmd BufNewFile,BufRead *.md setf markdown
 
 ""
 "" Tools
@@ -88,7 +93,10 @@ Plug 'farseer90718/vim-taskwarrior'  ", {'on': ['TW', 'TWAdd']}
 Plug 'sjl/gundo.vim'  ", {'on': 'Gundo' }
 
 "" Snippets:
-Plug 'SirVer/ultisnips'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'StephenPCG/vim-snippets-salt'
 
@@ -101,6 +109,7 @@ Plug 'junegunn/fzf', {
       \   'on': 'FZF',
       \ }
 
+
 ""
 "" Tools: Vetting
 ""
@@ -111,9 +120,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 "Plug 'junegunn/vim-fnr'
+
+" Make f usable and more powerful
+", {'on': '<Plug>'}
 Plug 'rhysd/clever-f.vim'
-"" Reset map to: <Plug>(clever-f-reset)
-"noremap! <c-l> <Plug>(clever-f-reset)
 
 "" RainbowParantheses
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -125,18 +135,20 @@ augroup END
 
 Plug 'vim-scripts/restore_view.vim'
 
-"Plug 'jiangmiao/auto-pairs'
 Plug 'Shougo/neopairs.vim'
 Plug 'Shougo/echodoc.vim'
 
-Plug 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+"Plug 'Shougo/vimproc', {
+"      \ 'build' : {
+"      \     'windows' : 'make -f make_mingw32.mak',
+"      \     'cygwin' : 'make -f make_cygwin.mak',
+"      \     'mac' : 'make -f make_mac.mak',
+"      \     'unix' : 'make -f make_unix.mak',
+"      \    },
+"      \ }
+
+" Dynamic SQL completion via opening a db connection
+Plug 'vim-scripts/dbext.vim'
 
 ""
 "" Language: Python
@@ -149,18 +161,29 @@ Plug 'alfredodeza/pytest.vim'  ", {'on': 'Pytest'}
 "" Syntax
 ""
 
+" Allows for python rst docstring support
+Plug 'Rykka/riv.vim'
+
 " Better json
 Plug 'elzr/vim-json'
-" AWS (cloudformation)
+
+" AWS CloudFormation
 Plug 'm-kat/aws-vim'
 
 " Go
 Plug 'fatih/vim-go'  ", {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
 
+" Clang
+" Supports deoplete source
+Plug 'Rip-Rip/clang_complete'
+"Plug 'osyo-manga/vim-marching'
+
+"" Ruby
+"Plug 'osyo-manga/vim-monster'
+
 " Javascript
 "Plug 'moll/vim-node'  ", {'for': 'javascript'}
-"call dein#add('ternjs/tern_for_vim', {'for':
-"'javascript'})
+"Plug 'ternjs/tern_for_vim'  ", {'for': 'javascript'})
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats'  ", {'for': ['bats', 'sh', 'bash', 'shell', 'zsh']}
@@ -176,6 +199,9 @@ Plug 'ingydotnet/yaml-vim'  ", {'for': 'yaml'}
 " Salt
 Plug 'saltstack/salt-vim'  ", { 'for': 'sls' }
 
+" Jinja2
+Plug 'Glench/Vim-Jinja2-Syntax'
+
 " TOML
 Plug 'cespare/vim-toml'
 
@@ -188,7 +214,7 @@ Plug 'vim-scripts/Txtfmt-The-Vim-Highlighter'
 
 " Notes
 Plug 'xolox/vim-notes'
-Plug 'jceb/vim-orgmode'
+"Plug 'jceb/vim-orgmode'
 ", {'branch': 'dev'}
 "Plug 'vimwiki/vimwiki'
 
@@ -228,8 +254,30 @@ Plug 'stephanedemotte/beekai'
 Plug 'marcopaganini/mojave-vim-theme'
 Plug 'trevorrjohn/vim-obsidian'
 Plug 'mhartington/oceanic-next'
-"Plug 'morhetz/gruvbox'
 
-"" Dein
-"call dein#add('Shougo/dein.vim', {'rtp': ''})
+"""
+""" Local
+"""
+
+"runtime! bundles-local.vim
+"if has('nvim')
+"  runtime! bundles-local.nvim
+"endif
+
+""
+"" These are just for my shell, not really vim related. I just utilize vim-plug
+""  to keep them up to date, haha.
+""
+Plug 'zsh-users/zsh-completions', {
+      \   'dir': expand('~/.shell/repos/zsh-completions'),
+      \   'rtp': '',
+      \ }
+Plug 'zsh-users/zsh-syntax-highlighting', {
+      \   'dir': expand('~/.shell/repos/zsh-syntax-highlighting'),
+      \   'rtp': '',
+      \ }
+Plug 'tarruda/zsh-autosuggestions', {
+      \   'dir': expand('~/.shell/repos/zsh-autosuggestions'),
+      \   'rtp': '',
+      \ }
 

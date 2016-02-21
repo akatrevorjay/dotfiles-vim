@@ -13,14 +13,16 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'tomtom/tcomment_vim'
 Plug 'kshenoy/vim-signature'
 
-Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}}
+Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}
 "autocmd BufNewFile,BufRead *.md setf markdown
+
+"Plug 'jiangmiao/auto-pairs'
 
 "" Odd fucking plugin
 Plug 'vim-ctrlspace/vim-ctrlspace'
 
 "" Tmux support with copy/paste with tmux buffers
-Plug 'tpope/vim-tbone.git'
+Plug 'tpope/vim-tbone'
 
 " misc
 Plug 'rstacruz/sparkup', {'rtp' : 'vim'}
@@ -73,8 +75,9 @@ Plug 'groenewege/vim-less', {'for': 'less'}
 "autocmd BufNewFile,BufRead *.less setf less
 
 "" vimscript for gist
-Plug 'mattn/webapi-vim'
-      \|Plug 'mattn/gist-vim', {'on': 'Gist'}
+"Plug 'mattn/webapi-vim'
+"Plug 'Shougo/unite.vim'
+Plug 'mattn/gist-vim', {'on': 'Gist'}
 
 "" Syntax
 Plug 'veselosky/vim-rst'

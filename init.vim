@@ -1,5 +1,4 @@
-" Debian defaults {{{
-
+" Debian: defaults {{{
 " All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually just
 " /usr/share/vim/vimcurrent/debian.vim) and sourced by the call to :runtime
 " you can find below.  If you wish to change any of those settings, you should
@@ -11,12 +10,9 @@
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
-
-syntax on                   " syntax highlighing
-filetype on                 " try to detect filetypes
 " }}}
 
-" Init {{{
+" Init: {{{
 "" Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
 
@@ -29,11 +25,9 @@ if has('vim_starting')
   if has('nvim')
     runtime! starting.nvim
   endif
-
-  set runtimepath^=~/.vim/bundles/repos/github.com/Shougo/dein.vim
 endif
 
-" Bundles {{{
+" Plugins: {{{
 call plug#begin('~/.vim/plugged')
 
 " Source bundles.vim
@@ -43,16 +37,16 @@ if has('nvim')
 endif
 
 " Add plugins to &runtimepath
-" Add plugins to &runtimepath
 call plug#end()
-
 " }}}
 
+syntax on                   " syntax highlighing
+filetype on                 " try to detect filetypes
 filetype plugin indent on   " enable loading indent file for filetype
 
 " }}}
 
-" Gautocmd fucs {{{
+" Gautocmd: fucs {{{
 " syntax highlight's is ~/.nvim/after/syntax/vim.vim
 augroup GlobalAutoCmd
   autocmd!
@@ -158,26 +152,40 @@ function! BinaryMode() abort
 endfunction
 " }}}
 
-" Basic setup (misc/search/highlight/nu/gui/invisibles) {{{
-set showcmd            " Show (partial) command in status line.
-set showmatch        " Show matching brackets.
-set ignorecase        " Do case insensitive matching
-set smartcase        " Do smart case matching
-set incsearch        " Incremental search
-set autowrite        " Automatically save before commands like :next and :make
-set hidden          " Hide buffers when they are abandoned
-"set mouse=a        " Enable mouse usage (all modes) in terminals
+" Basic: setup (misc/search/highlight/nu/gui/invisibles) {{{
+set showcmd             " Show (partial) command in status line.
+set showmatch           " Show matching brackets.
+set ignorecase          " Do case insensitive matching
+"set smartcase          " Do smart case matching (If uppercase letter, then sensitive)
+set incsearch           " Incremental search
+set hidden              " Hide buffers when they are abandoned
 
-" Dont copy indent from current line when starting a new line
-"set cindent
+set mouse=a             " Enable mouse usage (all modes) in terminals
+"set mouse=nvch         " all modes but insert
+"set mousemodel="extend" " popup popup_setpos
+
+" Update buffer when a file is changed from the outside
+"set autoread
+
+" Write buffer when leaving
+" Automatically save before commands like :next and :make
+"set autowrite
+
+" Let OS know when to flush disk
+set nofsync
+
+" no backup/swap
+"set nowritebackup
+"set nobackup
+"set noswapfile
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 " Ignore case in file searches
-set ic
+set ignorecase
 " .. Except when we use any upper case in the pattern
-set scs
+set smartcase
 
 " Highlight all results of search
 set hlsearch
@@ -189,7 +197,8 @@ set hlsearch
 "nmap r :redraw!<cr>
 
 " Highlight the line the cursor is on (local to window)
-set cul
+set cursorline
+"set cursorcolumn
 
 " Other highlight options
 "set highlight=8r,db,es,hs,mb,Mr,nu,rs,sr,tb,vr,ws
@@ -210,7 +219,10 @@ set cul
 
 " Numbers
 set number
+" Min width of the number column to the left
 set numberwidth=1
+" Relative line numbers
+set relativenumber
 
 " Invisibles
 set list
@@ -218,9 +230,10 @@ set list
 " When using set list:
 
 if $LANG =~ ".*\.UTF-8$" || $LANG =~ ".*utf8$" || $LANG =~ ".*utf-8$"
-  "set listchars+=tab:»·,trail:·,precedes:…,extends:…
-  "set lcs=tab:▒░
-  set listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:␣
+  "set listchars=precedes:…,extends:…
+  set listchars=extends:❯,precedes:❮
+  set listchars+=nbsp:␣
+  set listchars+=tab:»\ ,trail:·
   set showbreak=↪
 else
   set lcs=tab:>-,eol:$,nbsp:%,trail:X,extends:>,precedes:<
@@ -229,33 +242,15 @@ else
   "set listchars=tab:..
 endif
 
-" Color column @ cols=80
+" Color column
 set cc=120
 "hi ColorColumn ctermbg=lightblue guibg=lightblue
 
-" Highlight columns over 80
-"au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+" Highlight columns over 120
+"au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
 
-set pumheight=0 " 0 is Enable maximum displayed completion words in omnifunc list
-set cmdheight=2
-
-set noautoindent
-"set nobackup
-set noerrorbells
-set nofoldenable
-set nolazyredraw
-"set noswapfile
-set notitle
-set novisualbell
-set nowrapscan
-"set nowritebackup
-
-" libvterm mode config
-" Disable all listchars
-if mode() == "t"
-  setlocal listchars=
-  setlocal nonumber
-endif
+"set pumheight=0 " 0 is Enable maximum displayed completion words in omnifunc list
+"set cmdheight=2
 
 " Always splits to the right and below
 set splitright
@@ -272,13 +267,6 @@ set scrolloff=10
 
 " How many lines to scroll at a time, make scrolling appears faster
 set scrolljump=10
-
-" Min width of the number column to the left
-"set numberwidth=1
-
-" Open all folds initially
-set foldmethod=indent
-set foldlevelstart=99
 
 " No need to show mode
 set noshowmode
@@ -305,18 +293,18 @@ else
   set clipboard=unnamed
 endif
 
-" Spelling highlights. Use underline in term to prevent cursorline highlights
-" from interfering
-if !has("gui_running")
-  hi clear SpellBad
-  hi SpellBad cterm=underline ctermfg=red
-  hi clear SpellCap
-  hi SpellCap cterm=underline ctermfg=blue
-  hi clear SpellLocal
-  hi SpellLocal cterm=underline ctermfg=blue
-  hi clear SpellRare
-  hi SpellRare cterm=underline ctermfg=blue
-endif
+"" Spelling highlights. Use underline in term to prevent cursorline highlights
+"" from interfering
+"if !has("gui_running")
+"  hi clear SpellBad
+"  hi SpellBad cterm=underline ctermfg=red
+"  hi clear SpellCap
+"  hi SpellCap cterm=underline ctermfg=blue
+"  hi clear SpellLocal
+"  hi SpellLocal cterm=underline ctermfg=blue
+"  hi clear SpellRare
+"  hi SpellRare cterm=underline ctermfg=blue
+"endif
 
 " Use a low updatetime. This is used by CursorHold
 "set updatetime=1000
@@ -334,28 +322,26 @@ endif
 
 " }}}
 
-" Vim variance (console/gvim/macvim) setup {{{1
-" GVim {{{
+" Variance: (console/gvim/macvim) setup {{{
 set guioptions=acMh
 set mousefocus " focus follows mouse in gvim
 if has("gui_running")
+  " ColorScheme: These look much nicer in gui mode
   "colorscheme railscasts-trevorj
   "colorscheme neverland-darker
 
-  " Dunno what this does? Integration into a specific OS buffer?
-  set clipboard=unnamedplus
-
+  " Font: GUI font selection is different per OS
   if has("gui_gtk2")
     set guifont=Menlo\ for\ Powerline\ 16
     set guifontwide=Menlo\ for\ Powerline\ 16
     "set guifont=Monaco\ for\ Powerline\ 16
     "set guifont=ProFontWindows\ 12
-    "elseif has("gui_photon")
-    "    set guifont=Menlo\ for\ Powerline:s12
-    "elseif has("gui_kde")
-    "    set guifont=Menlo\ for\ Powerline/12/-1/5/50/0/0/0/1/0
-    ""elseif has("x12")
-    ""    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+  elseif has("gui_photon")
+    set guifont=Menlo\ for\ Powerline:s12
+  elseif has("gui_kde")
+    set guifont=Menlo\ for\ Powerline/12/-1/5/50/0/0/0/1/0
+  elseif has("x12")  " Should this be x11?
+    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
   else
     "set guifont=Menlo\ for\ Powerline:h12
     set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14  " nerd font complete
@@ -363,61 +349,56 @@ if has("gui_running")
 endif
 " }}}
 
-" Console vim {{{
-"set mouse=nvch " all modes but insert
-set mouse=a
-"set mouse= " mouse urges hatred in me
-set mousemodel="extend" " popup popup_setpos
-" }}}
-" 1}}}
-
-" Spacing tabstops/indents {{{
-
-" Indent width
+" Spacing: tabstops/indents {{{
+" Number of spaces used for autoindent (local to buffer)
 set shiftwidth=2
 " Tab width
 set tabstop=2
 set softtabstop=2
 set showtabline=2
 
-" Number of spaces used for autoindent (local to buffer)
-"set sw=4
-" Clever autoindenting
-"set si
-" Indenting for C code
-"set cin
+" Indent/outdent to nearest tabstops
+"set shiftround
 
 " Spaces instead of tabs
 set expandtab
 
 " Always set auto indenting on
 set autoindent
-
-" Only set indent when no other was loaded.
-if !exists("b:did_indent")
-  set smartindent
-endif
-
-" Let OS know when to flush disk
-set nofsync
-
-" autoread when a file is changed from the outside
-"set autoread
-
-" write buffer when leaving
-"set autowrite
-
-" no backup/swap
-"set nowb
-"set nobackup
-"set noswapfile
+"" Only set indent when no other was loaded.
+"if !exists("b:did_indent")
+"  " Clever autoindenting (Means?)
+"  set smartindent
+"endif
+" Clever autoindenting (Means?)
+set smartindent
+" Dont copy indent from current line when starting a new line
+set cindent
 
 " Don't fuck with existing spacing unless we have to.
 set preserveindent
+" }}}
 
-" Relative line numbers
-set relativenumber
+" Folding: {{{
+set foldenable
+"set foldmethod=marker  " syntax indent
+"set foldmarker={{{,}}}
+"set foldcolumn=2
+"set foldnestmax=2
+set foldlevel=5
+set foldminlines=5
 
+" Initial: Number of levels to open initially
+set foldlevelstart=10
+" all
+"set foldlevelstart=99
+
+"" Use space to toggle folding
+" nnoremap <space> za
+" vnoremap <space> zf
+"" OR
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 " }}}
 
 " UI {{{1
@@ -431,7 +412,7 @@ endif
 
 set background=dark
 
-" Colorschemes {{{
+" Colorschemes: {{{
 "colorscheme elflord
 "let g:zenburn_unified_CursorColumn=1
 "colorscheme navajo-night
@@ -484,7 +465,7 @@ augroup END
 
 " }}}
 
-" Airline {{{
+" Airline: {{{
 
 if has('vim_starting')
   "" These are required by airline
@@ -518,25 +499,26 @@ let g:DevIconsEnableFolderExtensionPatternMatching = 1
 
 " 1}}}
 
-" Keys {{{
+" Keys: {{{
 
 " Quick vim commands
 nnoremap ; :
 
 " Quickly edit/reload the vimrc file
 augroup reload_vimrc
-  autocmd!
-  autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
+  " Clear existing group
+  au!
+  au bufwritepost $MYVIMRC nested source $MYVIMRC
 
   if exists("g:loaded_webdevicons")
-    call webdevicons#refresh()
+    au bufwritepost $MYVIMRC call webdevicons#refresh()
   endif
 
   if exists("g:loaded_airline")
-    exec 'AirlineRefresh'
+    au bufwritepost $MYVIMRC AirlineRefresh
   endif
 augroup END
-nmap <silent> <leader>rv :so $MYVIMRC<CR>
+nmap <silent> <leader>rv :so $MYVIMRC<CR>:call webdevicons#refresh()<CR>:AirlineRefresh<CR>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
 " Allow move around using ctrl+arrows
@@ -553,6 +535,9 @@ noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
 noremap <c-h> <c-w>h
 
+" Make cmdline editing better
+"cmap <tab> <c-n>
+
 " Fix arrows in screen
 "map ^[OC <Right>
 "map ^[OD <Left>
@@ -560,15 +545,21 @@ noremap <c-h> <c-w>h
 "map ^[[D <S-Left>
 
 " Move between buffers with super+left/right (broken)
-"map <D-Left> [b
-"map <D-Right> ]b
+map <D-Left> [b
+map <D-Right> ]b
 
 " Move between buffers with alt+left/right
 map <M-Left> [b
 map <M-Right> ]b
 
+" In iterm2 on osx, I usually map left opt to control, since opt is broken on
+" osx anyway...
+map <C-Left> [b
+map <C-Right> ]b
+
 " Stupid osx
-nmap <bs> <c-h>
+"nmap <bs> <c-h>
+
 "" Use Q for formatting the current paragraph (or selection) (seems broken)
 "vmap <Leader>q gq
 "nmap <Leader>q gqap
@@ -599,21 +590,55 @@ map <Leader>u :GundoToggle<cr>
 "nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
 "nmap <silent><Leader>te <Esc>:Pytest error<CR>
 
+" Don't use Ex mode, use Q for formatting
+"noremap Q gq
+
+"" Search current word, but not move next search word
+"nnoremap * *:call feedkeys("\<S-n>")<CR>
+
+" Cancel highlight search word
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR>
+
+" When type 'x' key(delete), do not add yank register
+nnoremap x "_x
+
+" Jump marked line
+nnoremap zj    zjzt
+nnoremap zk    2zkzjzt
+
+" http://ku.ido.nu/post/90355094974/how-to-grep-a-word-under-the-cursor-on-vim
+nnoremap <M-h> :<C-u>SmartHelp<Space><C-r><C-w><CR>
+nnoremap <A-h> :<C-u>SmartHelp<Space><C-r><C-w><CR>
+
+"" fast scroll
+"nnoremap <C-e> 2<C-e>
+"nnoremap <C-y> 2<C-y>
+
+" Move cursor to lines {upward|downward}, on the first non-blank character
+"nnoremap <C-j> <C-m>
+"nnoremap <C-k> -
+
+" Switch suspend! map
+map <leader>` :suspend<cr>
+map ZZ :suspend<cr>
+"nnoremap ZZ    ZQ
+
 " Quit
-map q :q<cr>
-"map <Leader>q q
-map <c-q> :q<cr>
-map Q :q!<cr>
+"map qq :q<cr>
+"map Q :q<cr>
+"map <a-q> :q<cr>
+"map <c-q> :q<cr>
+"map QQ :q!<cr>
 map W :wq<cr>
 
-" Quickly exit insert mode
-"imap jj <Esc>
-" Can be typed even faster than jj.
-imap jk <Esc>
-" Press i to enter insert mode, and ii to exit.
-imap ii <Esc>
-"" Pressing Ctrl-L leaves insert mode in evim, so why not in regular vim, too.
-"imap <C-L> <Esc>
+"" Quickly exit insert mode
+""imap jj <Esc>
+"" Can be typed even faster than jj.
+"imap jk <Esc>
+"" Press i to enter insert mode, and ii to exit.
+"imap ii <Esc>
+""" Pressing Ctrl-L leaves insert mode in evim, so why not in regular vim, too.
+""imap <C-L> <Esc>
 
 "" In Mac OS X, mapping <S-space> does not work, but the following
 "" is better (press the "apple" key and the space key).
@@ -629,18 +654,15 @@ nmap <S-Space> i
 "" Or just Space to enter insert mode.
 "nmap <Space> i
 
-"" Toggle line numbers and foldcol
-"nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
-
 " <Leader>c*: NERDCommenter mappings
 " <Leader>cd: Switch to the directory of the open buffer
 nnoremap <Leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Maximize current split
-"nnoremap <Leader>a <C-w>_<C-w><Bar>
+nnoremap <Leader>a <C-w>_<C-w><Bar>
 
-" <Leader>,: Switch to previous split
-nnoremap <Leader>, <C-w>p
+" Switch to previous split
+nnoremap <leader>, <C-w>p
 
 " Bash like keys for the command line. These resemble personal zsh mappings
 cnoremap <c-a> <home>
@@ -649,52 +671,28 @@ cnoremap <c-e> <end>
 " Edit macro
 "nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
+" Quick vimrc edits
 map <Leader>eb :edit ~/.vim/bundles.vim<cr>
+map <Leader>es :edit ~/.vim/startup.vim<cr>
 if has('nvim')
-  map <Leader>es :edit ~/.vim/startup.nvim<cr>
-else
-  map <Leader>es :edit ~/.vim/startup.vim<cr>
+  map <Leader>neb :edit ~/.vim/bundles.nvim<cr>
+  map <Leader>nes :edit ~/.vim/startup.nvim<cr>
 endif
 " }}}
 
-" Base {{{
-
-"" Multiple cursors
-" Default mapping
-"let g:multi_cursor_next_key='<C-n>'
-"let g:multi_cursor_prev_key='<C-p>'
-"let g:multi_cursor_skip_key='<C-x>'
-"let g:multi_cursor_quit_key='<Esc>'
-
-"" UltiSnips
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
-
-"" Oblique
-let g:oblique#incsearch_highlight_all=1
-"autocmd! User Oblique       normal! zz
-"autocmd! User ObliqueStar   normal! zz
-"autocmd! User ObliqueRepeat normal! zz
-
+" Base: {{{
 " }}}
 
-" Completion {{{
+" Completion: {{{
 
-" Wild completion options {{{
+" Wild: completion options {{{
 set wildchar=<Tab>
 set wildmenu
 "set wildmode=longest,list
 "set wildmode=longest:full,list:longest,list:full
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.swo,*.bak,*.pyo,*.pyc,*.svn,*/tmp/*,__pycache__,sdist,bdist,dist,build,*.egg-info
+set wildoptions=tagfile
 " }}}
 
 " Code complete
@@ -703,17 +701,18 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.swo,*.bak,*.pyo,*.pyc,*.svn,*/tmp/*
 "set complete=.,t
 set completeopt=menuone,longest,preview,noinsert,noselect
 
+" Python omni is handled by Jedi <3
+"Gautocmdft python setlocal omnifunc=pythoncomplete#Complete
+"Gautocmdft python setlocal completefunc=pythoncomplete#Complete
+Gautocmdft php setlocal omnifunc=phpcomplete#CompletePHP
+Gautocmdft css setlocal omnifunc=csscomplete#CompleteCSS
+Gautocmdft html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+Gautocmdft xml setlocal omnifunc=xmlcomplete#CompleteTags
+Gautocmdft javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+
+" TODO default to syntaxcomplete#Complete
 "set completefunc=syntaxcomplete#Complete
 "set omnifunc=syntaxcomplete#Complete
-
-" Python omni is handled by Jedi <3
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType python setlocal completefunc=pythoncomplete#Complete
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 "" Completion: Jedi {{{
 if ! has('nvim')  " Vim
@@ -767,17 +766,8 @@ else  " NeoVim
 endif
 " }}}
 
-" Deoplete {{{
+" Deoplete: {{{
 if has('nvim')
-  "let g:deoplete#sources = {}
-  ""let g:deoplete#sources._ = ['buffer', 'tag']
-  "let g:deoplete#sources._ = ['omni', 'member', 'buffer', 'tag']
-  ""let g:deoplete#sources.python = ['omni', 'member', 'buffer', 'tag']
-  ""let g:deoplete#sources.cpp = ['buffer', 'tag']
-
-  " Use smartcase.
-  let g:deoplete#enable_smart_case = 1
-
   "" From github: zchee/deoplete-go
   " neocomplete like
   " https://github.com/Shougo/deoplete.nvim/blob/master/doc/deoplete.txt
@@ -790,6 +780,28 @@ if has('nvim')
   "set completeopt+=noselect
 
   let g:deoplete#enable_at_startup = 1
+  "let g:deoplete#auto_completion_start_length = 1
+  "let g:deoplete#file#enable_buffer_path = 1
+  ""let g:deoplete#enable_refresh_always = 1
+
+  " Use smartcase.
+  let g:deoplete#enable_smart_case = 1
+
+  " Use head matcher instead of fuzzy matcher
+  "call deoplete#custom#set('_', 'matchers', ['matcher_head'])
+
+  " Integrate with neopairs
+  let g:deoplete#enable_auto_pairs = 'true'
+
+  "let g:deoplete#sources = {}
+  ""let g:deoplete#sources._ = ['buffer', 'tag']
+  "let g:deoplete#sources._ = ['omni', 'member', 'buffer', 'tag']
+  ""let g:deoplete#sources.python = ['omni', 'member', 'buffer', 'tag']
+  ""let g:deoplete#sources.cpp = ['buffer', 'tag']
+
+  "" Go for deoplete
+  let g:deoplete#sources#go = 'vim-go'
+  let g:deoplete#sources#python = 'jedi'
 
   "" <C-h>, <BS>: close popup and delete backword char.
   "inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
@@ -803,21 +815,23 @@ if has('nvim')
   "function! s:my_cr_function() abort
   "  return deoplete#mappings#close_popup() . "\<CR>"
   "endfunction
+endif
+" }}}
 
-  "let g:deoplete#auto_completion_start_length = 1
-  "let g:deoplete#file#enable_buffer_path = 1
-  ""let g:deoplete#enable_refresh_always = 1
-  let g:deoplete#enable_auto_pairs = 'true'
-  let g:neopairs#enable = 1
-
-  "" Go for deoplete
-  let g:deoplete#sources#go = 'vim-go'
+" Clang: {{{
+if has('nvim')
+  " Deoplete support
+  let g:clang_complete_auto = 0
+  let g:clang_auto_select = 0
+  let g:clang_omnicppcomplete_compliance = 0
+  let g:clang_make_default_keymappings = 0
+  "let g:clang_use_library = 1
 endif
 " }}}
 
 " }}}
 
-" Syntastic {{{
+" Syntastic: {{{
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -872,7 +886,7 @@ let g:syntastic_svn_checkers = ['language_check']
 let g:syntastic_yaml_checkers = ['pyyaml']
 
 "" Block ZZ if there are syntax errors:
-nnoremap ZZ :call syntastic_extras#quit_hook()<cr>
+"nnoremap ZZ :call syntastic_extras#quit_hook()<cr>
 " }}}
 
 " }}}
@@ -902,13 +916,13 @@ set viewoptions=cursor,folds,slash,unix
 " let g:skipview_files = ['*\.vim']
 " }}}
 
-" Jump to the last position when reopening a file {{{
+" Jump: to the last position when reopening a file {{{
 " https://github.com/neovim/neovim/blob/master/runtime/vimrc_example.vim
 " When editing a file, always jump to the last known cursor position.  Don't
 " do it when the position is invalid or when inside an event handler
 " Also don't do it when the mark is in the first line, that is the default
 " Posission when opening a file
-autocmd BufReadPost *
+Gautocmd BufReadPost *
       \ if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' |
       \   execute "normal! g`\"" |
       \   execute "call feedkeys('zz')" |
@@ -916,7 +930,7 @@ autocmd BufReadPost *
 
 " }}}
 
-" Rope {{{
+" Rope: {{{
 "map <leader>j :RopeGotoDefinition<CR>
 "map <leader>r :RopeRename<CR>
 
@@ -962,8 +976,8 @@ let g:startify_change_to_vcs_root = 1
 "        \ 'g:random_plugin_use_feature'
 "        \ ]
 
-let g:startify_custom_header =
-      \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+"let g:startify_custom_header =
+"      \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
 let g:startify_relative_path = 1
 
@@ -1018,6 +1032,19 @@ let g:startify_bookmarks = [
 "hi StartifySpecial ctermfg=240
 " }}}
 
+"" Multiple cursors
+" Default mapping
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+
+"" Oblique
+let g:oblique#incsearch_highlight_all=1
+"Gautocmd User Oblique       normal! zz
+"Gautocmd User ObliqueStar   normal! zz
+"Gautocmd User ObliqueRepeat normal! zz
+
 " TaskWarrior: {{{
 " default task report type
 let g:task_report_name     = 'next'
@@ -1050,7 +1077,7 @@ let g:task_info_vsplit     = 1  " 0
 "let g:task_left_arrow      = '>> '
 " }}}
 
-" CtrlP {{{
+" CtrlP: {{{
 
 map <leader>1 :CtrlPBuffer<cr>
 map <leader>2 :CtrlPBufTag<cr>
@@ -1061,7 +1088,6 @@ map <leader>0 :CtrlPCmdPalette<cr>
 "map <leader>: :CtrlPQuickfix
 map <leader>b :CtrlPBuffer<cr>
 map <leader>mru :CtrlPMRUFiles<cr>
-"map <leader>` :suspend<cr>
 
 "map <leader>B :CtrlPBuffer<cr>
 "map <leader>u :CtrlPUndo<cr>
@@ -1091,7 +1117,7 @@ let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 "   \ }
 " }}}
 
-" Tagbar {{{
+" Tagbar: {{{
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_width=30
 "let g:tagbar_left = 1
@@ -1106,60 +1132,69 @@ let g:tagbar_show_linenumbers = 1
 let g:tagbar_singleclick = 1
 " }}}
 
-" AWS filetypes (aws.json)
+" AWS: filetypes (aws.json) {{{
 let g:AWSVimValidate = 1
+" }}}
 
+" JSON: {{{
 augroup json_autocmd
   autocmd!
   autocmd FileType json set autoindent
   autocmd FileType json set formatoptions=tcq2l
-  autocmd FileType json set textwidth=78 shiftwidth=2
+  "autocmd FileType json set textwidth=78 shiftwidth=2
+  autocmd FileType json set shiftwidth=2
   autocmd FileType json set softtabstop=2 tabstop=8
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
 augroup END
+" }}}
 
-" TaskList
+" TaskList: {{{
 let g:tlTokenList = ['FUCK', 'FIX', 'FIXME', 'TODO', 'XXX', 'WTF', 'OMG', 'OMFG', 'IMPORTANT', 'HACK']
+" }}}
 
-" vim-notes
-let g:notes_directories = ["~/Notes", "~/docs"]
+" Notes: {{{
+let g:notes_directories = ["~/Notes"]
+" }}}
 
-" NERDCommenter
+" NERDCommenter: {{{
 let g:NERDCustomDelimiters = {
       \ 'yaml': { 'left': '#'},
       \}
+" }}}
 
-" Ignore default plugins {{{
+" Ignore: default plugins {{{
 " http://lambdalisue.hatenablog.com/entry/2015/12/25/000046
-let g:loaded_2html_plugin      = 1
-let g:loaded_getscript         = 1
-let g:loaded_getscriptPlugin   = 1
-let g:loaded_gzip              = 1
-let g:loaded_netrw             = 1
-let g:loaded_netrwFileHandlers = 1
-let g:loaded_netrwPlugin       = 1
-let g:loaded_netrwSettings     = 1
-let g:loaded_rrhelper          = 1
-let g:loaded_tar               = 1
-let g:loaded_tarPlugin         = 1
-let g:loaded_vimball           = 1
-let g:loaded_vimballPlugin     = 1
-let g:loaded_zip               = 1
-let g:loaded_zipPlugin         = 1
+"let g:loaded_2html_plugin      = 1
+"let g:loaded_getscript         = 1
+"let g:loaded_getscriptPlugin   = 1
+"let g:loaded_gzip              = 1
+"let g:loaded_netrw             = 1
+"let g:loaded_netrwFileHandlers = 1
+"let g:loaded_netrwPlugin       = 1
+"let g:loaded_netrwSettings     = 1
+"let g:loaded_rrhelper          = 1
+"let g:loaded_tar               = 1
+"let g:loaded_tarPlugin         = 1
+"let g:loaded_vimball           = 1
+"let g:loaded_vimballPlugin     = 1
+"let g:loaded_zip               = 1
+"let g:loaded_zipPlugin         = 1
 " }}}
 
 " Allow terminal buffer size to be very large
 let g:terminal_scrollback_buffer_size = 100000
 
-" Konfekt/FastFold
+" Konfekt/FastFold {{{
 let g:tex_fold_enabled=1
-let g:vimsyn_folding='af'
+let g:vimsyn_folding='afP'
 let g:xml_syntax_folding = 1
 let g:php_folding = 1
 let g:perl_fold = 1
+Gautocmdft perl,php,xml,tex,python set foldmethod=syntax
+" }}}
 
-let g:cpsm_highlight_mode = 'detailed' " none, basic, detailed
+"let g:cpsm_highlight_mode = 'detailed' " none, basic, detailed
 
 " clang-format
 " Ref: http://algo13.net/clang/clang-format-style-oputions.html
@@ -1168,24 +1203,72 @@ let g:clang_format#code_style = 'google'
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
 
-" gitgutter
+" C: {{{
+let c_gnu = 1
+let c_comment_strings = 1
+let c_space_errors = 1
+"let c_no_trail_space_error = 1
+"let c_no_tab_space_error = 1
+"let c_no_bracket_error = 1
+"let c_no_curly_error = 1
+let c_curly_error = 1
+"let c_no_ansi = 1
+"let c_ansi_typedefs = 1
+"let c_ansi_constants = 1
+"let c_no_utf = 1
+"let c_syntax_for_h = 1
+"let c_no_if0 = 1
+"let c_no_cformat = 1
+"let c_no_c99 = 1
+"let c_no_c11 = 1
+
+" Work around highlighting errors when scrolling backwards
+"let c_minlines = 100
+" }}}
+
+" Haskell: {{{
+let hs_highlight_delimiters = 1
+let hs_highlight_boolean = 1
+let hs_highlight_types = 1
+let hs_highlight_more_types = 1
+" }}}
+
+" gitgutter: {{{
 let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
 let g:gitgutter_sign_column_always = 1
 let g:gitgutter_max_signs = 1000
 let g:gitgutter_map_keys = 0
+" }}}
 
-" Zsh:
+" Python: {{{
+"let python_no_number_highlight = 1
+"let python_no_builtin_highlight = 1
+"let python_no_exception_highlight = 1
+"let python_no_doctest_highlight = 1
+"let python_space_error_highlight = 1
+let python_highlight_all = 1
+" }}}
+
+" SQL:
+let g:sql_type_default = 'postgresql'
+
+" Shell:
 Gautocmdft zsh,sh setlocal tabstop=4 softtabstop=4 shiftwidth=4
+let g:sh_fold_enabled= 4   "  (enable if/do/for folding)
 
 " Bash:
 " Enable bash syntax on /bin/sh shevang
 " http://tyru.hatenablog.com/entry/20101007/
 let g:is_bash = 1
 
+" This will add highlighting for the commands that BASH (version 2.05a and later, and part earlier) adds.
+let readline_has_bash = 1
+
 " Dockerfile:
 Gautocmd BufRead,BufNewFile *.dockerfile,Dockerfile.* set filetype=dockerfile
 "Gautocmdft Dockerfile setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4 nocindent
+Gautocmdft Dockerfile setlocal tabstop=4 softtabstop=4 shiftwidth=4 nocindent
 
 " Markdown:
 "Gautocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -1197,8 +1280,11 @@ Gautocmdft gitconfig setlocal softtabstop=4 shiftwidth=4 noexpandtab
 " Vagrant:
 Gautocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
-" Vim: develop nvimrc helper
-Gautocmd BufRead,BufNewFile $MYVIMRC,*.vim,*.nvim setf vim
+" Vim:
+Gautocmdft vim setlocal foldmethod=marker
+
+" develop nvimrc helper
+Gautocmd BufRead,BufNewFile *.vim,*.nvim set filetype=vim
 "Gautocmd BufWritePost $MYVIMRC,*.vim,*.nvim nested silent! source $MYVIMRC
 ""Gautocmd BufRead,BufNewFile $MYVIMRC, init.vim setlocal tags=$MYVIMRC . '/tags'
 "Gautocmdft vim setlocal tags=$XDG_CONFIG_HOME/nvim/tags
@@ -1210,41 +1296,22 @@ Gautocmd BufNewFile,BufRead /System/Library/Frameworks/* setlocal readonly nomod
 Gautocmd BufNewFile,BufRead /Applications/Xcode.app/Contents/* setlocal readonly nomodified
 Gautocmd BufNewFile,BufRead /Applications/Xcode-beta.app/Contents/* setlocal readonly nomodified
 
-" Keys {{{
+" UltiSnips: {{{
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" Don't use Ex mode, use Q for formatting
-nnoremap Q gq
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
 
-" Search current word, but not move next search word
-nnoremap * *:call feedkeys("\<S-n>")<CR>
-
-" Cancel highlight search word
-"nnoremap <silent> <C-q>  :<C-u>nohlsearch<CR>
-" When type 'x' key(delete), do not add yank register
-nnoremap x "_x
-" Jump marked line
-nnoremap zj    zjzt
-nnoremap zk    2zkzjzt
-" Switch suspend! map
-"nnoremap ZZ    ZQ
-" Disable suspend
-"nnoremap ZQ    <Nop>
-" http://ku.ido.nu/post/90355094974/how-to-grep-a-word-under-the-cursor-on-vim
-nnoremap <M-h> :<C-u>SmartHelp<Space><C-r><C-w><CR>
-nnoremap <A-h> :<C-u>SmartHelp<Space><C-r><C-w><CR>
-" fast scroll
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
-" Move cursor to lines {upward|downward}, on the first non-blank character
-"nnoremap <C-j> <C-m>
-"nnoremap <C-k> -
-
-"nnoremap <C-z> <Nop>
-
-"" Python
-
+" Python docstring style
 "let g:ultisnips_python_style = 'sphinx'
 let g:ultisnips_python_style = 'google'
+" }}}
 
 "noremap <F3> :Autoformat<CR>
 ""au BufWrite * :Autoformat
@@ -1260,30 +1327,84 @@ let g:ctrlp_extensions = ['Z', 'F']
 " Always use a new split when opening a file from quickfix
 set switchbuf=split
 
-set shortmess+=Ic
+" Number of insert completion lines to show
 set pumheight=15
-set cmdheight=2
+
+"set shortmess+=Ic
+"set cmdheight=2
 "set noshowmode
 let g:echodoc_enable_at_startup = 1
 
-let g:proteome_plugins = [
-      \ 'proteome.plugins.ctags',
-      \ 'proteome.plugins.history',
-      \ 'proteome.plugins.config',
-      \ ]
+"" Reset search selection map to: <Plug>(clever-f-reset)
+"nnoremap <expr><C-l> clever_f#reset() | nohlsearch
+
+"let rst_syntax_code_list = ['vim', 'python']
+let g:riv_python_rst_hl = 1
+
+" Proteome: {{{
+"let g:proteome_plugins = [
+"      \ 'proteome.plugins.ctags',
+"      \ 'proteome.plugins.history',
+"      \ 'proteome.plugins.config',
+"      \ ]
 
 "let g:proteome_config_path = '~/.config/projects'
 
-let g:proteome_base_dirs = [
-      \ expand('~/vk/git'),
-      \ expand('~/code'),
-      \ ]
+"let g:proteome_base_dirs = [
+"      \ expand('~/vk/git'),
+"      \ expand('~/code'),
+"      \ ]
 
-let g:proteome_type_base_dirs = {
-      \ '~/.vim/bundle': ['vim', 'nvim'],
-      \ }
+"let g:proteome_type_base_dirs = {
+"      \ '~/.vim': ['vim'],
+"      \ }
 
 "ProAdd py3/proxy { "root": expand('~/vk/git/proxy'), "types": ["python"] }
+" }}}
+
+" Shada: {{{
+"set shada=!,'100,<50,s10,h
+set shada=!,'1000,<1000,s100
+"set shada+=%
+"rshada! ~/.vim/shada
+" }}}
+
+" NeoSnippet: {{{
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+let g:neosnippet#enable_conceal_markers = 1
+let g:neosnippet#expand_word_boundary = 1
+let g:neosnippet#enable_completed_snippet = 1
+let g:neosnippet#enable_snipmate_compatibility = 1
+" }}}
+
+" NeoPairs
+let g:neopairs#enable = 1
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis
+        \ | wincmd p | diffthis
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim: set ft=vim fdm=marker ff=unix fileencoding=utf-8:
+" vim: set ft=vim ff=unix fileencoding=utf-8 fdm=marker:
+

@@ -15,8 +15,8 @@ let g:python3_host_prog  = expand('~/.pyenv/versions/neovim/bin/python3')
 let g:python_host_prog   = expand('~/.pyenv/versions/neovim2/bin/python2')
 
 "" Skip the check of neovim module
-"let g:python3_host_skip_check = 1
-"let g:python_host_skip_check = 1
+let g:python3_host_skip_check = 1
+let g:python_host_skip_check = 1
 
 " vim-pyenv
 

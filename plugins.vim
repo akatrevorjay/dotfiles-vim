@@ -1,30 +1,60 @@
 
-runtime! bundles-pre.vim
-if has('nvim')
-  runtime! bundles-pre.nvim
-endif
+" s:git@github.com:\(.*\).git:'\1':g
+
+" pyenv
+runtime rc/pyenv.plugin.vim
 
 ""
 "" Completions
 ""
 
-" Python: Jedi
-Plug 'davidhalter/jedi-vim'
+if has('nvim')
+  " Python: Jedi
+  Plug 'davidhalter/jedi-vim'
 
-" Deoplete
-" (moved to bundles-pre.nvim)
+  " Deoplete
+  runtime rc/deoplete.plugin.nvim
+else
+  "" YCM
+  runtime rc/ycm.plugin.vim
+endif
 
-" YCM
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'rdnetto/YCM-Generator'
+"" Simple, no frills, vimscript-only tab completion
+"Plug 'ajh17/VimCompletesMe'
+"Gautocmdft python,vim,sh let b:vcm_tab_complete = "tags"
 
-" Example: Code to execute when the plugin is loaded on demand
-"Plug 'Valloric/YouCompleteMe'  ", { 'for': 'cpp' }
-"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+" Complete along all tmux panes
+Plug 'wellle/tmux-complete.vim'
+
+"let g:tmuxcomplete#trigger = 'completefunc'
+"let g:tmuxcomplete#trigger = 'omnifunc'
+" Not needed at all with deoplete/ycm
+let g:tmuxcomplete#trigger = ''
+
+""
+"" NeoVim
+""
+
+if has('nvim')
+  "Plug 'bfredl/nvim-ipy'
+  "Plug 'tek/proteome.nvim'
+endif
+
+""
+"" MacVim
+""
+
+" TODO Not sure if gui_macvim is only supported in the gui or not in MacVim.
+if has('gui_macvim')
+  Plug 'nathanaelkane/vim-command-w'
+endif
 
 ""
 "" Tools that are also common libs used by other plugins
 ""
+
+"" Delete buffer without ever closing a window
+Plug 'qpkorr/vim-bufkill'
 
 "" Ultimate Text Linker
 Plug 'vim-scripts/utl.vim'
@@ -72,7 +102,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown
 Plug 'mhinz/vim-startify'
 
 "" GitGutter: Show git status in the gutter
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 "" NERDCommenter: stuff
 Plug 'scrooloose/nerdcommenter'
@@ -105,10 +135,9 @@ Plug 'vim-voom/VOoM'
 
 "" Fuzzy File Finder (kinda like ctrlp but ~maybe~ faster and less features?)
 Plug 'junegunn/fzf', {
-      \   'dir': expand('~/.shell/repos/fzf'),
+      \   'dir': expand('~/.shell/zsh-plugged/repos/junegunn/fzf'),
       \   'on': 'FZF',
       \ }
-
 
 ""
 "" Tools: Vetting
@@ -135,20 +164,42 @@ augroup END
 
 Plug 'vim-scripts/restore_view.vim'
 
-Plug 'Shougo/neopairs.vim'
-Plug 'Shougo/echodoc.vim'
-
-"Plug 'Shougo/vimproc', {
-"      \ 'build' : {
-"      \     'windows' : 'make -f make_mingw32.mak',
-"      \     'cygwin' : 'make -f make_cygwin.mak',
-"      \     'mac' : 'make -f make_mac.mak',
-"      \     'unix' : 'make -f make_unix.mak',
-"      \    },
-"      \ }
-
 " Dynamic SQL completion via opening a db connection
 Plug 'vim-scripts/dbext.vim'
+
+" Marks
+Plug 'kshenoy/vim-signature'
+
+" Multi file search
+Plug 'wincent/ferret'
+
+" tmux integration
+Plug 'christoomey/vim-tmux-navigator'
+" Activate autoupdate on exit
+let g:tmux_navigator_save_on_switch = 1
+
+" Help vim out with mouse focus events
+Plug 'tmux-plugins/vim-tmux-focus-events'
+
+" Handle tmux panes from vim
+Plug 'jebaum/vim-tmuxify'
+
+" Tmux.conf syntax
+Plug 'tmux-plugins/vim-tmux'
+
+" Send python tests to tmux split
+Plug 'captbaritone/vim-vigilant'
+" Control tmux from vim (again) but with tons of support
+Plug 'benmills/vimux'
+" Run cell blocks of code from vim in tmux
+"Plug 'julienr/vim-cellmode'
+" Keep env in sync with shell and vim through tmux
+Plug 'buztard/vim-nomad'
+
+"" Lots of script helpers at s:_.blah
+"Plug 'vim-jp/vital.vim'
+"Plug 'haya14busa/underscore.vim'
+
 
 ""
 "" Language: Python
@@ -183,15 +234,15 @@ Plug 'Rip-Rip/clang_complete'
 
 " Javascript
 "Plug 'moll/vim-node'  ", {'for': 'javascript'}
-"Plug 'ternjs/tern_for_vim'  ", {'for': 'javascript'})
+Plug 'ternjs/tern_for_vim'  ", {'for': 'javascript'})
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats'  ", {'for': ['bats', 'sh', 'bash', 'shell', 'zsh']}
 
 " Markdown
-Plug 'plasticboy/vim-markdown'  ", {'for': ['mkd', 'md', 'markdown']}
-"" Markdown with live preview
-"Plug 'junegunn/vim-xmark'  ", { 'do': 'make' }
+"Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+" Markdown with live preview
+Plug 'junegunn/vim-xmark', {'do': 'make', 'for': 'markdown'}
 
 "" YAML: is it better syntax? What is this?
 Plug 'ingydotnet/yaml-vim'  ", {'for': 'yaml'}
@@ -214,25 +265,39 @@ Plug 'vim-scripts/Txtfmt-The-Vim-Highlighter'
 
 " Notes
 Plug 'xolox/vim-notes'
-"Plug 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode'
 ", {'branch': 'dev'}
 "Plug 'vimwiki/vimwiki'
+
+" Wakatime integration
+Plug 'wakatime/vim-wakatime'
+"let g:wakatime_PythonBinary = '/usr/bin/python'
+
+" Continuously updated session files
+Plug 'tpope/vim-obsession'
+
+" Show CSS colors as what they truely are.
+Plug 'ap/vim-css-color'
 
 ""
 "" UI
 ""
 
 " Airline + plugins + devicons
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'edkolev/promptline.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+" Makes the cursorcol match the airline color
+Plug 'ntpeters/vim-airline-colornum'
 
 " Approximately converts gui only colorschemes to console
 "Plug 'godlygeek/csapprox'
 
 "" Convert CUI to GUI (may be useful in neovim since it needs gui_running to
 " NOT be checked yet still supply guifg/guibg etc
-Plug 'jlund3/colorschemer'
+"Plug 'jlund3/colorschemer'
 
 ""
 "" Colors
@@ -254,4 +319,9 @@ Plug 'stephanedemotte/beekai'
 Plug 'marcopaganini/mojave-vim-theme'
 Plug 'trevorrjohn/vim-obsidian'
 Plug 'mhartington/oceanic-next'
+Plug 'jordwalke/VimCleanColors'
+Plug 'jordwalke/flatlandia'
+Plug 'joshdick/onedark.vim'
+Plug 'joshdick/airline-onedark.vim'
+"Plug 'sbdchd/airline-steve'
 

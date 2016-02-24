@@ -1,0 +1,26 @@
+
+Plug 'Shougo/neopairs.vim'
+Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/neoinclude.vim'
+
+Plug 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+
+Plug 'Shougo/deoplete.nvim'
+
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
+
+"", {'for': 'go'}
+Plug 'zchee/deoplete-go'
+
+"", {'for': 'python'}
+Plug 'zchee/deoplete-jedi'
+

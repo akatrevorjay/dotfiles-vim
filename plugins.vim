@@ -31,6 +31,17 @@ Plug 'wellle/tmux-complete.vim'
 " Not needed at all with deoplete/ycm
 let g:tmuxcomplete#trigger = ''
 
+" GitHub completions
+Plug 'rhysd/github-complete.vim'
+
+augroup config-github-complete
+    autocmd!
+    autocmd FileType gitcommit setl omnifunc=github_complete#complete
+augroup END
+
+let g:github_complete_enable_neocomplete = 1
+let g:github_complete_include_issue_title = 1
+
 ""
 "" NeoVim
 ""
@@ -199,6 +210,9 @@ Plug 'buztard/vim-nomad'
 "" Lots of script helpers at s:_.blah
 "Plug 'vim-jp/vital.vim'
 "Plug 'haya14busa/underscore.vim'
+
+" Better git commit handling
+Plug 'rhysd/committia.vim'
 
 
 ""

@@ -53,6 +53,8 @@ let g:syntastic_svn_checkers = ['language_check']
 
 let g:syntastic_yaml_checkers = ['pyyaml']
 
+let g:syntastic_vim_checkers = ['vint']
+
 "" Block ZZ if there are syntax errors:
 "nnoremap ZZ :call syntastic_extras#quit_hook()<cr>
 " }}}

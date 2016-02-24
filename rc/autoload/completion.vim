@@ -94,8 +94,8 @@ set completeopt+=noinsert
 "set completeopt+=noselect
 
 " Deoplete: {{{
+
 if has('nvim') && exists("g:deoplete#enable_at_startup") && g:deoplete#enable_at_startup == 1
-  let g:deoplete#enable_at_startup = 1
   "let g:deoplete#auto_completion_start_length = 1
   "let g:deoplete#file#enable_buffer_path = 1
   ""let g:deoplete#enable_refresh_always = 1
@@ -105,6 +105,17 @@ if has('nvim') && exists("g:deoplete#enable_at_startup") && g:deoplete#enable_at
 
   " Use head matcher instead of fuzzy matcher
   "call deoplete#custom#set('_', 'matchers', ['matcher_head'])
+  call deoplete#custom#set('_', 'matchers', ['matcher_head', 'matcher_full_fuzzy'])
+	" Use auto delimiter feature
+	call deoplete#custom#set('_', 'converters', ['converter_auto_delimiter', 'converter_remove_overlap', 'converter_auto_paren'])
+
+	"call deoplete#custom#set('buffer', 'min_pattern_length', 9999)
+	" Change the source rank
+	"call deoplete#custom#set('buffer', 'rank', 9999)
+	" Enable buffer source in C/C++ files only.
+  call deoplete#custom#set('buffer', 'filetypes', ['c', 'cpp'])
+	" Disable the candidates in Comment/String syntaxes.
+	"call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
 
   " Integrate with neopairs
   let g:deoplete#enable_auto_pairs = 'true'
@@ -118,6 +129,10 @@ if has('nvim') && exists("g:deoplete#enable_at_startup") && g:deoplete#enable_at
   "" Go for deoplete
   let g:deoplete#sources#go = 'vim-go'
   let g:deoplete#sources#python = 'jedi'
+  "let g:deoplete#sources#vim = 'neco'
+
+
+  " Keys
 
   "" <C-h>, <BS>: close popup and delete backword char.
   "inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"

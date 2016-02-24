@@ -14,6 +14,7 @@ Plug 'Shougo/vimproc', {
       \ }
 
 Plug 'Shougo/deoplete.nvim'
+let g:deoplete#enable_at_startup = 1
 
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'

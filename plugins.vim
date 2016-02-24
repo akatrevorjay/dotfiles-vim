@@ -99,6 +99,8 @@ Plug 'tpope/vim-unimpaired'
 "" Syntastic: automagic syntax checks
 Plug 'scrooloose/syntastic'
 Plug 'myint/syntastic-extras'
+" viml linting
+Plug 'todesking/vint-syntastic'
 
 "Plug 'thinca/vim-prettyprint'
 

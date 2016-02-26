@@ -30,7 +30,20 @@ Gautocmdft javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 "set omnifunc=syntaxcomplete#Complete
 
 "" Completion: Jedi {{{
-if has('nvim') && exists("g:deoplete#enable_at_startup") && g:deoplete#enable_at_startup == 1
+let g:loaded_deoplete_enabled = 0
+let g:loaded_deoplete_enabled_auto = 0
+
+if has('nvim')
+  if exists('g:loaded_deoplete') && g:loaded_deoplete == 1
+    let g:loaded_deoplete_enabled = deoplete#init#is_enabled()
+
+    if g:deoplete#enable_at_startup == 1
+      let g:loaded_deoplete_enabled_auto = 1
+    endif
+  endif
+endif
+
+if g:loaded_deoplete_enabled == 1
   "" jedi for deoplete
   "Gautocmdft python setlocal omnifunc=jedi#completions
   let g:jedi#auto_initialization = 1
@@ -53,7 +66,7 @@ if has('nvim') && exists("g:deoplete#enable_at_startup") && g:deoplete#enable_at
 else  " Not deoplete
   let g:jedi#auto_initialization = 1
   let g:jedi#use_tabs_not_buffers = 1
-  let g:jedi#use_splits_not_buffers = "left"
+  let g:jedi#use_splits_not_buffers = 'left'
   let g:jedi#use_splits_not_buffers = 1
   let g:jedi#popup_on_dot = 1
   let g:jedi#popup_select_first = 0
@@ -64,7 +77,7 @@ else  " Not deoplete
   let g:jedi#max_doc_height = 30
   let g:jedi#auto_close_doc = 0
   "let g:jedi#squelch_py_warning = 1
-  let g:jedi#goto_definitions_command = "<leader>gg"
+  let g:jedi#goto_definitions_command = '<leader>gg'
 
   "let g:jedi#show_call_signatures = 1
   let g:jedi#show_call_signatures = 2  " show in cmdline
@@ -95,7 +108,7 @@ set completeopt+=noinsert
 
 " Deoplete: {{{
 
-if has('nvim') && exists("g:deoplete#enable_at_startup") && g:deoplete#enable_at_startup == 1
+if g:loaded_deoplete_enabled == 1
   "let g:deoplete#auto_completion_start_length = 1
   "let g:deoplete#file#enable_buffer_path = 1
   ""let g:deoplete#enable_refresh_always = 1
@@ -106,16 +119,16 @@ if has('nvim') && exists("g:deoplete#enable_at_startup") && g:deoplete#enable_at
   " Use head matcher instead of fuzzy matcher
   "call deoplete#custom#set('_', 'matchers', ['matcher_head'])
   call deoplete#custom#set('_', 'matchers', ['matcher_head', 'matcher_full_fuzzy'])
-	" Use auto delimiter feature
-	call deoplete#custom#set('_', 'converters', ['converter_auto_delimiter', 'converter_remove_overlap', 'converter_auto_paren'])
+  " Use auto delimiter feature
+  call deoplete#custom#set('_', 'converters', ['converter_auto_delimiter', 'converter_remove_overlap', 'converter_auto_paren'])
 
-	"call deoplete#custom#set('buffer', 'min_pattern_length', 9999)
-	" Change the source rank
-	"call deoplete#custom#set('buffer', 'rank', 9999)
-	" Enable buffer source in C/C++ files only.
+  "call deoplete#custom#set('buffer', 'min_pattern_length', 9999)
+  " Change the source rank
+  "call deoplete#custom#set('buffer', 'rank', 9999)
+  " Enable buffer source in C/C++ files only.
   call deoplete#custom#set('buffer', 'filetypes', ['c', 'cpp'])
-	" Disable the candidates in Comment/String syntaxes.
-	"call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
+  " Disable the candidates in Comment/String syntaxes.
+  "call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
 
   " Integrate with neopairs
   let g:deoplete#enable_auto_pairs = 'true'
@@ -150,7 +163,7 @@ endif
 " }}}
 
 " Clang: {{{
-if has('nvim') && exists("g:deoplete#enable_at_startup") && g:deoplete#enable_at_startup == 1
+if g:loaded_deoplete_enabled == 1
   " Deoplete support
   let g:clang_complete_auto = 0
   let g:clang_auto_select = 0

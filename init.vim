@@ -5,16 +5,13 @@
 " everytime an upgrade of the vim packages is performed.  It is recommended to
 " make changes after sourcing debian.vim since it alters the value of the
 " 'compatible' option.
-
+"
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
 "" Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
-
-runtime rc/early.vim local/early.vim
-runtime rc/lib.vim
 
 if has('vim_starting')
   if &compatible
@@ -23,6 +20,9 @@ if has('vim_starting')
 
   runtime! rc/starting.vim
 endif
+
+runtime rc/early.vim local/early.vim
+runtime rc/lib.vim
 
 " Plugins: {{{
 call plug#begin('~/.vim/plugged')
@@ -45,6 +45,9 @@ filetype plugin indent on   " enable loading indent file for filetype
 "  runtime! rc/autoload/*.nvim
 "endif
 runtime! rc/autoload/*.vim
+if has('nvim')
+  runtime! rc/autoload/*.nvim
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim: set ft=vim ff=unix fileencoding=utf-8 fdm=marker:

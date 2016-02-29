@@ -1,27 +1,30 @@
 
-" vim-pyenv {{{
 " Make sure PATH is sane.
-let sep = has('win32') || has('win64') ? ';' : ':'
-let $PATH = join([
-      \ expand('~/.bin'),
-      \ expand('~/.pyenv/bin'),
-      \ expand('~/.pyenv/shims'),
-      \ expand('~/go/bin'),
-      \ '/usr/local/bin',
-      \ '/usr/local/sbin',
-      \ '/usr/local/libexec/gnubin',
-      \ '/usr/bin',
-      \ '/usr/sbin',
-      \ '/bin',
-      \ '/sbin',
-      \ $PATH,
-      \], sep)
+if ! exists('s:appended_to_path')
+  let sep = has('win32') || has('win64') ? ';' : ':'
+  let $PATH = join([
+        \ expand('~/.bin'),
+        \ expand('~/.pyenv/bin'),
+        \ expand('~/.pyenv/shims'),
+        \ expand('~/go/bin'),
+        \ '/usr/local/bin',
+        \ '/usr/local/sbin',
+        \ '/usr/local/libexec/gnubin',
+        \ '/usr/bin',
+        \ '/usr/sbin',
+        \ '/bin',
+        \ '/sbin',
+        \ $PATH,
+        \], sep)
+  let s:appended_to_path = 1
+endif
 
+" vim-pyenv {{{
 "let g:pyenv#pyenv_exec = expand('~/.pyenv/bin/pyenv')
 "let g:pyenv#python_exec = expand('~/.pyenv/shims/python')
 
 "if g:pyenv#pyenv#get_activated_env()
-"    let g:pyenv#auto_create_ctags = 1
+"    let g:pyenv#auto_create_ctags = 1 yapf --style google --style='{column_limit: 120, DEDENT_CLOSING_BRACKETS: true}' 
 "    let g:pyenv#auto_assign_ctags = 1
 "endif
 " }}}

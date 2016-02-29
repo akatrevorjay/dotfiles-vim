@@ -18,9 +18,11 @@ if has("gui_running")
     set guifont=Menlo\ for\ Powerline/12/-1/5/50/0/0/0/1/0
   elseif has("x12")  " Should this be x11?
     set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+  "elseif has("mvim")
   else
     "set guifont=Menlo\ for\ Powerline:h12
-    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14  " nerd font complete
+    "set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14  " nerd font complete
+    set guifont=Hack\ Regular:h14
   endif
 endif
 " }}}

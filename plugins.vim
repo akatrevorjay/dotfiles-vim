@@ -107,6 +107,13 @@ Plug 'todesking/vint-syntastic'
 Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}
 "autocmd BufNewFile,BufRead *.md setf markdown
 
+" Maktaba is a framework for vim plugins, really nice actually.
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plug 'google/vim-glaive'
+
 ""
 "" Tools
 ""
@@ -124,7 +131,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/trailing-whitespace'
 
 "" Autoformat: supports numerous filetypes
-Plug 'Chiel92/vim-autoformat'
+"Plug 'Chiel92/vim-autoformat'
 
 " Faster folding
 Plug 'Konfekt/FastFold'
@@ -220,6 +227,25 @@ Plug 'rhysd/committia.vim'
 ""
 "" Language: Python
 ""
+
+" Better indenting
+Plug 'hynek/vim-python-pep8-indent'
+
+"" Better formatter (yapf > autopep8)
+"Plug 'pignacio/vim-yapf-format'
+""
+"" The style used to format the buffer is checking the following in order:
+"" - b:yapf_format_style variable.
+"" - Local .yapf.style for the file's project (or current directory for unsaved files).
+"" - g:yapf_format_style variable.
+"" - pep8
+""
+""let g:yapf_format_yapf_location = '/path/to/f'
+"let g:yapf_format_style = 'google'
+"" Mappings
+"map <C-o> :YapfFullFormat<CR>
+"imap <C-o> <ESC>:YapfFormat<CR>i
+"vmap <C-o> :YapfFormat<CR>
 
 " Run pytest, integrate a bit
 Plug 'alfredodeza/pytest.vim'  ", {'on': 'Pytest'}

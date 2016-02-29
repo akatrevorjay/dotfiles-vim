@@ -162,7 +162,8 @@ let g:task_info_vsplit     = 1  " 0
 map <leader>1 :CtrlPBuffer<cr>
 map <leader>2 :CtrlPBufTag<cr>
 map <leader>@ :CtrlPBufTagAll<cr>
-map <leader>= :CtrlPBookmarkDir<cr>
+" This is taken up by vim-codefmt
+"map <leader>= :CtrlPBookmarkDir<cr>
 map <leader>+ :CtrlPBookmarkDirAdd<cr>
 map <leader>0 :CtrlPCmdPalette<cr>
 "map <leader>: :CtrlPQuickfix
@@ -251,7 +252,7 @@ let g:tlTokenList = ['FUCK', 'FIX', 'FIXME', 'TODO', 'XXX', 'WTF', 'OMG', 'OMFG'
 " }}}
 
 " Notes: {{{
-let g:notes_directories = ["~/Notes"]
+let g:notes_directories = ['~/Notes']
 " }}}
 
 " NERDCommenter: {{{
@@ -336,7 +337,7 @@ let g:neopairs#enable = 1
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
-if !exists(":DiffOrig")
+if !exists(':DiffOrig')
   command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif

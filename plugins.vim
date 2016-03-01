@@ -131,7 +131,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/trailing-whitespace'
 
 "" Autoformat: supports numerous filetypes
-"Plug 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
 
 " Faster folding
 Plug 'Konfekt/FastFold'

@@ -43,7 +43,7 @@ if has('nvim')
   endif
 endif
 
-if g:loaded_deoplete_enabled == 1
+if exists('g:loaded_deoplete_enabled') && g:loaded_deoplete_enabled == 1
   "" jedi for deoplete
   "Gautocmdft python setlocal omnifunc=jedi#completions
   let g:jedi#auto_initialization = 1
@@ -118,9 +118,9 @@ if g:loaded_deoplete_enabled == 1
 
   " Use head matcher instead of fuzzy matcher
   "call deoplete#custom#set('_', 'matchers', ['matcher_head'])
-  call deoplete#custom#set('_', 'matchers', ['matcher_head', 'matcher_full_fuzzy'])
+  "call deoplete#custom#set('_', 'matchers', ['matcher_head', 'matcher_full_fuzzy'])
   " Use auto delimiter feature
-  call deoplete#custom#set('_', 'converters', ['converter_auto_delimiter', 'converter_remove_overlap', 'converter_auto_paren'])
+  "call deoplete#custom#set('_', 'converters', ['converter_auto_delimiter', 'converter_remove_overlap', 'converter_auto_paren'])
 
   "call deoplete#custom#set('buffer', 'min_pattern_length', 9999)
   " Change the source rank
@@ -141,9 +141,8 @@ if g:loaded_deoplete_enabled == 1
 
   "" Go for deoplete
   let g:deoplete#sources#go = 'vim-go'
-  let g:deoplete#sources#python = 'jedi'
+  "let g:deoplete#sources#python = 'jedi'
   "let g:deoplete#sources#vim = 'neco'
-
 
   " Keys
 

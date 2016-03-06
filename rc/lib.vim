@@ -42,7 +42,7 @@ command! SimplifyGitHubURLs call SimplifyGitHubURLs()
 "Gautocmdft vim nnoremap <silent> K :<C-u>SmartHelp<Space><C-r><C-w><CR>
 
 " Show highlight group name under a cursor
-command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+command! ShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 
 " Display syntax infomation on under the current cursor
 function! s:get_syn_id(transparent)

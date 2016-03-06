@@ -4,6 +4,7 @@ if ! exists('s:appended_to_path')
   let sep = has('win32') || has('win64') ? ';' : ':'
   let $PATH = join([
         \ expand('~/.bin'),
+        \ expand('~/.local/bin'),
         \ expand('~/.pyenv/bin'),
         \ expand('~/.pyenv/shims'),
         \ expand('~/go/bin'),

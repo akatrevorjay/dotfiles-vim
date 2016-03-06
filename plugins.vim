@@ -114,6 +114,9 @@ Plug 'google/vim-codefmt'
 " `:help :Glaive` for usage.
 Plug 'google/vim-glaive'
 
+" Code Review
+Plug 'google/vim-codereview'
+
 ""
 "" Tools
 ""

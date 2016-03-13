@@ -115,7 +115,20 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 
 " Code Review
-Plug 'google/vim-codereview'
+"Plug 'google/vim-codereview'
+
+" Nice export of highlighted code for copy/paste
+Plug 'google/vim-syncopate'
+
+Plug 'junkblocker/patchreview-vim'
+" This requires patchreview-vim
+Plug 'codegram/vim-codereview'
+
+" Jira
+Plug 'mattn/webapi-vim'
+Plug 'tyru/open-browser.vim'
+Plug 'Shougo/unite.vim'
+Plug 'rafi/vim-unite-issue'
 
 ""
 "" Tools
@@ -233,6 +246,7 @@ Plug 'rhysd/committia.vim'
 
 " Better indenting
 Plug 'hynek/vim-python-pep8-indent'
+"Plug 'michaeljsmith/vim-indent-object'
 
 "" Better formatter (yapf > autopep8)
 "Plug 'pignacio/vim-yapf-format'
@@ -369,4 +383,5 @@ Plug 'jordwalke/flatlandia'
 Plug 'joshdick/onedark.vim'
 Plug 'joshdick/airline-onedark.vim'
 "Plug 'sbdchd/airline-steve'
+Plug 'whatyouhide/vim-gotham'
 

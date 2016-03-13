@@ -91,8 +91,8 @@ augroup ColorScheme
   highlight String guibg=#331133
 augroup END
 colorscheme triplejelly
-"let g:airline_theme = 'jellybeans'
-let g:airline_theme = 'serene'
+let g:airline_theme = 'jellybeans'
+"let g:qirline_theme = 'serene'
 
 
 let g:onedark_termcolors = 256

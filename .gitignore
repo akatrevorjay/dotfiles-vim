@@ -2,3 +2,13 @@ bundle
 repos/eclim
 .netrwhist
 .ropeproject
+.DS_Store
+.*~
+/.vim*
+/view/
+/session/
+/local/
+/repos/vim-plug/
+/disabled/
+/plugged/
+/spell/

@@ -24,7 +24,7 @@ endif
 "Gautocmdft python,vim,sh let b:vcm_tab_complete = "tags"
 
 " Complete along all tmux panes
-Plug 'wellle/tmux-complete.vim'
+"Plug 'wellle/tmux-complete.vim'
 
 "let g:tmuxcomplete#trigger = 'completefunc'
 "let g:tmuxcomplete#trigger = 'omnifunc'
@@ -272,7 +272,7 @@ Plug 'alfredodeza/pytest.vim'  ", {'on': 'Pytest'}
 ""
 
 " Allows for python rst docstring support
-Plug 'Rykka/riv.vim'
+"Plug 'Rykka/riv.vim'
 
 " Better json
 Plug 'elzr/vim-json'

@@ -1,0 +1,1 @@
+../../local/unite_jira-local.vim
